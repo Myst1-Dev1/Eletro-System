@@ -26,4 +26,8 @@ body {
   .btn-primary {
     @apply bg-[#0BD061] transition-all duration-500 cursor-pointer text-white font-semibold py-3 rounded-md w-full hover:bg-green-600
   }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] text-white font-semibold rounded-xl shadow-lg shadow-green-500/30 transition-all duration-300 hover:scale-105 hover:brightness-110
+  }
 }

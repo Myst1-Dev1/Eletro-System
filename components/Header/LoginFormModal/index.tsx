@@ -3,21 +3,19 @@ import { Modal } from "../../Modal";
 import { XIcon } from "@phosphor-icons/react";
 import { signInAction } from "@/actions/signActions";
 import { handlePhoneChange } from "@/utils/phoneMask";
+import { useUIStore } from "@/stores/useUIStore";
 
-interface LoginModalFormProps {
-    loginModalOpen: boolean;
-    setLoginModalOpen: (value: boolean) => void;
-}
+export function LoginFormModal() {
+    const { loginModalOpen, closeLoginModal } = useUIStore();
 
-export function LoginFormModal({ loginModalOpen, setLoginModalOpen }: LoginModalFormProps) {
     const [formState, formAction, pending] = useActionState(signInAction, { success: false });
 
     return (
         <>
-            <Modal isOpen={loginModalOpen} setIsOpen={setLoginModalOpen} maxWidth="max-w-[500px]">
+            <Modal isOpen={loginModalOpen} setIsOpen={closeLoginModal} maxWidth="max-w-[500px]">
                 <div className="text-black p-4">
                     <h2 className="text-xl text-center font-semibold mb-12">Faça login para <br /> acessar o catálogo</h2>
-                    <XIcon size={24} onClick={() => setLoginModalOpen(false)} className="absolute top-4 right-4 cursor-pointer" />
+                    <XIcon size={24} onClick={closeLoginModal} className="absolute top-4 right-4 cursor-pointer" />
                     <form action={formAction} className="flex flex-col gap-3">
                         <div className="flex flex-col gap-3">
                             <label htmlFor="phoneNumber" className="font-semibold">Telefone</label>

@@ -38,7 +38,7 @@ export function TechAssistService() {
                             Componentes de última geração para upgrades e novos projetos.
                         </p>
                         <Link
-                            href="/categorias"
+                            href="/produtos"
                             className="text-[#03A64A] font-semibold hover:underline"
                         >
                             Ver produtos →

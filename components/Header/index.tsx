@@ -14,11 +14,13 @@ import {
 import { CategoriesDropdown } from "./CategoriesDropDown";
 import { LoginFormModal } from "./LoginFormModal";
 import { Cart } from "./Cart";
+import { useUIStore } from "@/stores/useUIStore";
 
 export function Header() {
+    const { openLoginModal } = useUIStore();
+
     const [menuOpen, setMenuOpen] = useState(false);
-    const [loginModalOpen, setLoginModalOpen] = useState(false);
-    const [isCartOpen, setIsCartOpen] = useState(true);
+    const [isCartOpen, setIsCartOpen] = useState(false);
 
     return (
         <>
@@ -63,7 +65,7 @@ export function Header() {
 
                         <div
                             className="cursor-pointer flex items-center gap-2 hover:text-[#03A64A] transition"
-                            onClick={() => setLoginModalOpen(true)}
+                            onClick={openLoginModal}
                         >
                             <UserIcon size={22} />
                             <span className="text-sm">Entrar</span>
@@ -117,7 +119,7 @@ export function Header() {
 
                         <hr className="border-white/10" />
 
-                        <div onClick={() => { setMenuOpen(false); setLoginModalOpen(true) }} className="flex items-center gap-3">
+                        <div onClick={() => { setMenuOpen(false); openLoginModal() }} className="flex items-center gap-3">
                             <UserIcon size={22} />
                             Entrar
                         </div>
@@ -130,7 +132,7 @@ export function Header() {
                 )}
             </header>
 
-            <LoginFormModal loginModalOpen={loginModalOpen} setLoginModalOpen={setLoginModalOpen} />
+            <LoginFormModal />
             {isCartOpen && <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />}
         </>
     );
