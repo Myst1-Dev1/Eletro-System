@@ -1,8 +1,6 @@
 'use client';
 
 import Image from "next/image";
-import Link from "next/link";
-import { FormEvent } from "react";
 
 const products = [
     {
@@ -37,23 +35,11 @@ const products = [
     },
 ];
 
-export function KnowOurProducts() {
+export function Products() {
     const isLogged = false;
 
     return (
-        <section className="container py-20">
-            <div className="text-center mb-14">
-                <h2 className="text-3xl md:text-4xl font-bold">
-                    Conheça nossos{" "}
-                    <span className="bg-gradient-to-r from-[#33945E] to-[#03A64A] bg-clip-text text-transparent">
-                        Produtos
-                    </span>
-                </h2>
-                <p className="text-gray-400 mt-4 max-w-xl mx-auto">
-                    Equipamentos de alta performance para quem exige qualidade e tecnologia de ponta.
-                </p>
-            </div>
-
+        <>
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
                 {products.map((product) => (
                     <div
@@ -90,19 +76,6 @@ export function KnowOurProducts() {
                     </div>
                 ))}
             </div>
-
-            <div className="text-center mt-14">
-                <Link
-                    onClick={(e: FormEvent) => {
-                        e.preventDefault();
-                        if (isLogged === false) return alert('Você precisa estár logado para ver os produtos')
-                    }}
-                    href={isLogged ? "/produtos" : "/"}
-                    className="inline-block px-8 py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold transition-all duration-500 hover:scale-105 hover:brightness-110"
-                >
-                    Ver Todos os Produtos
-                </Link>
-            </div>
-        </section>
-    );
+        </>
+    )
 }

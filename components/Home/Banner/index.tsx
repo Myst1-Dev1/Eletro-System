@@ -28,10 +28,10 @@ export function Banner() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
 
                         <Link
-                            href="/categorias"
+                            href="/produtos"
                             className="
-                px-6 py-3
-                bg-gradient-to-r from-[#33945E] to-[#03A64A]
+                                px-6 py-3
+                                bg-gradient-to-r from-[#33945E] to-[#03A64A]
                                 text-white font-semibold
                                 rounded-xl
                                 shadow-lg shadow-green-500/30

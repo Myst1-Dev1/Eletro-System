@@ -1,3 +1,5 @@
+'use client';
+
 import Image from "next/image";
 
 export function Offers() {
@@ -24,6 +26,8 @@ export function Offers() {
             discount: 20,
         },
     ];
+
+    const isLogged = false;
 
     return (
         <section className="relative py-20">
@@ -74,7 +78,11 @@ export function Offers() {
                                 R$ {product.price.toFixed(2).replace(".", ",")}
                             </p>
 
-                            <button className="cursor-pointer relative z-10 mt-5 w-full py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold transition-all duration-300 hover:brightness-110">
+                            <button
+                                onClick={() => {
+                                    if (isLogged === false) return alert('Você precisa estár logado para executar está ação')
+                                }}
+                                className="cursor-pointer relative z-10 mt-5 w-full py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold transition-all duration-300 hover:brightness-110">
                                 Adicionar ao carrinho
                             </button>
                         </div>

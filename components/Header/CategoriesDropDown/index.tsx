@@ -32,7 +32,7 @@ export function CategoriesDropdown() {
     }, []);
 
     function handleCategoryClick(category: string) {
-        router.push(`/products?category=${category}`);
+        router.push(`/produtos?categoria=${category}`);
         setOpen(false);
     }
 

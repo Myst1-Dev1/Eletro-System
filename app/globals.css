@@ -22,4 +22,8 @@ body {
   .bg-green-primary {
     @apply bg-[#0BD061]
   }
+
+  .btn-primary {
+    @apply bg-[#0BD061] transition-all duration-500 cursor-pointer text-white font-semibold py-3 rounded-md w-full hover:bg-green-600
+  }
 }

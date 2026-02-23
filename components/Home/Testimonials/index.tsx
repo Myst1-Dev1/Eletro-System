@@ -93,21 +93,16 @@ export function Testimonials() {
                             “
                         </span>
 
-                        <p className="text-xs md:text-xl leading-relaxed mt-4 text-gray-200">
+                        <p className="mb-10 text-xs md:text-xl leading-relaxed mt-4 text-gray-200">
                             Estou comprando na Eletro System há anos e sempre fico
                             impressionada com a qualidade do atendimento e dos produtos.
                             Entrega rápida, suporte especializado e confiança total.
                             Recomendo para todos que buscam tecnologia de verdade.
                         </p>
 
-                        <div className="mt-8">
-                            <p className="text-white font-semibold text-lg">
-                                Lauren Mendes
-                            </p>
-                            <p className="text-sm text-gray-400">
-                                Cliente verificado
-                            </p>
-                        </div>
+                        <span className="text-6xl text-end block text-[#03A64A] font-serif leading-none">
+                            ”
+                        </span>
 
                     </div>
 
