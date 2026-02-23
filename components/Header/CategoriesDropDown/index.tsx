@@ -60,7 +60,7 @@ export function CategoriesDropdown() {
                         <button
                             key={category}
                             onClick={() => handleCategoryClick(category)}
-                            className="w-full text-left px-4 py-2 hover:bg-[#03A64A]/20 transition-all text-sm capitalize"
+                            className="w-full cursor-pointer text-left px-4 py-2 hover:bg-[#03A64A]/20 transition-all text-sm capitalize"
                         >
                             {category}
                         </button>

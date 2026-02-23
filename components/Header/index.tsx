@@ -13,11 +13,12 @@ import {
 } from "@phosphor-icons/react";
 import { CategoriesDropdown } from "./CategoriesDropDown";
 import { LoginFormModal } from "./LoginFormModal";
-
+import { Cart } from "./Cart";
 
 export function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [loginModalOpen, setLoginModalOpen] = useState(false);
+    const [isCartOpen, setIsCartOpen] = useState(true);
 
     return (
         <>
@@ -70,6 +71,7 @@ export function Header() {
 
                         <div
                             className="cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition"
+                            onClick={() => setIsCartOpen(true)}
                         >
                             <ShoppingCartIcon size={22} />
                             <span className="text-sm">Carrinho</span>
@@ -120,7 +122,7 @@ export function Header() {
                             Entrar
                         </div>
 
-                        <div className="flex items-center gap-3">
+                        <div onClick={() => { setMenuOpen(false); setIsCartOpen(true) }} className="flex items-center gap-3">
                             <ShoppingCartIcon size={22} />
                             Carrinho
                         </div>
@@ -129,6 +131,7 @@ export function Header() {
             </header>
 
             <LoginFormModal loginModalOpen={loginModalOpen} setLoginModalOpen={setLoginModalOpen} />
+            {isCartOpen && <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />}
         </>
     );
 }

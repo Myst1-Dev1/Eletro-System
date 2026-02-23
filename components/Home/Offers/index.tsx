@@ -9,6 +9,7 @@ export function Offers() {
             name: "AirPods Pro",
             image: "/images/produto.webp",
             price: 799,
+            oldPrice: 989,
             discount: 20,
         },
         {
@@ -16,6 +17,7 @@ export function Offers() {
             name: "AirPods Pro",
             image: "/images/produto.webp",
             price: 799,
+            oldPrice: 989,
             discount: 20,
         },
         {
@@ -23,6 +25,7 @@ export function Offers() {
             name: "AirPods Pro",
             image: "/images/produto.webp",
             price: 799,
+            oldPrice: 989,
             discount: 20,
         },
     ];
@@ -69,20 +72,30 @@ export function Offers() {
                                 {product.name}
                             </h3>
 
-                            <span className="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-md mb-3">
+                            <span className="bg-red-500 absolute top-2 right-2 text-white text-sm font-bold px-3 py-1 rounded-md mb-3">
                                 -{product.discount}%
                             </span>
 
-                            <p className="text-gray-400 text-sm">POR:</p>
-                            <p className="text-2xl font-bold text-[#03A64A] mb-6">
-                                R$ {product.price.toFixed(2).replace(".", ",")}
-                            </p>
+                            <div className="flex flex-col items-center gap-1 mb-6">
+                                <span className="text-gray-400 text-sm line-through">
+                                    R$ {product.oldPrice?.toFixed(2).replace(".", ",")}
+                                </span>
+
+                                <span className="text-3xl font-bold text-[#03A64A]">
+                                    R$ {product.price.toFixed(2).replace(".", ",")}
+                                </span>
+                                <span className="text-xs text-green-400 font-medium">
+                                    Economize R$ {(product.oldPrice - product.price)
+                                        .toFixed(2)
+                                        .replace(".", ",")}
+                                </span>
+                            </div>
 
                             <button
                                 onClick={() => {
                                     if (isLogged === false) return alert('Você precisa estár logado para executar está ação')
                                 }}
-                                className="cursor-pointer relative z-10 mt-5 w-full py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold transition-all duration-300 hover:brightness-110">
+                                className="cursor-pointer relative z-10 w-full py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold transition-all duration-300 hover:brightness-110">
                                 Adicionar ao carrinho
                             </button>
                         </div>
