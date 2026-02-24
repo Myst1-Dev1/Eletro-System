@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 interface ActionResult {
@@ -8,14 +9,14 @@ interface ActionResult {
 }
 
 export async function signInAction(_: ActionResult, formData: FormData): Promise<ActionResult> {
-    const phoneNumber = formData.get('phoneNumber');
+    const phone = formData.get('phone');
     const password = formData.get('password');
 
-    if (!phoneNumber || !password) {
+    if (!phone || !password) {
         return { success: false, message: 'Preencha todos os campos' };
     }
 
-    const cookieStore = await cookies();
+    console.log(phone, password);
 
     try {
         const response = await fetch('https://admin.eletrosystemti.com.br/api/login', {
@@ -24,21 +25,29 @@ export async function signInAction(_: ActionResult, formData: FormData): Promise
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                phoneNumber,
+                phone,
                 password,
             }),
         });
 
+        // if (data.status === 'success') {
         const data = await response.json();
 
-        if (data.status === 'success') {
-            cookieStore.set('user', JSON.stringify(data.user));
-            return { success: true, message: 'Login realizado com sucesso' };
-        }
+        const cookieStore = await cookies();
+        cookieStore.set({
+            name: "user",
+            value: JSON.stringify(data),
+            path: "/",
+            maxAge: 60 * 60 * 24 * 1
+        });
 
-        return { success: false, message: data.message || 'Erro ao realizar login' };
+        revalidatePath('/', 'page');
+        return { success: true, message: 'Login realizado com sucesso' };
+        // }
+
+        // return { success: false, message: data.message || 'Erro ao realizar login' };
     } catch (error: any) {
-        console.error(error);
+        console.log('tivemos um erro ao fazer o login:', error);
         return { success: false, message: error.message || 'Erro interno no servidor' };
     }
 }

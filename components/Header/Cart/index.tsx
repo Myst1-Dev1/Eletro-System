@@ -1,6 +1,8 @@
 'use client';
 
-import { X } from "@phosphor-icons/react";
+import { useCartStore } from "@/stores/useCartStore";
+import { TrashIcon, X } from "@phosphor-icons/react";
+import { get } from "http";
 import Image from "next/image";
 
 interface CartProps {
@@ -9,6 +11,10 @@ interface CartProps {
 }
 
 export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
+    const { cart, removeFromCart, clearCart, getTotalPrice } = useCartStore();
+
+    const total = getTotalPrice();
+
     return (
         <>
             <div
@@ -32,55 +38,33 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
 
                 <div className="flex-1 overflow-y-auto p-6 space-y-6">
 
-                    <div className="flex gap-4">
-                        <Image src="/images/produto.webp" alt="Logo" width={200} height={200} className="w-20 h-20 bg-white/10 rounded-lg" />
+                    {cart.map(product => (
+                        <div key={product.product.id} className="flex gap-4">
+                            <Image src={product.product.image} alt="Logo" width={200} height={200} className="w-20 h-20 bg-white/10 rounded-lg" />
 
-                        <div className="flex flex-col justify-between flex-1">
-                            <div>
-                                <p className="font-medium">Notebook Dell Inspiron</p>
-                                <p className="text-sm text-gray-400">Qtd: 1</p>
+                            <div className="flex flex-col justify-between flex-1">
+                                <div>
+                                    <p className="font-medium">{product.product.name}</p>
+                                    <p className="text-sm text-gray-400">Qtd: {product.quantity}</p>
+                                </div>
+
+                                <div className="flex justify-between w-full">
+                                    <p className="font-semibold text-[#03A64A]">
+                                        {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.product.price)}
+                                    </p>
+                                    <TrashIcon onClick={() => removeFromCart(product.product.id)} className="cursor-pointer" size={20} color="#E7000B" />
+                                </div>
                             </div>
-
-                            <p className="font-semibold text-[#03A64A]">
-                                R$ 3.499,00
-                            </p>
                         </div>
-                    </div>
-                    <div className="flex gap-4">
-                        <Image src="/images/produto.webp" alt="Logo" width={200} height={200} className="w-20 h-20 bg-white/10 rounded-lg" />
-
-                        <div className="flex flex-col justify-between flex-1">
-                            <div>
-                                <p className="font-medium">Notebook Dell Inspiron</p>
-                                <p className="text-sm text-gray-400">Qtd: 1</p>
-                            </div>
-
-                            <p className="font-semibold text-[#03A64A]">
-                                R$ 3.499,00
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex gap-4">
-                        <Image src="/images/produto.webp" alt="Logo" width={200} height={200} className="w-20 h-20 bg-white/10 rounded-lg" />
-
-                        <div className="flex flex-col justify-between flex-1">
-                            <div>
-                                <p className="font-medium">Notebook Dell Inspiron</p>
-                                <p className="text-sm text-gray-400">Qtd: 1</p>
-                            </div>
-
-                            <p className="font-semibold text-[#03A64A]">
-                                R$ 3.499,00
-                            </p>
-                        </div>
-                    </div>
+                    ))}
 
                 </div>
+                <span onClick={() => clearCart()} className="px-6 text-gray-500 font-thin mb-3 cursor-pointer transition-all duration-500 hover:text-green-400">Limpar Carrinho</span>
                 <div className="border-t border-white/10 p-6 space-y-4">
 
                     <div className="flex justify-between text-lg font-semibold">
                         <span>Total</span>
-                        <span className="text-[#03A64A]">R$ 3.499,00</span>
+                        <span className="text-[#03A64A]">{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}</span>
                     </div>
 
                     <button className="w-full py-4 rounded-xl bg-gradient-to-r from-[#33945E] to-[#03A64A] font-semibold hover:brightness-110 transition">

@@ -1,8 +1,11 @@
 'use client';
 
+import { useUserStore } from "@/stores/useUserStore";
 import Image from "next/image";
 
 export function Offers() {
+    const { isLogged } = useUserStore();
+
     const products = [
         {
             id: 1,
@@ -30,11 +33,9 @@ export function Offers() {
         },
     ];
 
-    const isLogged = false;
-
     return (
         <>
-            {isLogged === false ? '' :
+            {!isLogged ? '' :
                 <section className="relative py-20">
                     <div className="container">
 
@@ -94,9 +95,6 @@ export function Offers() {
                                     </div>
 
                                     <button
-                                        onClick={() => {
-                                            if (isLogged === false) return alert('Você precisa estár logado para executar está ação')
-                                        }}
                                         className="cursor-pointer relative z-10 w-full py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold transition-all duration-300 hover:brightness-110">
                                         Adicionar ao carrinho
                                     </button>

@@ -18,8 +18,8 @@ export function LoginFormModal() {
                     <XIcon size={24} onClick={closeLoginModal} className="absolute top-4 right-4 cursor-pointer" />
                     <form action={formAction} className="flex flex-col gap-3">
                         <div className="flex flex-col gap-3">
-                            <label htmlFor="phoneNumber" className="font-semibold">Telefone</label>
-                            <input onInput={handlePhoneChange} maxLength={15} type="text" name="phoneNumber" className="input" id="phoneNumber" placeholder="(xx) xxxxx-xxxx" />
+                            <label htmlFor="phone" className="font-semibold">Telefone</label>
+                            <input onInput={handlePhoneChange} maxLength={15} type="text" name="phone" className="input" id="phone" placeholder="(xx) xxxxx-xxxx" />
                         </div>
                         <div className="flex flex-col gap-3">
                             <label htmlFor="password" className="font-semibold">Senha</label>
@@ -28,7 +28,7 @@ export function LoginFormModal() {
                         {formState?.success === false && (
                             <p className="text-red-500 text-center font-extrabold text-sm">{formState.message}</p>
                         )}
-                        <button type="submit" className="btn-primary mt-3">{pending ? 'Entrando...' : 'Entrar'}</button>
+                        <button type="submit" className="btn-secondary mt-3">{pending ? 'Entrando...' : 'Entrar'}</button>
                     </form>
                 </div>
             </Modal>

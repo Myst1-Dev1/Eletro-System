@@ -1,44 +1,47 @@
 'use client';
 
+import { useCartStore } from "@/stores/useCartStore";
 import { useUIStore } from "@/stores/useUIStore";
+import { useUserStore } from "@/stores/useUserStore";
 import Image from "next/image";
 
 const products = [
     {
         id: 1,
         name: "Fone Gamer RGB",
-        price: "789,99",
+        price: 789.99,
         image: "/images/produto.webp",
     },
     {
         id: 2,
         name: "Teclado Mecânico",
-        price: "499,99",
+        price: 499.99,
         image: "/images/produto.webp",
     },
     {
         id: 3,
         name: "Mouse Gamer Pro",
-        price: "299,99",
+        price: 299.99,
         image: "/images/produto.webp",
     },
     {
         id: 4,
         name: "Monitor 144Hz",
-        price: "1.299,99",
+        price: 1299.99,
         image: "/images/produto.webp",
     },
     {
         id: 5,
         name: "Placa de Vídeo RTX",
-        price: "3.999,99",
+        price: 3999.99,
         image: "/images/produto.webp",
     },
 ];
 
 export function KnowOurProducts() {
     const { openLoginModal } = useUIStore();
-    const isLogged = false;
+    const { isLogged } = useUserStore();
+    const { addToCart } = useCartStore();
 
     return (
         <section className="container py-20">
@@ -87,8 +90,8 @@ export function KnowOurProducts() {
                             </h4>
 
                             <button
-                                disabled
-                                className="relative z-10 mt-5 w-full py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold opacity-80"
+                                onClick={() => addToCart(product)}
+                                className="cursor-pointer relative z-10 mt-5 w-full py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] rounded-lg font-semibold opacity-80"
                             >
                                 Adicionar ao carrinho
                             </button>

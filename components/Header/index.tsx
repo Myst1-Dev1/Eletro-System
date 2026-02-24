@@ -3,21 +3,25 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
 import {
     MagnifyingGlassIcon,
     UserIcon,
     ShoppingCartIcon,
     ListIcon,
-    XIcon
+    XIcon,
+    ClipboardTextIcon
 } from "@phosphor-icons/react";
 import { CategoriesDropdown } from "./CategoriesDropDown";
 import { LoginFormModal } from "./LoginFormModal";
 import { Cart } from "./Cart";
 import { useUIStore } from "@/stores/useUIStore";
+import { useUserStore } from "@/stores/useUserStore";
+import { useCartStore } from "@/stores/useCartStore";
 
 export function Header() {
     const { openLoginModal } = useUIStore();
+    const { isLogged } = useUserStore();
+    const { cart } = useCartStore();
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -63,13 +67,20 @@ export function Header() {
                             <MagnifyingGlassIcon size={20} className="text-[#03A64A]" />
                         </div>
 
-                        <div
-                            className="cursor-pointer flex items-center gap-2 hover:text-[#03A64A] transition"
-                            onClick={openLoginModal}
-                        >
-                            <UserIcon size={22} />
-                            <span className="text-sm">Entrar</span>
-                        </div>
+                        {isLogged ?
+                            <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
+                                <ClipboardTextIcon size={22} />
+                                Meus Pedidos
+                            </Link>
+                            :
+                            <div
+                                className="cursor-pointer flex items-center gap-2 hover:text-[#03A64A] transition"
+                                onClick={openLoginModal}
+                            >
+                                <UserIcon size={22} />
+                                <span className="text-sm">Entrar</span>
+                            </div>
+                        }
 
                         <div
                             className="cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition"
@@ -77,9 +88,11 @@ export function Header() {
                         >
                             <ShoppingCartIcon size={22} />
                             <span className="text-sm">Carrinho</span>
-                            {/* <span className="absolute -top-2 -right-3 text-xs bg-[#03A64A] px-2 rounded-full">
-                            2
-                        </span> */}
+                            {cart.length === 0 ? '' :
+                                <span className="absolute -top-2 -right-3 text-xs bg-[#03A64A] px-2 rounded-full">
+                                    {cart.length}
+                                </span>
+                            }
                         </div>
                     </div>
 
@@ -119,14 +132,26 @@ export function Header() {
 
                         <hr className="border-white/10" />
 
-                        <div onClick={() => { setMenuOpen(false); openLoginModal() }} className="flex items-center gap-3">
-                            <UserIcon size={22} />
-                            Entrar
-                        </div>
+                        {isLogged ?
+                            <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
+                                <ClipboardTextIcon size={22} />
+                                Meus Pedidos
+                            </Link>
+                            :
+                            <div onClick={() => { setMenuOpen(false); openLoginModal() }} className="flex items-center gap-3">
+                                <UserIcon size={22} />
+                                Entrar
+                            </div>
+                        }
 
-                        <div onClick={() => { setMenuOpen(false); setIsCartOpen(true) }} className="flex items-center gap-3">
+                        <div onClick={() => { setMenuOpen(false); setIsCartOpen(true) }} className="relative flex items-center gap-3">
                             <ShoppingCartIcon size={22} />
                             Carrinho
+                            {cart.length === 0 ? '' :
+                                <span className="absolute -top-2 left-3 text-xs bg-[#03A64A] px-2 rounded-full">
+                                    {cart.length}
+                                </span>
+                            }
                         </div>
                     </div>
                 )}
