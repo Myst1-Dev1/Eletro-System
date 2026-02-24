@@ -36,7 +36,7 @@ export async function signInAction(_: ActionResult, formData: FormData): Promise
         const cookieStore = await cookies();
         cookieStore.set({
             name: "user",
-            value: JSON.stringify(data),
+            value: data.token,
             path: "/",
             maxAge: 60 * 60 * 24 * 1
         });

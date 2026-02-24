@@ -1,8 +1,8 @@
 'use client';
 
+import { createNewOrder } from "@/actions/ordersAction";
 import { useCartStore } from "@/stores/useCartStore";
 import { TrashIcon, X } from "@phosphor-icons/react";
-import { get } from "http";
 import Image from "next/image";
 
 interface CartProps {
@@ -15,10 +15,27 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
 
     const total = getTotalPrice();
 
+    const handleFinalizeOrder = async () => {
+        try {
+            await Promise.all(
+                cart.map((item: any) =>
+                    createNewOrder(item.product.id, item.quantity)
+                )
+            );
+
+            clearCart();
+            setIsCartOpen(false);
+            alert("Pedido finalizado com sucesso!");
+        } catch (error) {
+            console.error("Erro ao finalizar pedido:", error);
+            alert("Houve um erro ao processar seu pedido.");
+        }
+    }
+
     return (
         <>
             <div
-                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${isCartOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300 ${isCartOpen ? "opacity-100 visible" : "opacity-0 invisible"
                     }`}
                 onClick={() => setIsCartOpen(false)}
             />
@@ -40,7 +57,7 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
 
                     {cart.map(product => (
                         <div key={product.product.id} className="flex gap-4">
-                            <Image src={product.product.image} alt="Logo" width={200} height={200} className="w-20 h-20 bg-white/10 rounded-lg" />
+                            <Image src="/images/produto.webp" alt="Logo" width={200} height={200} className="w-20 h-20 bg-white/10 rounded-lg" />
 
                             <div className="flex flex-col justify-between flex-1">
                                 <div>
@@ -67,7 +84,7 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
                         <span className="text-[#03A64A]">{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}</span>
                     </div>
 
-                    <button className="w-full py-4 rounded-xl bg-gradient-to-r from-[#33945E] to-[#03A64A] font-semibold hover:brightness-110 transition">
+                    <button onClick={handleFinalizeOrder} className="cursor-pointer w-full py-4 rounded-xl bg-gradient-to-r from-[#33945E] to-[#03A64A] font-semibold hover:brightness-110 transition">
                         Finalizar Pedido
                     </button>
                 </div>

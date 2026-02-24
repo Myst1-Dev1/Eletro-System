@@ -29,12 +29,10 @@ export const useUserStore = create<UserState>((set) => ({
                 throw new Error('Usuário não autenticado');
             }
 
-            const parsedUser = JSON.parse(userCookie);
-
             const response = await fetch("https://admin.eletrosystemti.com.br/api/me", {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${parsedUser.token}`,
+                    Authorization: `Bearer ${userCookie}`,
                 },
                 cache: 'no-store'
             });

@@ -8,7 +8,18 @@ import { useUIStore } from "@/stores/useUIStore";
 export function LoginFormModal() {
     const { loginModalOpen, closeLoginModal } = useUIStore();
 
-    const [formState, formAction, pending] = useActionState(signInAction, { success: false });
+    const [formState, formAction, pending] = useActionState(handleSignIn, { success: false });
+
+    async function handleSignIn(prevState: any, formData: FormData) {
+        const result = await signInAction(prevState, formData);
+        if (result.success) {
+            closeLoginModal();
+        } else {
+            console.log('erro ao fazer login')
+        }
+
+        return result;
+    }
 
     return (
         <>
@@ -28,7 +39,7 @@ export function LoginFormModal() {
                         {formState?.success === false && (
                             <p className="text-red-500 text-center font-extrabold text-sm">{formState.message}</p>
                         )}
-                        <button type="submit" className="btn-secondary mt-3">{pending ? 'Entrando...' : 'Entrar'}</button>
+                        <button type="submit" className="cursor-pointer btn-secondary mt-3">{pending ? 'Entrando...' : 'Entrar'}</button>
                     </form>
                 </div>
             </Modal>

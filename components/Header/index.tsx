@@ -69,7 +69,7 @@ export function Header() {
 
                         {isLogged ?
                             <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
-                                <ClipboardTextIcon size={22} />
+                                <ClipboardTextIcon className="shrink-0" size={22} />
                                 Meus Pedidos
                             </Link>
                             :
@@ -86,7 +86,7 @@ export function Header() {
                             className="cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition"
                             onClick={() => setIsCartOpen(true)}
                         >
-                            <ShoppingCartIcon size={22} />
+                            <ShoppingCartIcon className="shrink-0" size={22} />
                             <span className="text-sm">Carrinho</span>
                             {cart.length === 0 ? '' :
                                 <span className="absolute -top-2 -right-3 text-xs bg-[#03A64A] px-2 rounded-full">
@@ -134,12 +134,12 @@ export function Header() {
 
                         {isLogged ?
                             <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
-                                <ClipboardTextIcon size={22} />
+                                <ClipboardTextIcon className="shrink-0" size={22} />
                                 Meus Pedidos
                             </Link>
                             :
                             <div onClick={() => { setMenuOpen(false); openLoginModal() }} className="flex items-center gap-3">
-                                <UserIcon size={22} />
+                                <UserIcon className="shrink-0" size={22} />
                                 Entrar
                             </div>
                         }
