@@ -1,9 +1,12 @@
 'use client';
 
 import { createNewOrder } from "@/actions/ordersAction";
+import { Loading } from "@/components/Loading";
 import { useCartStore } from "@/stores/useCartStore";
 import { TrashIcon, X } from "@phosphor-icons/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface CartProps {
     isCartOpen: boolean;
@@ -12,10 +15,14 @@ interface CartProps {
 
 export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
     const { cart, removeFromCart, clearCart, getTotalPrice, increaseQuantity, decreaseQuantity } = useCartStore();
+    const [loading, setLoading] = useState(false);
 
     const total = getTotalPrice();
 
+    const router = useRouter();
+
     const handleFinalizeOrder = async () => {
+        setLoading(true);
         try {
             await Promise.all(
                 cart.map((item: any) =>
@@ -25,13 +32,14 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
 
             clearCart();
             setIsCartOpen(false);
-            alert("Pedido finalizado com sucesso!");
+            router.push('/sucesso?success=true');
         } catch (error) {
             console.error("Erro ao finalizar pedido:", error);
             alert("Houve um erro ao processar seu pedido.");
+        } finally {
+            setLoading(false);
         }
     }
-
 
     return (
         <>
@@ -117,7 +125,7 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
                     </div>
 
                     <button onClick={handleFinalizeOrder} className="cursor-pointer w-full py-4 rounded-xl bg-gradient-to-r from-[#33945E] to-[#03A64A] font-semibold hover:brightness-110 transition">
-                        Finalizar Pedido
+                        {loading ? <Loading /> : "Finalizar Pedido"}
                     </button>
                 </div>
             </div>

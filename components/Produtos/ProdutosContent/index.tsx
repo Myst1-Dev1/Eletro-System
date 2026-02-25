@@ -14,6 +14,9 @@ interface ProdutosContentProps {
 export function ProdutosContent({ products, productsToDisplay, categoria }: ProdutosContentProps) {
     const [search, setSearch] = useState('');
     const [category, setCategory] = useState(categoria || 'todos');
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const itemsPerPage = 8;
 
     const filteredProducts = productsToDisplay?.data?.filter((product: any) => {
         const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
@@ -22,6 +25,16 @@ export function ProdutosContent({ products, productsToDisplay, categoria }: Prod
 
         return matchesSearch && matchesCategory;
     });
+
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentItems = filteredProducts.slice(startIndex, endIndex);
+
+    const handleFilterChange = (newCategory: string) => {
+        setCategory(newCategory);
+        setCurrentPage(1);
+    };
 
     return (
         <>
@@ -34,8 +47,8 @@ export function ProdutosContent({ products, productsToDisplay, categoria }: Prod
 
                 <div className="container py-12">
                     <Filters categories={products} search={search} setSearch={setSearch} category={category} setCategory={setCategory} />
-                    <Products products={filteredProducts} />
-                    <Pagination />
+                    <Products products={currentItems} />
+                    <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
                 </div>
             </div>
         </>
