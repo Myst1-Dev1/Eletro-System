@@ -6,6 +6,7 @@ import { TechAssistService } from "@/components/Home/TechAssistService";
 import { Testimonials } from "@/components/Home/Testimonials";
 import { Offers } from "@/components/Home/Offers";
 import { getAllProducts } from "@/services/getProducts";
+import { Features } from "@/components/Home/Features";
 
 export default async function Home() {
   const products = await getAllProducts();
@@ -16,6 +17,7 @@ export default async function Home() {
       <TechAssistService />
       <Testimonials />
       <Offers products={products} />
+      <Features />
     </>
   );
 }
