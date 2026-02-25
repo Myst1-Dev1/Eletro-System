@@ -15,7 +15,7 @@ export default async function Home() {
       <KnowOurProducts products={products} />
       <TechAssistService />
       <Testimonials />
-      <Offers />
+      <Offers products={products} />
     </>
   );
 }

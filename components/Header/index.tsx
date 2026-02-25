@@ -4,12 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-    MagnifyingGlassIcon,
     UserIcon,
     ShoppingCartIcon,
     ListIcon,
     XIcon,
-    ClipboardTextIcon
+    ClipboardTextIcon,
+    SignOutIcon
 } from "@phosphor-icons/react";
 import { CategoriesDropdown } from "./CategoriesDropDown";
 import { LoginFormModal } from "./LoginFormModal";
@@ -17,10 +17,11 @@ import { Cart } from "./Cart";
 import { useUIStore } from "@/stores/useUIStore";
 import { useUserStore } from "@/stores/useUserStore";
 import { useCartStore } from "@/stores/useCartStore";
+import { SearchProducts } from "./SearchProducts";
 
 export function Header() {
     const { openLoginModal } = useUIStore();
-    const { isLogged } = useUserStore();
+    const { isLogged, logout, isLoading } = useUserStore();
     const { cart } = useCartStore();
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -30,7 +31,7 @@ export function Header() {
         <>
             <header className="sticky bg-[#242424] top-0 z-50 shadow-xs shadow-green-500">
                 <div className="container flex items-center justify-between py-4">
-                    <Link href="/">
+                    <Link href="/" className="shrink-0">
                         <Image
                             src="/images/logo.png"
                             width={160}
@@ -58,16 +59,9 @@ export function Header() {
 
                     <div className="hidden lg:flex items-center gap-6">
 
-                        <div className="flex items-center bg-white/5 border border-white/10 rounded-xl px-4 py-2 focus-within:border-[#03A64A] transition-all">
-                            <input
-                                type="text"
-                                placeholder="Pesquisar produtos..."
-                                className="bg-transparent outline-none text-sm w-52"
-                            />
-                            <MagnifyingGlassIcon size={20} className="text-[#03A64A]" />
-                        </div>
+                        <SearchProducts setMenuOpen={setMenuOpen} />
 
-                        {isLogged ?
+                        {isLogged ? isLoading ? 'Carregando...' :
                             <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
                                 <ClipboardTextIcon className="shrink-0" size={22} />
                                 Meus Pedidos
@@ -94,6 +88,12 @@ export function Header() {
                                 </span>
                             }
                         </div>
+                        {isLogged && (
+                            <div onClick={logout} className="cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
+                                <SignOutIcon size={22} />
+                                <span className="text-sm">Sair</span>
+                            </div>
+                        )}
                     </div>
 
                     <button
@@ -107,14 +107,7 @@ export function Header() {
                 {menuOpen && (
                     <div className="transition-all duration-500 lg:hidden bg-black border-t border-white/10 px-6 py-6 space-y-6">
 
-                        <div className="flex items-center bg-white/5 border border-white/10 rounded-xl px-4 py-2">
-                            <input
-                                type="text"
-                                placeholder="Pesquisar..."
-                                className="bg-transparent outline-none w-full"
-                            />
-                            <MagnifyingGlassIcon size={20} className="text-[#03A64A]" />
-                        </div>
+                        <SearchProducts setMenuOpen={setMenuOpen} />
 
                         <CategoriesDropdown />
 
@@ -153,6 +146,12 @@ export function Header() {
                                 </span>
                             }
                         </div>
+                        {isLogged && (
+                            <div onClick={logout} className="cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
+                                <SignOutIcon size={22} />
+                                <span className="text-sm">Sair</span>
+                            </div>
+                        )}
                     </div>
                 )}
             </header>

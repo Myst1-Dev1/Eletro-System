@@ -11,7 +11,7 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
     const [quantity, setQuantity] = useState(1);
     const { addToCart } = useCartStore();
 
-    console.log('produto', product);
+    const productData = product?.data;
 
     return (
         <>
@@ -22,8 +22,8 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
 
                     <div className="relative bg-black/40 shadow-green-500/20 shadow-xl rounded-2xl p-8 flex justify-center">
                         <img
-                            src={`https://admin.eletrosystemti.com.br/uploads/${product?.data?.image}`}
-                            alt={product?.data?.name}
+                            src={`https://admin.eletrosystemti.com.br/uploads/${productData?.image}`}
+                            alt={productData?.name}
                             className="max-h-[450px] z-10 object-contain"
                         />
                         <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-56 h-56 z-0 bg-green-500/20 blur-xl rounded-full' />
@@ -32,25 +32,25 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
                     <div className="flex flex-col justify-center space-y-6">
 
                         <span className="text-sm bg-green-600/20 text-green-400 px-4 py-1 rounded-full w-fit">
-                            {product?.data?.category?.name}
+                            {productData?.category?.name}
                         </span>
 
                         <h1 className="text-4xl font-bold tracking-tight">
-                            {product?.data?.name}
+                            {productData?.name}
                         </h1>
 
                         <p className="text-zinc-400 text-lg">
-                            {product?.data?.short_description}
+                            {productData?.short_description}
                         </p>
 
                         <div className="flex items-center gap-4">
                             <span className="text-3xl font-bold text-green-400">
-                                {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(product?.data?.price))}
+                                {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(productData?.price))}
                             </span>
 
-                            {product?.data?.quantity > 0 ? (
+                            {productData?.quantity > 0 ? (
                                 <span className="text-sm text-emerald-400">
-                                    Em estoque ({product?.data?.quantity})
+                                    Em estoque ({productData?.quantity})
                                 </span>
                             ) : (
                                 <span className="text-sm text-red-400">
@@ -61,19 +61,26 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
 
                         <div className="flex items-center gap-4">
                             <span>Quantidade:</span>
-                            <input
-                                type="number"
-                                min={1}
-                                max={product?.data?.quantity}
-                                value={quantity}
-                                onChange={(e) => setQuantity(Number(e.target.value))}
-                                className="w-14 bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 [color-scheme:dark]"
-                            />
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                                    className="w-8 h-8 bg-zinc-800 border border-zinc-700 rounded-lg flex items-center justify-center cursor-pointer"
+                                >
+                                    -
+                                </button>
+                                <span>{quantity}</span>
+                                <button
+                                    onClick={() => setQuantity(prev => Math.min(productData?.quantity, prev + 1))}
+                                    className="w-8 h-8 bg-zinc-800 border border-zinc-700 rounded-lg flex items-center justify-center cursor-pointer"
+                                >
+                                    +
+                                </button>
+                            </div>
                         </div>
                         <button
-                            onClick={() => addToCart(product)}
+                            onClick={() => addToCart(productData, quantity)}
                             className="btn-secondary cursor-pointer"
-                            disabled={product?.data?.quantity === 0}
+                            disabled={productData?.quantity === 0}
                         >
                             Adicionar ao Carrinho
                         </button>
@@ -87,7 +94,7 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
 
                     <div
                         className="prose prose-invert max-w-none text-zinc-300"
-                        dangerouslySetInnerHTML={{ __html: product?.data?.description }}
+                        dangerouslySetInnerHTML={{ __html: productData?.description }}
                     />
                 </div>
             </div>

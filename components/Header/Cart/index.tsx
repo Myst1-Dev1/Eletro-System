@@ -11,7 +11,7 @@ interface CartProps {
 }
 
 export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
-    const { cart, removeFromCart, clearCart, getTotalPrice } = useCartStore();
+    const { cart, removeFromCart, clearCart, getTotalPrice, increaseQuantity, decreaseQuantity } = useCartStore();
 
     const total = getTotalPrice();
 
@@ -31,6 +31,7 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
             alert("Houve um erro ao processar seu pedido.");
         }
     }
+
 
     return (
         <>
@@ -55,21 +56,52 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
 
                 <div className="flex-1 overflow-y-auto p-6 space-y-6">
 
-                    {cart.map(product => (
-                        <div key={product.product.id} className="flex gap-4">
-                            <Image src="/images/produto.webp" alt="Logo" width={200} height={200} className="w-20 h-20 bg-white/10 rounded-lg" />
+                    {cart?.map((item) => (
+                        <div key={item.product.id} className="flex gap-4">
+                            <Image
+                                src={`https://admin.eletrosystemti.com.br/uploads/${item.product.image}`}
+                                alt={item.product.name}
+                                width={200}
+                                height={200}
+                                className="w-20 h-20 bg-white/10 rounded-lg object-cover"
+                            />
 
                             <div className="flex flex-col justify-between flex-1">
                                 <div>
-                                    <p className="font-medium">{product.product.name}</p>
-                                    <p className="text-sm text-gray-400">Qtd: {product.quantity}</p>
+                                    <p className="font-medium">{item.product.name}</p>
+                                    <p className="text-sm text-gray-400">Qtd: {item.quantity}</p>
+                                </div>
+
+                                <div className="flex items-center py-2 gap-2">
+                                    <button
+                                        onClick={() => decreaseQuantity(item.product.id)}
+                                        className="transition-all duration-500 hover:bg-green-600 w-5 h-5 bg-zinc-800 border border-zinc-700 flex items-center justify-center cursor-pointer"
+                                    >
+                                        -
+                                    </button>
+                                    <span>{item.quantity}</span>
+                                    <button
+                                        onClick={() => increaseQuantity(item.product.id)}
+                                        className="transition-all duration-500 hover:bg-green-600 w-5 h-5 bg-zinc-800 border border-zinc-700 flex items-center justify-center cursor-pointer"
+                                    >
+                                        +
+                                    </button>
                                 </div>
 
                                 <div className="flex justify-between w-full">
                                     <p className="font-semibold text-[#03A64A]">
-                                        {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.product.price)}
+                                        {Intl.NumberFormat('pt-BR', {
+                                            style: 'currency',
+                                            currency: 'BRL'
+                                        }).format(Number(item.product.price * item.quantity))}
                                     </p>
-                                    <TrashIcon onClick={() => removeFromCart(product.product.id)} className="cursor-pointer" size={20} color="#E7000B" />
+
+                                    <TrashIcon
+                                        onClick={() => removeFromCart(item.product.id)}
+                                        className="cursor-pointer hover:scale-110 transition-transform"
+                                        size={20}
+                                        color="#E7000B"
+                                    />
                                 </div>
                             </div>
                         </div>

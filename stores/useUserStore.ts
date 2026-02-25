@@ -14,6 +14,7 @@ interface UserState {
     isLoading: boolean;
     fetchUser: () => Promise<void>;
     logout: () => void;
+    refreshUser: () => Promise<void>;
 }
 
 export const useUserStore = create<UserState>((set) => ({
@@ -41,15 +42,12 @@ export const useUserStore = create<UserState>((set) => ({
 
             const data = await response.json();
 
-            console.log('data', data)
-
             set({
                 user: data,
                 isLogged: true,
                 isLoading: false,
             });
         } catch (error) {
-            console.log('Tivemos um erro ao pegar os dados', error)
             set({
                 user: null,
                 isLogged: false,
@@ -64,5 +62,39 @@ export const useUserStore = create<UserState>((set) => ({
             user: null,
             isLogged: false,
         });
+    },
+
+    refreshUser: async () => {
+        try {
+            const userCookie = Cookies.get('user');
+
+            if (!userCookie) {
+                throw new Error('Usuário não autenticado');
+            }
+
+            const response = await fetch("https://admin.eletrosystemti.com.br/api/me", {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${userCookie}`,
+                },
+                cache: 'no-store'
+            });
+
+            if (!response.ok) throw new Error("Não autenticado");
+
+            const data = await response.json();
+
+            set({
+                user: data,
+                isLogged: true,
+                isLoading: false,
+            });
+        } catch (error) {
+            set({
+                user: null,
+                isLogged: false,
+                isLoading: false,
+            });
+        }
     },
 }));

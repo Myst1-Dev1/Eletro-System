@@ -9,16 +9,17 @@ interface Product {
 }
 
 interface CartItem {
-    product: Product;
+    product: Product | any;
     quantity: number;
 }
 
 interface CartStore {
     cart: CartItem[];
 
-    addToCart: (product: Product) => void;
+    addToCart: (product: Product, quantity?: number) => void;
     removeFromCart: (productId: number) => void;
     decreaseQuantity: (productId: number) => void;
+    increaseQuantity: (productId: number) => void;
     clearCart: () => void;
 
     getTotalPrice: () => number;
@@ -30,7 +31,7 @@ export const useCartStore = create<CartStore>()(
         (set, get) => ({
             cart: [],
 
-            addToCart: (product) => {
+            addToCart: (product, quantity = 1) => {
                 const existing = get().cart.find(
                     (item) => item.product.id === product.id
                 );
@@ -39,13 +40,13 @@ export const useCartStore = create<CartStore>()(
                     set({
                         cart: get().cart.map((item) =>
                             item.product.id === product.id
-                                ? { ...item, quantity: item.quantity + 1 }
+                                ? { ...item, quantity: item.quantity + quantity }
                                 : item
                         ),
                     });
                 } else {
                     set({
-                        cart: [...get().cart, { product, quantity: 1 }],
+                        cart: [...get().cart, { product, quantity }],
                     });
                 }
             },
@@ -56,6 +57,22 @@ export const useCartStore = create<CartStore>()(
                         (item) => item.product.id !== productId
                     ),
                 }),
+
+            increaseQuantity: (productId) => {
+                const existing = get().cart.find(
+                    (item) => item.product.id === productId
+                );
+
+                if (!existing) return;
+
+                set({
+                    cart: get().cart.map((item) =>
+                        item.product.id === productId
+                            ? { ...item, quantity: item.quantity + 1 }
+                            : item
+                    ),
+                });
+            },
 
             decreaseQuantity: (productId) => {
                 const existing = get().cart.find(

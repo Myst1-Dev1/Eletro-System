@@ -4,9 +4,12 @@ import { XIcon } from "@phosphor-icons/react";
 import { signInAction } from "@/actions/signActions";
 import { handlePhoneChange } from "@/utils/phoneMask";
 import { useUIStore } from "@/stores/useUIStore";
+import { Loading } from "@/components/Loading";
+import { useUserStore } from "@/stores/useUserStore";
 
 export function LoginFormModal() {
     const { loginModalOpen, closeLoginModal } = useUIStore();
+    const { refreshUser } = useUserStore();
 
     const [formState, formAction, pending] = useActionState(handleSignIn, { success: false });
 
@@ -14,8 +17,7 @@ export function LoginFormModal() {
         const result = await signInAction(prevState, formData);
         if (result.success) {
             closeLoginModal();
-        } else {
-            console.log('erro ao fazer login')
+            refreshUser();
         }
 
         return result;
@@ -39,7 +41,7 @@ export function LoginFormModal() {
                         {formState?.success === false && (
                             <p className="text-red-500 text-center font-extrabold text-sm">{formState.message}</p>
                         )}
-                        <button type="submit" className="cursor-pointer btn-secondary mt-3">{pending ? 'Entrando...' : 'Entrar'}</button>
+                        <button type="submit" className="cursor-pointer btn-secondary mt-3">{pending ? <Loading /> : 'Entrar'}</button>
                     </form>
                 </div>
             </Modal>
