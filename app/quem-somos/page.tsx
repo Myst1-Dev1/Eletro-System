@@ -1,113 +1,139 @@
 'use client';
 
-import { ShieldCheckIcon, WrenchIcon, HeadsetIcon, ChatCircleDotsIcon } from "@phosphor-icons/react";
+import { ShieldCheckIcon, WrenchIcon, HeadsetIcon, ChatCircleDotsIcon, TargetIcon, EyeIcon, TrophyIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function QuemSomos() {
     return (
-        <div className="text-white min-h-screen">
-            <div className="container mx-auto px-6 py-12 space-y-24">
+        <div className="text-white min-h-screen bg-black overflow-hidden">
+            <div className="container mx-auto px-6 py-20 space-y-32">
 
-                <section className="flex flex-col md:flex-row items-center gap-12">
-                    <div className="flex-1 space-y-6">
-                        <div>
-                            <h2 className="text-green-500 font-bold text-lg mb-1">Quem Somos</h2>
-                            <div className="w-8 h-[2px] bg-green-500"></div>
+                {/* Hero Section - A História */}
+                <section className="relative flex flex-col lg:flex-row items-center gap-16">
+                    {/* Elemento Decorativo de Fundo */}
+                    <div className="absolute -left-20 -top-20 w-72 h-72 bg-[#03A64A]/10 blur-[120px] rounded-full" />
+
+                    <div className="flex-1 space-y-8 relative z-10">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#03A64A] text-sm font-bold uppercase tracking-widest">
+                            <span className="w-2 h-2 rounded-full bg-[#03A64A] animate-ping" />
+                            Nossa Trajetória
                         </div>
-                        <div className="space-y-4 text-gray-300">
-                            <p className="font-medium">
-                                Bem-vindo à <span className="text-white">ELETROSYSTEM</span>! Somos uma empresa dedicada a assistência técnica especializada em notebooks e eletrônicos.
+
+                        <h1 className="text-4xl md:text-6xl font-black leading-tight">
+                            Paixão por <br />
+                            <span className="text-[#03A64A]">Performance.</span>
+                        </h1>
+
+                        <div className="space-y-6 text-gray-400 text-lg leading-relaxed max-w-xl">
+                            <p>
+                                Bem-vindo à <span className="text-white font-bold italic">ELETROSYSTEM</span>. Mais do que uma assistência, somos o centro de reabilitação para o seu hardware de alta performance.
                             </p>
-                            <p className="text-sm leading-relaxed opacity-70">
-                                Oferecemos soluções precisas para problemas complexos. Nossa equipe é treinada para lidar com as mais diversas marcas do mercado, sempre prezando pela agilidade sem abrir mão da qualidade técnica.
+                            <p className="text-base opacity-80">
+                                Nascemos da necessidade de um serviço que tratasse cada notebook não como um número, mas como uma ferramenta vital de trabalho e lazer. Nossa equipe respira tecnologia, entregando soluções que as assistências comuns consideram impossíveis.
                             </p>
+                        </div>
+
+                        <div className="flex gap-8 border-l-2 border-[#03A64A] pl-6 py-4">
+                            <div>
+                                <p className="text-2xl font-black text-white">+10 Anos</p>
+                                <p className="text-xs uppercase text-gray-500 font-bold">de Experiência</p>
+                            </div>
+                            <div>
+                                <p className="text-2xl font-black text-white">100%</p>
+                                <p className="text-xs uppercase text-gray-500 font-bold">Peças Originais</p>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex-1 flex justify-center md:justify-end">
-                        <div className="relative group">
-                            <div className="absolute -inset-1 bg-green-500/20 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+
+                    <div className="flex-1 relative group">
+                        <div className="absolute -inset-4 bg-gradient-to-tr from-[#03A64A]/20 to-transparent rounded-[2.5rem] blur-2xl group-hover:opacity-100 transition duration-1000"></div>
+                        <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10">
                             <Image
                                 src="/images/quem-somos-img-one.webp"
-                                width={500}
-                                height={500}
-                                alt="Teclado Notebook"
-                                className="relative rounded-lg border border-white/10 grayscale hover:grayscale-0 transition duration-500 w-full max-w-md"
+                                width={600}
+                                height={600}
+                                alt="Laboratório EletroSystem"
+                                className="object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-1"
                             />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                         </div>
                     </div>
                 </section>
 
-                <section className="flex flex-col md:flex-row-reverse items-center gap-12">
-                    <div className="flex-1 space-y-6">
-                        <div>
-                            <h2 className="text-green-500 font-bold text-lg mb-1">Nossa Missão</h2>
-                            <div className="w-8 h-[2px] bg-green-500"></div>
+                {/* Seção Missão e Visão - Grid Moderno */}
+                <section className="grid md:grid-cols-2 gap-8">
+                    <div className="p-10 rounded-[2.5rem] bg-[#0a0a0a] border border-white/5 relative overflow-hidden group">
+                        <TargetIcon className="absolute -right-8 -bottom-8 text-white/5 w-40 h-40 group-hover:text-[#03A64A]/10 transition-colors" />
+                        <div className="w-14 h-14 bg-[#03A64A]/10 rounded-2xl flex items-center justify-center mb-6">
+                            <TargetIcon size={32} className="text-[#03A64A]" weight="duotone" />
                         </div>
-                        <div className="space-y-4 text-gray-300">
-                            <p className="font-medium">
-                                Nossa missão é devolver a produtividade aos nossos clientes através de reparos confiáveis e transparentes.
-                            </p>
-                            <p className="text-sm leading-relaxed opacity-70">
-                                Acreditamos que a tecnologia deve ser uma aliada, e não um transtorno. Por isso, focamos em diagnósticos assertivos que prolongam a vida útil dos seus aparelhos favoritos.
-                            </p>
-                        </div>
+                        <h3 className="text-2xl font-bold mb-4">Nossa Missão</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                            Devolver a produtividade aos nossos clientes através de reparos confiáveis e transparentes, garantindo que a tecnologia seja sempre uma ponte, nunca um obstáculo.
+                        </p>
                     </div>
-                    <div className="flex-1 flex justify-center md:justify-start">
-                        <Image
-                            src="/images/quem-somos-img-two.webp"
-                            width={500}
-                            height={500}
-                            alt="Equipe EletroSystem"
-                            className="relative rounded-lg border border-white/10 grayscale hover:grayscale-0 transition duration-500 w-full max-w-md"
-                        />
+
+                    <div className="p-10 rounded-[2.5rem] bg-[#0a0a0a] border border-white/5 relative overflow-hidden group">
+                        <EyeIcon className="absolute -right-8 -bottom-8 text-white/5 w-40 h-40 group-hover:text-[#03A64A]/10 transition-colors" />
+                        <div className="w-14 h-14 bg-[#03A64A]/10 rounded-2xl flex items-center justify-center mb-6">
+                            <EyeIcon size={32} className="text-[#03A64A]" weight="duotone" />
+                        </div>
+                        <h3 className="text-2xl font-bold mb-4">Nossa Visão</h3>
+                        <p className="text-gray-400 leading-relaxed">
+                            Ser a maior referência nacional em manutenção de hardware premium, reconhecida pela precisão cirúrgica de nossos diagnósticos e ética impecável.
+                        </p>
                     </div>
                 </section>
 
-                <section className="text-center space-y-12 py-10">
-                    <div className="space-y-2">
-                        <h3 className="text-xl md:text-2xl font-semibold">
-                            Por que escolher a <span className="text-green-500">ELETROSYSTEM</span>?
-                        </h3>
-                        <div className="w-16 h-1 bg-green-600/50 mx-auto rounded-full"></div>
+                {/* Pilares - Grid de Cards */}
+                <section className="space-y-16">
+                    <div className="text-center space-y-4">
+                        <h2 className="text-3xl md:text-5xl font-black">
+                            Os pilares da <span className="text-[#03A64A]">EletroSystem</span>
+                        </h2>
+                        <p className="text-gray-500 max-w-2xl mx-auto">Excelência técnica combinada com um atendimento humano e transparente.</p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div className="bg-[#121212] p-8 border border-white/5 rounded-sm hover:bg-[#161616] transition-colors group">
-                            <ShieldCheckIcon size={48} weight="light" className="text-green-500 mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                            <h4 className="font-bold text-sm mb-3">Qualidade e Confiança</h4>
-                            <p className="text-xs text-gray-500 leading-relaxed">Garantia total em todos os processos de reparo e componentes originais.</p>
-                        </div>
+                        {[
+                            { icon: ShieldCheckIcon, title: "Qualidade & Confiança", desc: "Garantia total e processos certificados em cada parafuso." },
+                            { icon: WrenchIcon, title: "Agilidade Técnica", desc: "Laboratório próprio equipado para diagnósticos rápidos." },
+                            { icon: HeadsetIcon, title: "Especialistas Multi", desc: "Treinados para dominar as marcas mais complexas do mercado." },
+                            { icon: ChatCircleDotsIcon, title: "Comunicação Real", desc: "Você acompanha cada etapa do reparo sem surpresas." }
+                        ].map((item, idx) => (
+                            <div key={idx} className="group p-8 bg-[#0d0d0d] border border-white/5 rounded-3xl hover:border-[#03A64A]/40 transition-all duration-500">
+                                <item.icon size={48} weight="duotone" className="text-[#03A64A] mb-6 group-hover:scale-110 group-hover:rotate-6 transition-transform" />
+                                <h4 className="font-bold text-lg mb-2">{item.title}</h4>
+                                <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-                        <div className="bg-[#121212] p-8 border border-white/5 rounded-sm hover:bg-[#161616] transition-colors group">
-                            <WrenchIcon size={48} weight="light" className="text-green-500 mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                            <h4 className="font-bold text-sm mb-3">Experiência e Agilidade</h4>
-                            <p className="text-xs text-gray-500 leading-relaxed">Anos de mercado traduzidos em diagnósticos rápidos e precisos.</p>
-                        </div>
+                {/* Call to Action Final */}
+                <section className="relative p-12 md:p-20 rounded-[3rem] bg-gradient-to-br from-[#0a0a0a] to-[#03A64A]/10 border border-[#03A64A]/20 text-center overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[#03A64A]/5 blur-[100px]" />
 
-                        <div className="bg-[#121212] p-8 border border-white/5 rounded-sm hover:bg-[#161616] transition-colors group">
-                            <HeadsetIcon size={48} weight="light" className="text-green-500 mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                            <h4 className="font-bold text-sm mb-3">Atendimento a tudo</h4>
-                            <p className="text-xs text-gray-500 leading-relaxed">Especialistas multimarcas prontos para qualquer desafio técnico.</p>
-                        </div>
-
-                        <div className="bg-[#121212] p-8 border border-white/5 rounded-sm hover:bg-[#161616] transition-colors group">
-                            <ChatCircleDotsIcon size={48} weight="light" className="text-green-500 mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                            <h4 className="font-bold text-sm mb-3">Suporte e atendimento</h4>
-                            <p className="text-xs text-gray-500 leading-relaxed">Comunicação clara e direta durante todo o período de manutenção.</p>
+                    <div className="relative z-10 space-y-8">
+                        <TrophyIcon size={60} weight="duotone" className="text-[#03A64A] mx-auto animate-bounce" />
+                        <h2 className="text-3xl md:text-5xl font-black max-w-3xl mx-auto leading-tight">
+                            Pronto para dar uma nova vida ao seu equipamento?
+                        </h2>
+                        <p className="text-gray-400 text-lg max-w-xl mx-auto">
+                            Fale com um de nossos especialistas e descubra por que somos a escolha número 1 em assistência especializada.
+                        </p>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <Link href='/contato' className="w-full sm:w-auto px-10 py-5 bg-[#03A64A] text-black font-black rounded-2xl hover:scale-105 transition-all shadow-[0_0_30px_rgba(3,166,74,0.3)]">
+                                Iniciar Orçamento
+                            </Link>
+                            <Link href='/servicos' className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all">
+                                Nossos Serviços
+                            </Link>
                         </div>
                     </div>
                 </section>
 
-                <section className="text-center space-y-8 pt-4 border-t border-green-500/5">
-                    <div className="space-y-2">
-                        <p className="text-gray-400 text-sm">Tem alguma dúvida ou quer saber mais sobre nossos serviços?</p>
-                        <h2 className="text-green-500 text-xl font-bold">Entre em contato conosco!</h2>
-                    </div>
-                    <Link href='/contato' className="cursor-pointer btn-secondary">
-                        Contato
-                    </Link>
-                </section>
             </div>
         </div>
     );

@@ -22,7 +22,7 @@ export default function UnauthorizedPage() {
 
                     <h1 className="text-3xl font-bold text-white mb-2">Acesso Negado</h1>
                     <p className="text-gray-400 mb-8">
-                        detector de segurança: seu acesso expirou ou o token fornecido é inválido. Por favor, realize o login novamente para continuar.
+                        Para acessar nossa loja e conferir ofertas exclusivas, por favor, realize o login.
                     </p>
 
                     <Link

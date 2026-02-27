@@ -3,7 +3,9 @@
 import { createNewOrder } from "@/actions/ordersAction";
 import { Loading } from "@/components/Loading";
 import { useCartStore } from "@/stores/useCartStore";
+import { useGSAP } from "@gsap/react";
 import { TrashIcon, X } from "@phosphor-icons/react";
+import gsap from "gsap";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -43,6 +45,16 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
         }
     }
 
+    useGSAP(() => {
+        gsap.fromTo('.cart', {
+            opacity: 0,
+        }, {
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power2.out'
+        })
+    }, [isCartOpen]);
+
     return (
         <>
             <div
@@ -51,7 +63,7 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
                 onClick={() => setIsCartOpen(false)}
             />
             <div
-                className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#0f0f0f] z-50 shadow-2xl transform transition-transform duration-300 flex flex-col ${isCartOpen ? "translate-x-0" : "translate-x-full"
+                className={`cart fixed top-0 ${isCartOpen ? "right-0" : "right-full"} h-full w-full sm:w-[420px] bg-[#0f0f0f] z-50 shadow-2xl transform transition-transform duration-300 flex flex-col ${isCartOpen ? "translate-x-0" : "translate-x-full"
                     }`}
             >
                 <div className="flex items-center justify-between p-6 border-b border-white/10">

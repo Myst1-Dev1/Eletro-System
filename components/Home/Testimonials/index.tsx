@@ -1,13 +1,104 @@
 "use client";
 
 import Image from "next/image";
-import { testimonialsLogic } from "./testimonialsLogic";
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
-export function Testimonials() {
-    const { testimonials, activeIndex, setActiveIndex, nextTestimonial, prevTestimonial, containerRef, pathRef, avataresRef } = testimonialsLogic();
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+gsap.registerPlugin(MotionPathPlugin);
+
+interface TestimonialsProps {
+    reviews: {
+        author_name: string;
+        author_url: string;
+        language: string;
+        original_language: string;
+        profile_photo_url: string;
+        rating: number;
+        relative_time_description: string;
+        text: string;
+        time: number;
+        translated: boolean;
+    }[];
+}
+
+export function Testimonials({ reviews }: TestimonialsProps) {
+    const [activeIndex, setActiveIndex] = useState(1);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const pathRef = useRef<SVGPathElement>(null);
+    const avataresRef = useRef<HTMLDivElement[]>([]);
+
+    const nextTestimonial = () => {
+        setActiveIndex((prev) => (prev + 1) % reviews.length);
+    };
+
+    const prevTestimonial = () => {
+        setActiveIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+    };
+
+    useGSAP(() => {
+        if (!pathRef.current) return;
+
+        reviews.forEach((_, index) => {
+            const avatar = avataresRef.current[index];
+            if (!avatar) return;
+
+            let targetProgress = 0.5;
+            let scale = 1.2;
+            let opacity = 1;
+            let grayscale = "0%";
+
+            const diff = (index - activeIndex + reviews.length) % reviews.length;
+
+            if (diff === 0) {
+                targetProgress = 0.5;
+                scale = 1.2;
+                opacity = 1;
+                grayscale = "0%";
+            } else if (diff === 1 || (diff === -2)) {
+                targetProgress = 0.82;
+                scale = 0.8;
+                opacity = 0.5;
+                grayscale = "100%";
+            } else {
+                targetProgress = 0.18;
+                scale = 0.8;
+                opacity = 0.5;
+                grayscale = "100%";
+            }
+
+            gsap.to(avatar, {
+                motionPath: {
+                    path: pathRef.current!,
+                    align: pathRef.current!,
+                    alignOrigin: [0.5, 0.5],
+                    autoRotate: false,
+                    start: (gsap.getProperty(avatar, "motionPathProgress") as number) || 0,
+                    end: targetProgress,
+                },
+                scale: scale,
+                opacity: opacity,
+                filter: `grayscale(${grayscale})`,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onUpdate: function () {
+                    gsap.set(avatar, { motionPathProgress: targetProgress });
+                }
+            });
+        });
+
+        // Animação do texto
+        gsap.fromTo(".testimonial-content",
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+        );
+
+    }, { dependencies: [activeIndex], scope: containerRef });
 
     return (
-        <section className="relative py-24 bg-black overflow-hidden" ref={containerRef}>
+        <section className="relative py-24 bg-black overflow-hidden">
             <div className="container">
 
                 <div className="text-center mb-20">
@@ -22,7 +113,7 @@ export function Testimonials() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 lg:gap-20 items-center">
+                <div className="grid grid-cols-2 lg:gap-20 items-center">
 
                     <div className="relative h-[400px] flex items-center justify-center">
                         <svg
@@ -47,9 +138,9 @@ export function Testimonials() {
                             </defs>
                         </svg>
 
-                        {testimonials.map((item, index) => (
+                        {reviews.map((item, index) => (
                             <div
-                                key={item.id}
+                                key={index}
                                 ref={(el) => { if (el) avataresRef.current[index] = el }}
                                 className="absolute flex items-center gap-4 cursor-pointer z-20"
                                 onClick={() => setActiveIndex(index)}
@@ -57,16 +148,16 @@ export function Testimonials() {
                             >
                                 <div className={`relative rounded-full p-1 ${index === activeIndex ? 'bg-[#03A64A] shadow-lg shadow-green-500/40' : ''}`}>
                                     <Image
-                                        src={item.image}
+                                        src={item.profile_photo_url}
                                         width={80}
                                         height={80}
-                                        alt={item.name}
-                                        className="rounded-full w-6 h-6 lg:w-16 lg:h-16 object-cover"
+                                        alt={item.author_name}
+                                        className="rounded-full w-4 h-4 lg:w-16 lg:h-16 object-cover"
                                     />
                                 </div>
                                 <div className={`transition-opacity duration-300 ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`}>
-                                    <p className="text-white text-sm lg:text-lg font-semibold whitespace-nowrap">{item.name}</p>
-                                    <p className="text-xs text-green-400 whitespace-nowrap">⭐ {item.rating} • {item.date}</p>
+                                    <p className="text-white text-xs lg:text-lg font-semibold whitespace-nowrap">{item.author_name}</p>
+                                    <p className="text-[8px] lg:text-sm text-green-400 whitespace-nowrap">⭐ {item.rating} {item.relative_time_description}</p>
                                 </div>
                             </div>
                         ))}
@@ -77,8 +168,8 @@ export function Testimonials() {
                             “
                         </span>
 
-                        <p className="mb-10 text-lg md:text-xl leading-relaxed mt-4 text-gray-200 min-h-[150px]">
-                            {testimonials[activeIndex].content}
+                        <p className="mb-10 text-xs md:text-xl leading-relaxed mt-4 text-gray-200 min-h-[150px]">
+                            {reviews[activeIndex].text}
                         </p>
 
                         <div className="flex justify-between items-center">

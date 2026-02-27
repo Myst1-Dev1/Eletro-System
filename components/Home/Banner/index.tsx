@@ -1,71 +1,99 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRightIcon, ShoppingCartSimpleIcon, CheckCircleIcon } from "@phosphor-icons/react/dist/ssr";
 
 export function Banner() {
+    const avatar = [
+        {
+            id: 1,
+            image: '/images/user1.jpg'
+        },
+        {
+            id: 2,
+            image: '/images/user2.jpg'
+        },
+        {
+            id: 3,
+            image: '/images/user3.jpg'
+        }
+    ]
+
     return (
-        <section className="relative mt-1 w-full min-h-[75dvh] flex items-center rounded-xl overflow-hidden">
-            <div className="absolute inset-0 bg-[url(/images/home-banner.webp)] bg-cover bg-center" />
+        <section className="relative w-auto min-h-[85dvh] flex items-center overflow-hidden">
 
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-green-900/60" />
+            {/* Background com Zoom Suave */}
+            <div className="absolute inset-0 bg-[url(/images/home-banner.webp)] bg-cover bg-center scale-105 animate-pulse-slow" />
 
-            <div className="relative container flex flex-col-reverse lg:flex-row items-center justify-between gap-10 py-16">
+            {/* Overlay Dinâmico */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent lg:to-green-900/40" />
 
-                <div className="max-w-xl text-center lg:text-left space-y-6">
+            <div className="relative container mx-auto px-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-12 py-20">
 
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-                        Os Melhores Equipamentos
-                        <br />
-                        <span className="bg-gradient-to-r from-[#33945E] to-[#03A64A] bg-clip-text text-transparent">
-                            Você Encontra Aqui!
+                {/* TEXTO */}
+                <div className="max-w-2xl text-center lg:text-left space-y-8">
+
+                    {/* Badge de Destaque */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#03A64A] text-sm font-medium backdrop-blur-sm">
+                        <CheckCircleIcon size={18} weight="fill" />
+                        <span>Especialistas em Performance</span>
+                    </div>
+
+                    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight text-white">
+                        Assistência Técnica <br />
+                        <span className="bg-gradient-to-r from-[#4ade80] via-[#03A64A] to-[#33945E] bg-clip-text text-transparent">
+                            Especializada
                         </span>
                     </h1>
 
-                    <p className="text-base sm:text-lg text-gray-200">
-                        Produtos de última geração e assistência especializada
-                        para notebooks e computadores.
+                    <p className="text-lg sm:text-xl text-gray-300 max-w-lg leading-relaxed">
+                        Manutenção e upgrades com quem entende. Elevamos o nível do seu hardware com garantia total e agilidade.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
 
-                        <Link
-                            href="/produtos"
-                            className="
-                                px-6 py-3
-                                bg-gradient-to-r from-[#33945E] to-[#03A64A]
-                                text-white font-semibold
-                                rounded-xl
-                                shadow-lg shadow-green-500/30
-                                transition-all duration-300
-                                hover:scale-105 hover:brightness-110
-                            "
-                        >
-                            Confira Agora
-                        </Link>
-
+                        {/* CTA PRINCIPAL */}
                         <Link
                             href="/servicos"
-                            className="
-                                px-6 py-3
-                                border border-white/30
-                                text-white font-semibold
-                                rounded-xl
-                                transition-all duration-500
-                                hover:bg-white hover:text-black
-                            "
+                            className="group btn-secondary flex items-center gap-3 w-fit"
                         >
-                            Nossos Serviços
+                            Ver Serviços
+                            <ArrowRightIcon size={22} weight="bold" className="group-hover:translate-x-1 transition-transform" />
                         </Link>
 
+                        {/* CTA SECUNDÁRIO */}
+                        <Link
+                            href="/produtos"
+                            className="group flex items-center justify-center gap-2 px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/20"
+                        >
+                            <ShoppingCartSimpleIcon size={22} weight="bold" />
+                            Loja de Peças
+                        </Link>
+                    </div>
+
+                    {/* Prova social com Avatares/Status */}
+                    <div className="flex items-center justify-center lg:justify-start gap-4 pt-6 border-t border-white/10">
+                        <div className="flex -space-x-3">
+                            {avatar.map((i) => (
+                                <div key={i.id} className="w-10 h-10 rounded-full border-2 border-black bg-gray-800 flex items-center justify-center text-[10px] font-bold">
+                                    <Image src={i.image} width={50} height={50} alt="Avatar" className="rounded-full aspect-square" />
+                                </div>
+                            ))}
+                        </div>
+                        <p className="text-sm text-gray-400">
+                            <strong className="text-white">+500 setups</strong> otimizados este ano
+                        </p>
                     </div>
                 </div>
 
-                <div className="relative">
+                {/* IMAGEM COM FLOATING EFFECT */}
+                <div className="relative animate-float">
+                    <div className="absolute inset-0 bg-[#03A64A]/20 blur-[100px] rounded-full" />
                     <Image
                         src="/images/home-banner-img.webp"
-                        width={420}
-                        height={420}
-                        alt="Periféricos gamer"
-                        className="drop-shadow-[0_0_40px_rgba(3,166,74,0.4)] w-[250px] sm:w-[350px] lg:w-[420px] h-auto"
+                        width={500}
+                        height={500}
+                        alt="Hardware Premium"
+                        className="relative z-10 drop-shadow-[0_0_50px_rgba(3,166,74,0.4)] w-[280px] sm:w-[380px] lg:w-[500px] h-auto object-contain"
                         priority
                     />
                 </div>
