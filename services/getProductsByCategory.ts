@@ -15,7 +15,7 @@ export async function getProductsByCategory(category: string) {
         });
 
         if (!response.ok) {
-            throw new Error("Erro ao buscar produtos");
+            return [];
         }
 
         const data = await response.json();

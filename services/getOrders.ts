@@ -15,7 +15,7 @@ export async function getAllOrders() {
         });
 
         if (!response.ok) {
-            throw new Error("Erro ao buscar pedidos");
+            return [];
         }
 
         const data = await response.json();

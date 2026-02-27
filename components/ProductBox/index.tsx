@@ -18,7 +18,7 @@ interface ProductBoxProps {
 
 export function ProductBox({ id, name, price, priceOld, discount, image, length }: ProductBoxProps) {
     const { addToCart } = useCartStore();
-    const { isLoading } = useUserStore();
+    const { isLoading, isLogged } = useUserStore();
 
     return (
         <>
@@ -46,7 +46,7 @@ export function ProductBox({ id, name, price, priceOld, discount, image, length 
                             )}
                         <Image
                             className="relative z-10 mx-auto mb-4 transition-all duration-500 group-hover:scale-110"
-                            src={`https://admin.eletrosystemti.com.br/uploads/${image}`}
+                            src={`${isLogged ? `https://admin.eletrosystemti.com.br/uploads/${image}` : `/images/produto.webp`}`}
                             alt={name}
                             width={180}
                             height={180}

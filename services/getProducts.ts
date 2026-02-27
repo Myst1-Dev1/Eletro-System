@@ -15,7 +15,7 @@ export async function getAllProducts() {
         });
 
         if (!response.ok) {
-            throw new Error("Erro ao buscar produtos");
+            return []; // ← evita quebrar a aplicação
         }
 
         const data = await response.json();
