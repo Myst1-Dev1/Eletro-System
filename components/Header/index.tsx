@@ -18,6 +18,8 @@ import { useUIStore } from "@/stores/useUIStore";
 import { useUserStore } from "@/stores/useUserStore";
 import { useCartStore } from "@/stores/useCartStore";
 import { SearchProducts } from "./SearchProducts";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 export function Header() {
     const { openLoginModal } = useUIStore();
@@ -26,6 +28,22 @@ export function Header() {
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
+
+    useGSAP(() => {
+        gsap.fromTo(".menuMobile", {
+            duration: 0.5,
+            height: "0px",
+            opacity: 0,
+            y: -20,
+            ease: "power2.out"
+        }, {
+            duration: 0.5,
+            height: "100%",
+            opacity: 1,
+            y: 0,
+            ease: "power2.out"
+        })
+    }, [menuOpen])
 
     return (
         <>
@@ -105,7 +123,7 @@ export function Header() {
                 </div>
 
                 {menuOpen && (
-                    <div className="transition-all duration-500 lg:hidden bg-black border-t border-white/10 px-6 py-6 space-y-6">
+                    <div className="menuMobile lg:hidden bg-black border-t border-white/10 px-6 py-6 space-y-6">
 
                         <SearchProducts setMenuOpen={setMenuOpen} />
 

@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/providers/AuthProvider";
 import ProductProvider from "@/providers/ProductProvider";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
+            <ToastContainer position="top-right" />
           </ProductProvider>
         </AuthProvider>
       </body>

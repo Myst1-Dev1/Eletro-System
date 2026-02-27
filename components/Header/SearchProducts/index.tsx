@@ -1,6 +1,7 @@
 "use client";
 
 import { useProductsStore } from "@/stores/useProductsStore";
+import { useUserStore } from "@/stores/useUserStore";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +13,7 @@ interface SearchProductsProps {
 
 export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
     const { products } = useProductsStore();
+    const { isLogged } = useUserStore();
 
     const [search, setSearch] = useState("");
     const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +56,7 @@ export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
                 <MagnifyingGlassIcon size={20} className="text-[#03A64A]" />
             </div>
 
-            {isOpen && search.length > 0 && (
+            {isOpen && search.length > 0 && isLogged && (
                 <div className="absolute top-full mt-2 left-0 w-full bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl z-50 overflow-hidden">
 
                     {filteredProducts?.length === 0 && (

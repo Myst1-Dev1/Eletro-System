@@ -7,6 +7,7 @@ import { TrashIcon, X } from "@phosphor-icons/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface CartProps {
     isCartOpen: boolean;
@@ -32,10 +33,11 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
 
             clearCart();
             setIsCartOpen(false);
+            toast.success("Pedido finalizado com sucesso!");
             router.push('/sucesso?success=true');
         } catch (error) {
             console.error("Erro ao finalizar pedido:", error);
-            alert("Houve um erro ao processar seu pedido.");
+            toast.error("Houve um erro ao processar seu pedido.");
         } finally {
             setLoading(false);
         }

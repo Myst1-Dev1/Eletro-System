@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { testimonialsLogic } from "./testimonialsLogic";
 
 export function Testimonials() {
+    const { testimonials, activeIndex, setActiveIndex, nextTestimonial, prevTestimonial, containerRef, pathRef, avataresRef } = testimonialsLogic();
+
     return (
-        <section className="relative py-24 bg-black overflow-hidden">
+        <section className="relative py-24 bg-black overflow-hidden" ref={containerRef}>
             <div className="container">
 
                 <div className="text-center mb-20">
@@ -17,17 +22,17 @@ export function Testimonials() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-20 items-center">
+                <div className="grid grid-cols-2 gap-4 lg:gap-20 items-center">
 
-                    <div className="relative flex flex-col justify-center gap-16">
-
+                    <div className="relative h-[400px] flex items-center justify-center">
                         <svg
-                            className="absolute left-6 top-0 h-full"
-                            width="120"
+                            className="absolute left-1/2 lg:left-20 top-0 h-full -translate-x-1/2 lg:translate-x-0"
+                            width="200"
                             viewBox="0 0 120 500"
                             fill="none"
                         >
                             <path
+                                ref={pathRef}
                                 d="M100 0 C 20 120, 20 380, 100 500"
                                 stroke="url(#grad)"
                                 strokeWidth="2"
@@ -35,75 +40,71 @@ export function Testimonials() {
                             />
                             <defs>
                                 <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#03A64A" stopOpacity="0.6" />
-                                    <stop offset="100%" stopColor="#03A64A" stopOpacity="0.1" />
+                                    <stop offset="0%" stopColor="#03A64A" stopOpacity="0.2" />
+                                    <stop offset="50%" stopColor="#03A64A" stopOpacity="0.6" />
+                                    <stop offset="100%" stopColor="#03A64A" stopOpacity="0.2" />
                                 </linearGradient>
                             </defs>
                         </svg>
 
-                        <div className="flex items-center gap-4 relative z-10">
-                            <Image
-                                src="/images/user1.jpg"
-                                width={60}
-                                height={60}
-                                alt="Cliente"
-                                className="rounded-full w-10 h-10 lg:w-16 lg:h-16 grayscale hover:grayscale-0 transition duration-500"
-                            />
-                            <div>
-                                <p className="text-white text-sm lg:text-lg font-semibold">Diana Costa</p>
-                                <p className="text-sm text-gray-400">⭐ 4.9 • 29/08/2025</p>
+                        {testimonials.map((item, index) => (
+                            <div
+                                key={item.id}
+                                ref={(el) => { if (el) avataresRef.current[index] = el }}
+                                className="absolute flex items-center gap-4 cursor-pointer z-20"
+                                onClick={() => setActiveIndex(index)}
+                                style={{ transform: 'translate(-50%, -50%)' }}
+                            >
+                                <div className={`relative rounded-full p-1 ${index === activeIndex ? 'bg-[#03A64A] shadow-lg shadow-green-500/40' : ''}`}>
+                                    <Image
+                                        src={item.image}
+                                        width={80}
+                                        height={80}
+                                        alt={item.name}
+                                        className="rounded-full w-6 h-6 lg:w-16 lg:h-16 object-cover"
+                                    />
+                                </div>
+                                <div className={`transition-opacity duration-300 ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`}>
+                                    <p className="text-white text-sm lg:text-lg font-semibold whitespace-nowrap">{item.name}</p>
+                                    <p className="text-xs text-green-400 whitespace-nowrap">⭐ {item.rating} • {item.date}</p>
+                                </div>
                             </div>
-                        </div>
-
-                        <div className="flex items-center gap-4 relative z-10 ml-8">
-                            <Image
-                                src="/images/user2.jpg"
-                                width={80}
-                                height={80}
-                                alt="Cliente"
-                                className="rounded-full w-10 h-10 lg:w-16 lg:h-16 border-2 border-[#03A64A] shadow-lg shadow-green-500/40"
-                            />
-                            <div>
-                                <p className="text-white text-sm lg:text-lg font-semibold">
-                                    Lauren Mendes
-                                </p>
-                                <p className="text-sm text-green-400">⭐ 5.0 • 29/08/2025</p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center gap-4 relative z-10">
-                            <Image
-                                src="/images/user3.jpg"
-                                width={60}
-                                height={60}
-                                alt="Cliente"
-                                className="rounded-full w-10 h-10 lg:w-16 lg:h-16 grayscale hover:grayscale-0 transition duration-500"
-                            />
-                            <div>
-                                <p className="text-white text-sm lg:text-lg font-semibold">Eduardo Lima</p>
-                                <p className="text-sm text-gray-400">⭐ 4.8 • 29/08/2025</p>
-                            </div>
-                        </div>
-
+                        ))}
                     </div>
 
-                    <div className="relative text-white max-w-xl mx-auto lg:mx-0">
-
-                        <span className="text-6xl text-[#03A64A] font-serif leading-none">
+                    <div className="relative text-white max-w-xl mx-auto lg:mx-0 testimonial-content">
+                        <span className="text-6xl text-[#03A64A] font-serif leading-none italic">
                             “
                         </span>
 
-                        <p className="mb-10 text-xs md:text-xl leading-relaxed mt-4 text-gray-200">
-                            Estou comprando na Eletro System há anos e sempre fico
-                            impressionada com a qualidade do atendimento e dos produtos.
-                            Entrega rápida, suporte especializado e confiança total.
-                            Recomendo para todos que buscam tecnologia de verdade.
+                        <p className="mb-10 text-lg md:text-xl leading-relaxed mt-4 text-gray-200 min-h-[150px]">
+                            {testimonials[activeIndex].content}
                         </p>
 
-                        <span className="text-6xl text-end block text-[#03A64A] font-serif leading-none">
-                            ”
-                        </span>
+                        <div className="flex justify-between items-center">
+                            <span className="text-6xl text-[#03A64A] font-serif leading-none italic">
+                                ”
+                            </span>
 
+                            <div className="flex gap-4">
+                                <button
+                                    onClick={prevTestimonial}
+                                    className="cursor-pointer p-3 border border-gray-800 rounded-full hover:bg-green-600 transition-colors group"
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 group-hover:text-white">
+                                        <path d="M15 18l-6-6 6-6" />
+                                    </svg>
+                                </button>
+                                <button
+                                    onClick={nextTestimonial}
+                                    className="cursor-pointer p-3 border border-gray-800 rounded-full hover:bg-green-600 transition-colors group"
+                                >
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-gray-400 group-hover:text-white">
+                                        <path d="M9 18l6-6-6-6" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
