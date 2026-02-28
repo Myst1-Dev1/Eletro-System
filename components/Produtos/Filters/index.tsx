@@ -1,6 +1,7 @@
 'use client';
 
-import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon, FunnelIcon, XCircleIcon } from "@phosphor-icons/react";
+import { motion } from "framer-motion";
 
 interface FiltersProps {
     categories: any;
@@ -13,42 +14,77 @@ interface FiltersProps {
 export function Filters({ categories, search, setSearch, category, setCategory }: FiltersProps) {
 
     return (
-        <div className="flex flex-col lg:flex-row gap-6 items-end mb-10">
-            <div className="flex-1 w-full">
-                <label className="text-sm text-gray-400 mb-2 block">
-                    Buscar produto
-                </label>
+        <div className="flex flex-col gap-4 mb-12">
 
-                <div className="flex items-center rounded-xl border border-gray-600 bg-black/40 px-4 py-3 focus-within:border-[#03A64A] transition">
+            <div className="relative shrink-0 group max-xl w-full">
+                <div className="absolute -inset-0.5 rounded-2xl blur opacity-75 group-focus-within:opacity-100 transition duration-500" />
+                <div className="relative flex items-center rounded-2xl border border-white/10 bg-[#0d0d0d] px-6 py-4 focus-within:border-[#03A64A]/50 transition-all">
+                    <MagnifyingGlassIcon size={22} className="text-gray-500 group-focus-within:text-[#03A64A] transition-colors" />
                     <input
                         type="text"
-                        placeholder="Digite o nome do produto..."
-                        className="w-full bg-transparent outline-none text-sm"
+                        placeholder="O que você está procurando hoje?"
+                        className="w-full bg-transparent outline-none text-base ml-4 text-white placeholder:text-gray-600 font-medium"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
-                    <MagnifyingGlassIcon size={18} className="text-gray-400" />
+                    {search && (
+                        <button onClick={() => setSearch('')} className="text-gray-500 hover:text-white transition-colors">
+                            <XCircleIcon size={20} weight="fill" />
+                        </button>
+                    )}
                 </div>
             </div>
-            <div>
-                <label className="text-sm text-gray-400 mb-2 block">
-                    Categoria
-                </label>
-                <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="rounded-xl w-fit px-4 py-3 bg-black/40 border border-gray-600 text-sm focus:border-[#03A64A] outline-none transition text-white bg-zinc-900"
-                >
-                    <option value="todos">Todos</option>
 
-                    {categories?.map((item: any) => (
-                        <option key={item.id} value={item.category.name}>
-                            {item.category.name}
-                        </option>
-                    ))}
-                </select>
+            <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-500 ml-1">
+                    <FunnelIcon size={14} weight="fill" />
+                    Filtrar por Categoria
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                    <button
+                        onClick={() => setCategory('todos')}
+                        className={`
+                            px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 border
+                            ${category === 'todos'
+                                ? 'bg-[#03A64A] border-[#03A64A] text-black shadow-[0_10px_20px_rgba(3,166,74,0.2)]'
+                                : 'bg-white/5 border-white/5 text-gray-400 hover:border-white/20 hover:text-white'}
+                        `}
+                    >
+                        Todos
+                    </button>
+
+                    {categories?.map((item: any) => {
+                        const name = item.category.name;
+                        const isSelected = category === name;
+
+                        return (
+                            <button
+                                key={item.id}
+                                onClick={() => setCategory(name)}
+                                className={`
+                                    px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300 border
+                                    ${isSelected
+                                        ? 'bg-[#03A64A] border-[#03A64A] text-black shadow-[0_10px_20px_rgba(3,166,74,0.2)]'
+                                        : 'bg-white/5 border-white/5 text-gray-400 hover:border-white/20 hover:text-white'}
+                                `}
+                            >
+                                {name}
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
 
+            {search && (
+                <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-sm text-gray-500 font-medium"
+                >
+                    Mostrando resultados para: <span className="text-[#03A64A] font-bold">"{search}"</span>
+                </motion.p>
+            )}
         </div>
     );
 }

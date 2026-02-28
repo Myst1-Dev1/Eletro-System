@@ -26,7 +26,7 @@ export function CategoriesDropdown() {
 
     return (
         <>
-            {isLogged && categories?.data?.length > 0 && (
+            {isLogged && (
                 <div className="relative" ref={dropdownRef}>
                     <div
                         onClick={() => setOpen(!open)}

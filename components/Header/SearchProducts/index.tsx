@@ -41,11 +41,11 @@ export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
 
     return (
         <div className="relative" ref={searchRef}>
-            <div className="relative flex items-center bg-white/5 border border-white/10 rounded-xl px-4 py-2 focus-within:border-[#03A64A] transition-all">
+            <div className="w-full relative flex items-center bg-white/5 border border-white/10 rounded-xl px-4 py-2 focus-within:border-[#03A64A] transition-all">
                 <input
                     type="text"
                     placeholder="Pesquisar produtos..."
-                    className="bg-transparent outline-none text-sm w-52"
+                    className="bg-transparent outline-none text-sm w-full pr-3"
                     value={search}
                     onChange={(e) => {
                         setSearch(e.target.value);

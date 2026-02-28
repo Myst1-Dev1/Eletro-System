@@ -91,7 +91,7 @@ export function TechAssistService() {
                             </h3>
 
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-                                {['Limpeza Química Ultrassônica', 'Troca de Pasta Térmica Premium', 'Reparo em Placas de Vídeo', 'Recuperação de Notebooks'].map((item) => (
+                                {['Limpeza Química Ultrassônica', 'Troca de Pasta Térmica Premium', 'Reparo de Placas', 'Recuperação de Notebooks'].map((item) => (
                                     <li key={item} className="flex items-center gap-2 text-gray-400 font-medium">
                                         <ShieldCheckIcon size={18} className="text-[#03A64A]" weight="fill" />
                                         {item}

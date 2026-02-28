@@ -31,18 +31,13 @@ export function ProdutosContent({ products, productsToDisplay, categoria }: Prod
     const endIndex = startIndex + itemsPerPage;
     const currentItems = filteredProducts.slice(startIndex, endIndex);
 
-    const handleFilterChange = (newCategory: string) => {
-        setCategory(newCategory);
-        setCurrentPage(1);
-    };
-
     return (
         <>
 
             <div>
                 <div className="bg-[url(/images/home-banner.webp)] w-full min-h-[30dvh] lg:min-h-[50dvh] bg-cover bg-center flex justify-center items-center flex-col gap-4">
                     <h1 className="text-2xl lg:text-4xl font-bold">As Melhores Ofertas <br /> Você Encontra aqui</h1>
-                    <p className="text-sm lg:text-lg max-w-md text-center px-4">Promoções exclusivas e cupoms para você aproveitar na sua loja online</p>
+                    <p className="text-xs lg:text-lg max-w-md text-center px-4">Promoções exclusivas e cupoms para você aproveitar na sua loja online</p>
                 </div>
 
                 <div className="container py-12">

@@ -20,6 +20,7 @@ import { useCartStore } from "@/stores/useCartStore";
 import { SearchProducts } from "./SearchProducts";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { WhatsAppButton } from "../WhatsAppButton";
 
 export function Header() {
     const { openLoginModal } = useUIStore();
@@ -129,7 +130,7 @@ export function Header() {
                 </div>
 
                 {menuOpen && (
-                    <div className="menuMobile lg:hidden bg-black border-t border-white/10 px-6 py-6 space-y-6">
+                    <div className="menuMobile px-6 lg:hidden bg-black border-t border-white/10 py-6 space-y-6">
 
                         {isLogged
                             ?
@@ -189,6 +190,7 @@ export function Header() {
 
             <LoginFormModal />
             {isCartOpen && <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />}
+            <WhatsAppButton />
         </>
     );
 }

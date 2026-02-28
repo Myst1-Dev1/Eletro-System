@@ -8,6 +8,7 @@ import { Testimonials } from "@/components/Home/Testimonials";
 import { getAllProducts } from "@/services/getProducts";
 import { Features } from "@/components/Home/Features";
 import { getReviews } from "@/services/getReviews";
+import { KnowOurServices } from "@/components/Home/KnowOurServices";
 
 export default async function Home() {
   const products = await getAllProducts();
@@ -19,6 +20,7 @@ export default async function Home() {
   return (
     <>
       <Banner />
+      <KnowOurServices />
       <TechAssistService />
       <Testimonials reviews={reviews} />
       <Features />
