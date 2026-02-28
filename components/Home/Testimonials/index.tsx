@@ -101,16 +101,29 @@ export function Testimonials({ reviews }: TestimonialsProps) {
         <section className="relative py-24 bg-black overflow-hidden">
             <div className="container">
 
-                <div className="text-center mb-20">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">
-                        Veja as Avaliações da{" "}
-                        <span className="bg-gradient-to-r from-[#33945E] to-[#03A64A] bg-clip-text text-transparent">
-                            Eletro System
+                <div className="flex flex-col items-center text-center mb-24 relative">
+                    {/* Badge de Autoridade */}
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#03A64A]/20 bg-[#03A64A]/5 text-[#03A64A] text-[10px] uppercase tracking-[0.3em] font-black mb-6 animate-fade-in">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#03A64A] opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#03A64A]"></span>
                         </span>
+                        Feedback dos Clientes
+                    </div>
+
+                    <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter leading-none mb-6">
+                        Quem confia, <br className="md:hidden" />
+                        <span className="text-[#03A64A] italic">recomenda.</span>
                     </h2>
-                    <p className="text-gray-400 mt-4 max-w-xl mx-auto">
-                        A experiência de quem já comprou conosco.
+
+                    <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                        Abaixo, a experiência real de quem elevou o nível do seu setup com a
+                        <span className="text-white font-bold"> Eletro System</span>.
+                        Transparência total em cada reparo.
                     </p>
+
+                    {/* Linha decorativa minimalista */}
+                    <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#03A64A] to-transparent mt-8 opacity-30" />
                 </div>
 
                 <div className="grid grid-cols-2 lg:gap-20 items-center">

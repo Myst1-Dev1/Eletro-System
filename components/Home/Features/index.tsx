@@ -1,17 +1,17 @@
 'use client';
 
-import { ShieldCheckIcon, TruckIcon, HeadsetIcon, CreditCardIcon, SparkleIcon } from "@phosphor-icons/react";
+import { ShieldCheckIcon, LightningIcon, HeadsetIcon, CpuIcon, SparkleIcon } from "@phosphor-icons/react";
 
 const features = [
     {
-        icon: <TruckIcon size={32} weight="duotone" />,
-        title: "Entrega Rápida",
-        description: "Logística otimizada para seus equipamentos chegarem em tempo recorde."
+        icon: <LightningIcon size={32} weight="duotone" />,
+        title: "Agilidade",
+        description: "Entendemos que você não pode ficar desconectado. Reparos expressos realizados no menor tempo possível."
     },
     {
         icon: <ShieldCheckIcon size={32} weight="duotone" />,
-        title: "Garantia Estendida",
-        description: "Segurança total com suporte direto da nossa assistência técnica."
+        title: "Garantia",
+        description: "Sua tranquilidade é nossa prioridade. Oferecemos garantia de qualidade e durabilidade."
     },
     {
         icon: <HeadsetIcon size={32} weight="duotone" />,
@@ -19,16 +19,15 @@ const features = [
         description: "Atendimento especializado para clientes com contrato ativo."
     },
     {
-        icon: <CreditCardIcon size={32} weight="duotone" />,
-        title: "Pagamento Facilitado",
-        description: "Condições exclusivas de faturamento para sua empresa."
+        icon: <CpuIcon size={32} weight="duotone" />,
+        title: "Peças originais",
+        description: "Qualidade sem compromisso. Utilizamos apenas componentes certificados e de procedencia garantida."
     }
 ];
 
 export function Features() {
     return (
         <section className="py-24 bg-black relative overflow-hidden">
-            {/* Detalhe de luz de fundo para separar seções */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-[#03A64A]/50 to-transparent" />
 
             <div className="container mx-auto px-6">

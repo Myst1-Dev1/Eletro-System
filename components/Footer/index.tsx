@@ -12,7 +12,7 @@ import {
 
 export function Footer() {
     return (
-        <footer className="bg-black border-t border-white/10">
+        <footer className="border-t bg-black/20 border-green-500/10">
 
             <div className="container py-20 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 

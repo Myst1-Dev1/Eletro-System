@@ -9,9 +9,7 @@ export default function QuemSomos() {
         <div className="text-white min-h-screen bg-black overflow-hidden">
             <div className="container mx-auto px-6 py-20 space-y-32">
 
-                {/* Hero Section - A História */}
                 <section className="relative flex flex-col lg:flex-row items-center gap-16">
-                    {/* Elemento Decorativo de Fundo */}
                     <div className="absolute -left-20 -top-20 w-72 h-72 bg-[#03A64A]/10 blur-[120px] rounded-full" />
 
                     <div className="flex-1 space-y-8 relative z-10">
@@ -61,7 +59,6 @@ export default function QuemSomos() {
                     </div>
                 </section>
 
-                {/* Seção Missão e Visão - Grid Moderno */}
                 <section className="grid md:grid-cols-2 gap-8">
                     <div className="p-10 rounded-[2.5rem] bg-[#0a0a0a] border border-white/5 relative overflow-hidden group">
                         <TargetIcon className="absolute -right-8 -bottom-8 text-white/5 w-40 h-40 group-hover:text-[#03A64A]/10 transition-colors" />
@@ -86,7 +83,6 @@ export default function QuemSomos() {
                     </div>
                 </section>
 
-                {/* Pilares - Grid de Cards */}
                 <section className="space-y-16">
                     <div className="text-center space-y-4">
                         <h2 className="text-3xl md:text-5xl font-black">
@@ -111,7 +107,6 @@ export default function QuemSomos() {
                     </div>
                 </section>
 
-                {/* Call to Action Final */}
                 <section className="relative p-12 md:p-20 rounded-[3rem] bg-gradient-to-br from-[#0a0a0a] to-[#03A64A]/10 border border-[#03A64A]/20 text-center overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#03A64A]/5 blur-[100px]" />
 
@@ -123,12 +118,9 @@ export default function QuemSomos() {
                         <p className="text-gray-400 text-lg max-w-xl mx-auto">
                             Fale com um de nossos especialistas e descubra por que somos a escolha número 1 em assistência especializada.
                         </p>
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Link href='/contato' className="w-full sm:w-auto px-10 py-5 bg-[#03A64A] text-black font-black rounded-2xl hover:scale-105 transition-all shadow-[0_0_30px_rgba(3,166,74,0.3)]">
+                        <div className="block mx-auto gap-4">
+                            <Link href='/servicos' className="w-full sm:w-auto px-10 py-5 bg-[#03A64A] text-black font-black rounded-2xl hover:scale-105 transition-all duration-500 shadow-[0_0_30px_rgba(3,166,74,0.3)]">
                                 Iniciar Orçamento
-                            </Link>
-                            <Link href='/servicos' className="w-full sm:w-auto px-10 py-5 bg-white/5 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/10 transition-all">
-                                Nossos Serviços
                             </Link>
                         </div>
                     </div>

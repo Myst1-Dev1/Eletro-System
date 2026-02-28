@@ -35,7 +35,6 @@ export default function Servicos() {
         <div className="py-24 bg-black min-h-screen">
             <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-                {/* LADO ESQUERDO: TEXTO E CONFIANÇA */}
                 <div className="space-y-10">
                     <div className="space-y-6">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#03A64A]/10 border border-[#03A64A]/20 text-[#03A64A] text-xs font-bold uppercase tracking-widest">
@@ -55,7 +54,6 @@ export default function Servicos() {
                         </p>
                     </div>
 
-                    {/* Lista de Vantagens */}
                     <div className="grid gap-4">
                         {[
                             { t: "Diagnóstico Avançado", d: "Identificação precisa via software e hardware." },
@@ -75,10 +73,8 @@ export default function Servicos() {
                     </div>
                 </div>
 
-                {/* LADO DIREITO: INTERATIVIDADE */}
                 <div className="relative flex flex-col gap-6">
 
-                    {/* Botões de Seleção (Abas) */}
                     <div className="flex flex-wrap gap-3 justify-end mb-4">
                         {servicosDados.map((servico) => (
                             <button
@@ -97,7 +93,6 @@ export default function Servicos() {
                         ))}
                     </div>
 
-                    {/* Card de Detalhes do Serviço Ativo */}
                     <div className="relative group">
                         <div className="absolute -inset-1 bg-[#03A64A]/20 rounded-[2.5rem] blur-2xl transition duration-500 group-hover:opacity-100 opacity-50" />
 

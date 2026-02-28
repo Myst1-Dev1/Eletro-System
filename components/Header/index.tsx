@@ -77,7 +77,12 @@ export function Header() {
 
                     <div className="hidden lg:flex items-center gap-6">
 
-                        <SearchProducts setMenuOpen={setMenuOpen} />
+                        {isLogged
+                            ?
+                            <SearchProducts setMenuOpen={setMenuOpen} />
+
+                            : ''
+                        }
 
                         {isLogged ? isLoading ? 'Carregando...' :
                             <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
@@ -94,18 +99,19 @@ export function Header() {
                             </div>
                         }
 
-                        <div
-                            className="cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition"
-                            onClick={() => setIsCartOpen(true)}
-                        >
-                            <ShoppingCartIcon className="shrink-0" size={22} />
-                            <span className="text-sm">Carrinho</span>
-                            {cart.length === 0 ? '' :
-                                <span className="absolute -top-2 -right-3 text-xs bg-[#03A64A] px-2 rounded-full">
-                                    {cart.length}
-                                </span>
-                            }
-                        </div>
+                        {isLogged &&
+                            <div
+                                className="cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition"
+                                onClick={() => setIsCartOpen(true)}
+                            >
+                                <ShoppingCartIcon className="shrink-0" size={22} />
+                                <span className="text-sm">Carrinho</span>
+                                {cart.length === 0 ? '' :
+                                    <span className="absolute -top-2 -right-3 text-xs bg-[#03A64A] px-2 rounded-full">
+                                        {cart.length}
+                                    </span>
+                                }
+                            </div>}
                         {isLogged && (
                             <div onClick={logout} className="cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
                                 <SignOutIcon size={22} />
@@ -125,7 +131,12 @@ export function Header() {
                 {menuOpen && (
                     <div className="menuMobile lg:hidden bg-black border-t border-white/10 px-6 py-6 space-y-6">
 
-                        <SearchProducts setMenuOpen={setMenuOpen} />
+                        {isLogged
+                            ?
+                            <SearchProducts setMenuOpen={setMenuOpen} />
+
+                            : ''
+                        }
 
                         <CategoriesDropdown />
 
@@ -155,15 +166,17 @@ export function Header() {
                             </div>
                         }
 
-                        <div onClick={() => { setMenuOpen(false); setIsCartOpen(true) }} className="relative flex items-center gap-3">
-                            <ShoppingCartIcon size={22} />
-                            Carrinho
-                            {cart.length === 0 ? '' :
-                                <span className="absolute -top-2 left-3 text-xs bg-[#03A64A] px-2 rounded-full">
-                                    {cart.length}
-                                </span>
-                            }
-                        </div>
+                        {isLogged &&
+                            <div onClick={() => { setMenuOpen(false); setIsCartOpen(true) }} className="relative flex items-center gap-3">
+                                <ShoppingCartIcon size={22} />
+                                Carrinho
+                                {cart.length === 0 ? '' :
+                                    <span className="absolute -top-2 left-3 text-xs bg-[#03A64A] px-2 rounded-full">
+                                        {cart.length}
+                                    </span>
+                                }
+                            </div>
+                        }
                         {isLogged && (
                             <div onClick={logout} className="cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
                                 <SignOutIcon size={22} />

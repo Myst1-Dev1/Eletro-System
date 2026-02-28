@@ -20,10 +20,10 @@ export default async function Home() {
     <>
       <Banner />
       <TechAssistService />
-      <Features />
       <Testimonials reviews={reviews} />
+      <Features />
       {/* <Offers products={products} /> */}
-      <KnowOurProducts products={products} />
+      {/* <KnowOurProducts products={products} /> */}
     </>
   );
 }
