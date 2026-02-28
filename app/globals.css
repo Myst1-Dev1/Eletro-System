@@ -31,3 +31,16 @@ body {
     @apply cursor-pointer px-6 py-3 bg-gradient-to-r from-[#33945E] to-[#03A64A] text-white font-semibold rounded-xl shadow-lg shadow-green-500/30 transition-all duration-300 hover:scale-105 hover:brightness-110
   }
 }
+
+.scrollBar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollBar::-webkit-scrollbar-track {
+  background: #242424;
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+  background: #0BD061;
+  border-radius: 5px;
+}
