@@ -31,6 +31,10 @@ export function Header() {
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     useGSAP(() => {
+        gsap.fromTo('header', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power1.inOut' })
+    }, []);
+
+    useGSAP(() => {
         gsap.fromTo(".menuMobile", {
             duration: 0.5,
             height: "0px",
@@ -44,7 +48,7 @@ export function Header() {
             y: 0,
             ease: "power2.out"
         })
-    }, [menuOpen])
+    }, [menuOpen]);
 
     return (
         <>

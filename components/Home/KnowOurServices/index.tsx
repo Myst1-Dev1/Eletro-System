@@ -54,7 +54,12 @@ export function KnowOurServices() {
         <section className="bg-black py-32 overflow-hidden">
             <div className="container mx-auto px-6">
 
-                <div className="flex flex-col items-center text-center mb-24 relative">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                    className="flex flex-col items-center text-center mb-24 relative">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#03A64A]/20 bg-[#03A64A]/5 text-[#03A64A] text-[10px] uppercase tracking-[0.3em] font-black mb-6">
                         <CpuIcon size={16} weight="fill" className="animate-pulse" />
                         <span>Gestão Inteligente</span>
@@ -69,7 +74,7 @@ export function KnowOurServices() {
                         Descomplique sua infraestrutura com a <span className="text-white">EletroSystem</span>.
                         Focamos na tecnologia para que você foque no que realmente importa: **seu crescimento.**
                     </p>
-                </div>
+                </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service, index) => (
@@ -115,6 +120,6 @@ export function KnowOurServices() {
                     ))}
                 </div>
             </div>
-        </section>
+        </section >
     )
 }

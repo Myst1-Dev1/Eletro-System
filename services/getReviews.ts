@@ -2,8 +2,6 @@ export async function getReviews() {
     const placeId = process.env.GOOGLE_PLACE_ID;
     const apiKey = process.env.GOOGLE_API_KEY;
 
-    console.log(placeId, apiKey);
-
     if (!placeId || !apiKey) {
         console.error("Variáveis de ambiente ausentes!");
         return [];

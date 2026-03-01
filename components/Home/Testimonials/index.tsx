@@ -9,22 +9,73 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 gsap.registerPlugin(MotionPathPlugin);
 
-interface TestimonialsProps {
-    reviews: {
-        author_name: string;
-        author_url: string;
-        language: string;
-        original_language: string;
-        profile_photo_url: string;
-        rating: number;
-        relative_time_description: string;
-        text: string;
-        time: number;
-        translated: boolean;
-    }[];
-}
+// interface TestimonialsProps {
+//     reviews: {
+//         author_name: string;
+//         author_url: string;
+//         language: string;
+//         original_language: string;
+//         profile_photo_url: string;
+//         rating: number;
+//         relative_time_description: string;
+//         text: string;
+//         time: number;
+//         translated: boolean;
+//     }[];
+// }
 
-export function Testimonials({ reviews }: TestimonialsProps) {
+// type TestimonialsType = {
+//     author_name: string;
+//     author_url: string;
+//     language: string;
+//     original_language: string;
+//     profile_photo_url: string;
+//     rating: number;
+//     relative_time_description: string;
+//     text: string;
+//     time: number;
+//     translated: boolean;
+// }
+
+const reviews = [
+    {
+        author_name: 'Claudia Mendes',
+        profile_photo_url: 'https://lh3.googleusercontent.com/a/ACg8ocJNH3R_Q7LsXHE3juyYDFd-L5Y57Bf0kjl2ZUWCPyHJhFKxwg=s64-c-rp-mo-br100',
+        rating: 5,
+        text: 'Fui atendida pelo Gabriel Miranda! Quanta eficiência e dedicação no que faz. Super indico essa empresa e esse profissional. Parabéns! Vcs são 10',
+        relative_time_description: '2 semanas atrás'
+    },
+    {
+        author_name: 'Thayane Oliveira',
+        profile_photo_url: 'https://lh3.googleusercontent.com/a-/ALV-UjW1fvtWDVo-McP6KNHUhuqFLet4Dr3xcC8K2opYkoR9jGXgGrmX=w72-h72-p-rp-mo-br100',
+        rating: 5,
+        text: 'Serviço de alta qualidade, confiança total e ótimo custo-benefício. Minha experiência foi excelente do início ao fim.',
+        relative_time_description: '2 semanas atrás'
+    },
+    {
+        author_name: 'Gabriel Guimaraes',
+        profile_photo_url: 'https://lh3.googleusercontent.com/a-/ALV-UjVVFlVdRRuKKnEiJpOFFsrtRMfQnk58toDN8lR8CDGgfd2Nb_cGiw=w72-h72-p-rp-mo-br100',
+        rating: 5,
+        text: 'O dono é muito atencioso, bom e honesto, resolveu meu problema que ninguém conseguiu!!! Super indico…',
+        relative_time_description: '2 semanas atrás'
+    },
+    {
+        author_name: 'Douglas Mendes',
+        profile_photo_url: 'https://lh3.googleusercontent.com/a/ACg8ocJtRRzuIZvHBAb4cpUSDaU_SDj-NWA1lSs4hwyaplHzJkIYuA=w72-h72-p-rp-mo-br100',
+        rating: 5,
+        text: 'Muito bom atendimento rápido e eficaz estou satisfeito Gabriel excelente de mas',
+        relative_time_description: '1 mês atrás'
+    },
+    {
+        author_name: 'Daiana Mendes',
+        profile_photo_url: 'https://lh3.googleusercontent.com/a-/ALV-UjXQILKGvuzmjE-2FgUSdokKyGLppvD35-LxKlalUZj8UqyVaipF=w72-h72-p-rp-mo-br100',
+        rating: 5,
+        text: 'Excelente, eficaz',
+        relative_time_description: 'uma semanas atrás'
+    },
+]
+
+export function Testimonials() {
     const [activeIndex, setActiveIndex] = useState(1);
     const containerRef = useRef<HTMLDivElement>(null);
     const pathRef = useRef<SVGPathElement>(null);
@@ -170,7 +221,7 @@ export function Testimonials({ reviews }: TestimonialsProps) {
                                 </div>
                                 <div className={`transition-opacity duration-300 ${index === activeIndex ? 'opacity-100' : 'opacity-0'}`}>
                                     <p className="text-white text-xs lg:text-lg font-semibold whitespace-nowrap">{item.author_name}</p>
-                                    <p className="text-[8px] lg:text-sm text-green-400 whitespace-nowrap">⭐ {item.rating} {item.relative_time_description}</p>
+                                    <p className="text-[8px] lg:text-sm text-green-400 whitespace-nowrap flex gap-2">⭐ {item.rating}.0 <span className="text-gray-300">{item.relative_time_description}</span></p>
                                 </div>
                             </div>
                         ))}

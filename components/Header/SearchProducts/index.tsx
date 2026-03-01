@@ -40,7 +40,7 @@ export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
         .slice(0, 5);
 
     return (
-        <div className="relative" ref={searchRef}>
+        <div className="nav-item relative" ref={searchRef}>
             <div className="w-full relative flex items-center bg-white/5 border border-white/10 rounded-xl px-4 py-2 focus-within:border-[#03A64A] transition-all">
                 <input
                     type="text"
