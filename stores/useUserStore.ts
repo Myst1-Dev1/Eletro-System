@@ -66,6 +66,10 @@ export const useUserStore = create<UserState>((set) => ({
 
     refreshUser: async () => {
         try {
+            set({
+                isLoading: true
+            });
+
             const userCookie = Cookies.get('user');
 
             if (!userCookie) {

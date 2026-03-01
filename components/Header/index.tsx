@@ -31,8 +31,27 @@ export function Header() {
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     useGSAP(() => {
-        gsap.fromTo('header', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power1.inOut' })
-    }, []);
+        if (isLoading) return;
+
+        gsap.fromTo('.nav-item',
+            {
+                opacity: 0,
+                y: -20,
+                scale: 0.95
+            },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                stagger: {
+                    each: 0.1,
+                    from: "start"
+                },
+                ease: 'expo.out',
+            }
+        );
+    }, [isLoading]);
 
     useGSAP(() => {
         gsap.fromTo(".menuMobile", {
@@ -54,7 +73,7 @@ export function Header() {
         <>
             <header className="sticky bg-[#242424] top-0 z-50 shadow-xs shadow-green-500">
                 <div className="container flex items-center justify-between py-4">
-                    <Link href="/" className="shrink-0">
+                    <Link href="/" className="nav-item shrink-0">
                         <Image
                             src="/images/logo.png"
                             width={160}
@@ -67,15 +86,15 @@ export function Header() {
                     <nav className="hidden lg:flex items-center gap-8">
                         <CategoriesDropdown />
 
-                        <Link className="font-semibold hover:text-[#03A64A] transition" href="/quem-somos">
+                        <Link className="nav-item font-semibold hover:text-[#03A64A] transition" href="/quem-somos">
                             Quem Somos
                         </Link>
 
-                        <Link className="font-semibold hover:text-[#03A64A] transition" href="/servicos">
+                        <Link className="nav-item font-semibold hover:text-[#03A64A] transition" href="/servicos">
                             Serviços
                         </Link>
 
-                        <Link className="font-semibold hover:text-[#03A64A] transition" href="/contato">
+                        <Link className="nav-item font-semibold hover:text-[#03A64A] transition" href="/contato">
                             Contato
                         </Link>
                     </nav>
@@ -90,13 +109,13 @@ export function Header() {
                         }
 
                         {isLogged ? isLoading ? 'Carregando...' :
-                            <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
+                            <Link href="/pedidos" className="nav-item flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
                                 <ClipboardTextIcon className="shrink-0" size={22} />
                                 Meus Pedidos
                             </Link>
                             :
                             <div
-                                className="cursor-pointer flex items-center gap-2 hover:text-[#03A64A] transition"
+                                className="nav-item cursor-pointer flex items-center gap-2 hover:text-[#03A64A] transition"
                                 onClick={openLoginModal}
                             >
                                 <UserIcon size={22} />
@@ -104,19 +123,25 @@ export function Header() {
                             </div>
                         }
 
-                        {isLogged &&
+                        {isLoading && isLogged && (
                             <div
-                                className="cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition"
+                                className="nav-item cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition group"
                                 onClick={() => setIsCartOpen(true)}
                             >
-                                <ShoppingCartIcon className="shrink-0" size={22} />
-                                <span className="text-sm">Carrinho</span>
-                                {cart.length === 0 ? '' :
-                                    <span className="absolute -top-2 -right-3 text-xs bg-[#03A64A] px-2 rounded-full">
+                                <ShoppingCartIcon
+                                    className="shrink-0"
+                                    size={22}
+                                    weight="duotone"
+                                />
+                                <span className="text-sm font-bold">Carrinho</span>
+
+                                {cart.length > 0 && (
+                                    <span className="absolute -top-2 -right-3 text-[10px] font-black bg-[#03A64A] text-black h-5 w-5 flex items-center justify-center rounded-full shadow-[0_0_10px_rgba(3,166,74,0.5)] animate-bounce">
                                         {cart.length}
                                     </span>
-                                }
-                            </div>}
+                                )}
+                            </div>
+                        )}
                         {isLogged && (
                             <div onClick={logout} className="cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
                                 <SignOutIcon size={22} />
@@ -145,34 +170,34 @@ export function Header() {
 
                         <CategoriesDropdown />
 
-                        <Link href="/quem-somos" className="block font-semibold">
+                        <Link href="/quem-somos" className="nav-item block font-semibold">
                             Quem Somos
                         </Link>
 
-                        <Link href="/servicos" className="block font-semibold">
+                        <Link href="/servicos" className="nav-item block font-semibold">
                             Serviços
                         </Link>
 
-                        <Link href="/contato" className="block font-semibold">
+                        <Link href="/contato" className="nav-item block font-semibold">
                             Contato
                         </Link>
 
                         <hr className="border-white/10" />
 
                         {isLogged ?
-                            <Link href="/pedidos" className="flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
+                            <Link href="/pedidos" className="nav-item flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
                                 <ClipboardTextIcon className="shrink-0" size={22} />
                                 Meus Pedidos
                             </Link>
                             :
-                            <div onClick={() => { setMenuOpen(false); openLoginModal() }} className="flex items-center gap-3">
+                            <div onClick={() => { setMenuOpen(false); openLoginModal() }} className="nav-item flex items-center gap-3">
                                 <UserIcon className="shrink-0" size={22} />
                                 Entrar
                             </div>
                         }
 
                         {isLogged &&
-                            <div onClick={() => { setMenuOpen(false); setIsCartOpen(true) }} className="relative flex items-center gap-3">
+                            <div onClick={() => { setMenuOpen(false); setIsCartOpen(true) }} className="nav-item relative flex items-center gap-3">
                                 <ShoppingCartIcon size={22} />
                                 Carrinho
                                 {cart.length === 0 ? '' :
@@ -183,7 +208,7 @@ export function Header() {
                             </div>
                         }
                         {isLogged && (
-                            <div onClick={logout} className="cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
+                            <div onClick={logout} className="nav-item cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
                                 <SignOutIcon size={22} />
                                 <span className="text-sm">Sair</span>
                             </div>

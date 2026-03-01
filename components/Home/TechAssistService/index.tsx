@@ -133,6 +133,12 @@ export function TechAssistService() {
                                     <LockKeyIcon size={14} /> EXCLUSIVO PARA CLIENTES
                                 </span>
                             </div>}
+                            {isLogged === true ? <Link
+                                href="/produtos"
+                                className="whitespace-nowrap mt-auto px-12 py-5 border-2 border-[#03A64A] text-[#03A64A] hover:bg-[#03A64A] hover:text-black font-black rounded-2xl transition-all duration-500 cursor-pointer shadow-lg hover:shadow-[0_0_30px_rgba(3,166,74,0.3)]"
+                            >
+                                VER PRODUTOS
+                            </Link> : ''}
                         </div>
                     </div>
 

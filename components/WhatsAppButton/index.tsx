@@ -9,7 +9,7 @@ export function WhatsAppButton() {
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
     return (
-        <div className="fixed bottom-6 right-6 z-[9999] flex items-center justify-center">
+        <div className="fixed bottom-6 right-6 z-40 flex items-center justify-center">
             <span className="absolute inline-flex h-20 w-20 animate-ping rounded-full bg-[#25D366] opacity-20"></span>
             <span className="absolute inline-flex h-16 w-16 animate-pulse rounded-full bg-[#25D366] opacity-40"></span>
 
