@@ -12,11 +12,14 @@ export async function getReviews() {
     try {
         const res = await fetch(url, { next: { revalidate: 3600 } });
         const data = await res.json();
+        console.log("Status da API Google:", data.status);
 
         if (data.status !== "OK") {
+            console.error("Erro na API:", data.error_message || data.status);
             return [];
         }
 
+        console.log("Reviews encontradas:", data.result.reviews?.length || 0);
         return data.result.reviews || [];
     } catch (error) {
         console.error("Erro ao buscar avaliações:", error);

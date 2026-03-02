@@ -1,5 +1,3 @@
-'use server';
-
 import { Banner } from "@/components/Home/Banner";
 // import { KnowOurProducts } from "@/components/Home/KnowOurProducts";
 import { TechAssistService } from "@/components/Home/TechAssistService";
@@ -10,12 +8,12 @@ import { Features } from "@/components/Home/Features";
 // import { getReviews } from "@/services/getReviews";
 import { KnowOurServices } from "@/components/Home/KnowOurServices";
 
-export default async function Home() {
+export default function Home() {
   // const products = await getAllProducts();
 
   // const reviews = await getReviews();
 
-  // console.log(reviews);
+  // console.log('avaliacoes', reviews);
 
   return (
     <>

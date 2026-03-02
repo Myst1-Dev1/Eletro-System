@@ -2,40 +2,12 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 gsap.registerPlugin(MotionPathPlugin);
-
-// interface TestimonialsProps {
-//     reviews: {
-//         author_name: string;
-//         author_url: string;
-//         language: string;
-//         original_language: string;
-//         profile_photo_url: string;
-//         rating: number;
-//         relative_time_description: string;
-//         text: string;
-//         time: number;
-//         translated: boolean;
-//     }[];
-// }
-
-// type TestimonialsType = {
-//     author_name: string;
-//     author_url: string;
-//     language: string;
-//     original_language: string;
-//     profile_photo_url: string;
-//     rating: number;
-//     relative_time_description: string;
-//     text: string;
-//     time: number;
-//     translated: boolean;
-// }
 
 const reviews = [
     {
@@ -120,13 +92,15 @@ export function Testimonials() {
                 grayscale = "100%";
             }
 
+            gsap.killTweensOf(avatar);
+
             gsap.to(avatar, {
                 motionPath: {
                     path: pathRef.current!,
                     align: pathRef.current!,
                     alignOrigin: [0.5, 0.5],
                     autoRotate: false,
-                    start: (gsap.getProperty(avatar, "motionPathProgress") as number) || 0,
+                    start: 0,
                     end: targetProgress,
                 },
                 scale: scale,
@@ -134,14 +108,10 @@ export function Testimonials() {
                 filter: `grayscale(${grayscale})`,
                 duration: 0.8,
                 ease: "power2.inOut",
-                onUpdate: function () {
-                    gsap.set(avatar, { motionPathProgress: targetProgress });
-                }
             });
         });
 
-        // Animação do texto
-        gsap.fromTo(".testimonial-content",
+        gsap.fromTo(containerRef.current,
             { opacity: 0, y: 20 },
             { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
         );
@@ -153,7 +123,6 @@ export function Testimonials() {
             <div className="container">
 
                 <div className="flex flex-col items-center text-center mb-24 relative">
-                    {/* Badge de Autoridade */}
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#03A64A]/20 bg-[#03A64A]/5 text-[#03A64A] text-[10px] uppercase tracking-[0.3em] font-black mb-6 animate-fade-in">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#03A64A] opacity-75"></span>
@@ -173,7 +142,6 @@ export function Testimonials() {
                         Transparência total em cada reparo.
                     </p>
 
-                    {/* Linha decorativa minimalista */}
                     <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#03A64A] to-transparent mt-8 opacity-30" />
                 </div>
 
@@ -227,7 +195,7 @@ export function Testimonials() {
                         ))}
                     </div>
 
-                    <div className="relative text-white max-w-xl mx-auto lg:mx-0 testimonial-content">
+                    <div ref={containerRef} className="relative text-white max-w-xl mx-auto lg:mx-0">
                         <span className="text-6xl text-[#03A64A] font-serif leading-none italic">
                             “
                         </span>
