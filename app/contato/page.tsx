@@ -107,7 +107,7 @@ export default function Contato() {
                 <section className="lg:col-span-5 space-y-6">
 
                     {/* Card WhatsApp */}
-                    <a href="#" className="group block bg-[#0a0a0a] p-8 rounded-[2.5rem] border border-white/5 hover:border-[#25D366]/40 transition-all duration-500 relative overflow-hidden">
+                    <div className="group block bg-[#0a0a0a] p-8 rounded-[2.5rem] border border-white/5 hover:border-[#25D366]/40 transition-all duration-500 relative overflow-hidden">
                         <div className="absolute -right-4 -bottom-4 text-[#25D366]/5 group-hover:text-[#25D366]/10 transition-colors">
                             <WhatsappLogoIcon size={120} weight="fill" />
                         </div>
@@ -118,10 +118,10 @@ export default function Contato() {
                             <div>
                                 <h4 className="text-xl font-bold mb-1">WhatsApp Business</h4>
                                 <p className="text-gray-400 text-sm mb-4">Atendimento instantâneo para orçamentos rápidos.</p>
-                                <span className="text-[#25D366] font-black text-lg">+55 21 4002-8922</span>
+                                <span className="text-[#25D366] font-black text-lg">+55 21 9 8981-0973</span>
                             </div>
                         </div>
-                    </a>
+                    </div>
 
                     {/* Card Informações Úteis */}
                     <div className="bg-[#0d0d0d] p-8 rounded-[2.5rem] border border-white/5 space-y-8">
@@ -141,8 +141,8 @@ export default function Contato() {
                             </div>
                             <div>
                                 <h5 className="font-bold text-white">Horário de Operação</h5>
-                                <p className="text-sm text-gray-500">Segunda à Sexta: 08h — 18h</p>
-                                <p className="text-sm text-gray-500">Sábado: 08h — 12h</p>
+                                <p className="text-sm text-gray-500">Segunda à Sexta: 09h — 18h</p>
+                                <p className="text-sm text-gray-500">Sábado: 09h — 12h</p>
                             </div>
                         </div>
 
@@ -158,12 +158,12 @@ export default function Contato() {
                     </div>
 
                     {/* Badge de E-mail */}
-                    <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-[#03A64A]/20 to-transparent border border-[#03A64A]/10">
+                    {/* <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-[#03A64A]/20 to-transparent border border-[#03A64A]/10">
                         <h4 className="font-bold mb-2 flex items-center gap-2">
                             <EnvelopeIcon size={20} /> E-mail Corporativo
                         </h4>
                         <p className="text-sm text-[#03A64A] font-bold">suporte@eletrosystem.com.br</p>
-                    </div>
+                    </div> */}
 
                 </section>
             </div>

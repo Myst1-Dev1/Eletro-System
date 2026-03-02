@@ -169,7 +169,7 @@ export function Testimonials() {
 
                     <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
                         Abaixo, a experiência real de quem elevou o nível do seu setup com a
-                        <span className="text-white font-bold"> Eletro System</span>.
+                        <span className="text-white font-bold"> EletroSystem</span>.
                         Transparência total em cada reparo.
                     </p>
 

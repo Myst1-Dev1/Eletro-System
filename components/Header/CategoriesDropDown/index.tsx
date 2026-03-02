@@ -33,8 +33,10 @@ export function CategoriesDropdown() {
                 { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: 'power2.out' }
             );
 
+            gsap.fromTo('.category-container', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power1.out' })
+
             gsap.fromTo('.category-box',
-                { opacity: 0, x: -10 },
+                { opacity: 0, x: -5 },
                 { opacity: 1, x: 0, duration: 0.3, stagger: 0.05, delay: 0.1, ease: 'power1.out' }
             );
         }
@@ -43,13 +45,13 @@ export function CategoriesDropdown() {
     return (
         <>
             {isLogged && (
-                <div className="nav-item relative" ref={dropdownRef}>
+                <div className="dropdown-container nav-item relative" ref={dropdownRef}>
                     <div
                         onClick={() => setOpen(!open)}
                         className="flex items-center gap-2 cursor-pointer group"
                     >
                         <span className="font-semibold transition-all duration-300 group-hover:text-[#03A64A]">
-                            Categorias
+                            Loja
                         </span>
 
                         <CaretDownIcon
@@ -60,17 +62,32 @@ export function CategoriesDropdown() {
                     </div>
 
                     {open && (
-                        <div className="dropdown-container flex flex-col w-fit transition-all duration-500 absolute top-8 left-0 w-56 bg-zinc-900 border border-white/10 rounded-xl shadow-lg py-3 animate-fadeIn">
-                            {categories?.data?.map((category: any) => (
-                                <Link
-                                    href={`/produtos?categoria=${category.name}`}
-                                    key={category.id}
-                                    onClick={() => setOpen(false)}
-                                    className="category-box  w-full cursor-pointer text-left px-4 py-2 hover:bg-[#03A64A]/20 transition-all text-sm capitalize"
-                                >
-                                    {category.name}
-                                </Link>
-                            ))}
+                        <div className="category-container absolute top-10 left-0 w-fit bg-zinc-900/95 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-2 animate-fadeIn overflow-hidden z-50">
+                            <div className="px-3 py-2 mb-1">
+                                <h4 className="text-[11px] uppercase tracking-widest text-zinc-500 font-bold">
+                                    Categorias
+                                </h4>
+                            </div>
+
+                            <div className="flex flex-col gap-1">
+                                {categories?.data?.map((category: any) => (
+                                    <Link
+                                        href={`/produtos?categoria=${category.name}`}
+                                        key={category.id}
+                                        onClick={() => setOpen(false)}
+                                        className="category-box group flex items-center justify-between px-3 py-2.5 rounded-lg text-zinc-300 hover:bg-white/5 hover:text-[#03A64A] transition-all duration-200"
+                                    >
+                                        <span className="text-sm font-medium capitalize">
+                                            {category.name}
+                                        </span>
+                                        <span className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="9 5l7 7-7 7" />
+                                            </svg>
+                                        </span>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     )}
                 </div>

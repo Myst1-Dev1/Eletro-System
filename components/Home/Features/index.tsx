@@ -40,7 +40,7 @@ export function Features() {
                         </div>
                         <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
                             Por que escolher a <br />
-                            <span className="text-[#03A64A]">Eletro System?</span>
+                            <span className="text-[#03A64A]">EletroSystem?</span>
                         </h2>
                     </div>
                     <p className="text-gray-400 max-w-xs text-lg border-l border-[#03A64A] pl-6 py-2">

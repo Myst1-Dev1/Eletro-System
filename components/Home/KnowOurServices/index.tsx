@@ -14,8 +14,8 @@ const services = [
     },
     {
         id: 2,
-        serviceName: 'Segurança Cibernética',
-        description: 'Proteção contra invasões, remoção de malwares e blindagem de dados sensíveis da sua empresa.',
+        serviceName: 'Câmera de segurança',
+        description: 'Garanta mais proteção para sua residência ou empresa com sistemas de monitoramento modernos e de alta definição. Trabalhamos com câmeras HD e Full HD, acesso remoto pelo celular, visão noturna e gravação 24h, oferecendo mais segurança, controle e tranquilidade para você e sua família.',
         icon: <ShieldCheckIcon size={48} weight="duotone" />,
         highlight: false
     },
@@ -28,8 +28,8 @@ const services = [
     },
     {
         id: 4,
-        serviceName: 'Migração de Dados',
-        description: 'Transição segura de informações entre servidores locais ou nuvem com integridade garantida.',
+        serviceName: 'Controle de acesso',
+        description: 'Tenha total controle sobre quem entra e sai do seu ambiente com sistemas modernos e seguros. Trabalhamos com soluções como biometria, cartão, senha e reconhecimento facial, garantindo mais organização, segurança e praticidade para empresas, condomínios e residências.',
         icon: <DatabaseIcon size={48} weight="duotone" />,
         highlight: false
     },
