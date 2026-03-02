@@ -72,21 +72,21 @@ export function Header() {
     return (
         <>
             <header className="sticky bg-[#242424] top-0 z-50 shadow-xs shadow-green-500">
-                <div className="container flex items-center justify-between py-4">
+                <div className={`container flex justify-between itens-center py-4`}>
                     <Link href="/" className="nav-item shrink-0">
                         <Image
                             src="/images/logo.png"
-                            width={160}
-                            height={40}
+                            width={400}
+                            height={400}
                             alt="Logo Eletrosystem"
-                            className="shrink-0 w-38 h-10 object-cover"
+                            className="shrink-0 w-54 h-18 lg:h-14 object-cover"
                         />
                     </Link>
 
                     <nav className="hidden lg:flex items-center gap-8">
                         <CategoriesDropdown />
 
-                        <Link className="nav-item font-semibold hover:text-[#03A64A] transition" href="/quem-somos">
+                        <Link className="nav-item font-semibold hover:text-[#03A64A] transition whitespace-nowrap" href="/quem-somos">
                             Quem Somos
                         </Link>
 
@@ -99,7 +99,7 @@ export function Header() {
                         </Link>
                     </nav>
 
-                    <div className="hidden lg:flex items-center gap-6">
+                    <div className={`hidden lg:flex items-center gap-6`}>
 
                         {isLogged
                             ?
@@ -123,7 +123,7 @@ export function Header() {
                             </div>
                         }
 
-                        {isLoading && isLogged && (
+                        {isLogged && (
                             <div
                                 className="nav-item cursor-pointer relative flex items-center gap-2 hover:text-[#03A64A] transition group"
                                 onClick={() => setIsCartOpen(true)}
@@ -151,7 +151,7 @@ export function Header() {
                     </div>
 
                     <button
-                        className="lg:hidden cursor-pointer"
+                        className="ml-auto lg:hidden cursor-pointer"
                         onClick={() => setMenuOpen(!menuOpen)}
                     >
                         {menuOpen ? <XIcon size={26} /> : <ListIcon size={26} />}

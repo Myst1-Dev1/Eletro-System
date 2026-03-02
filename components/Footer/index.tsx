@@ -9,17 +9,22 @@ import {
     PhoneIcon,
     EnvelopeIcon
 } from "@phosphor-icons/react";
+import Image from "next/image";
 
 export function Footer() {
     return (
         <footer className="border-t bg-black/20 border-green-500/10">
 
-            <div className="container py-20 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+            <div className="container py-10 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
 
                 <div>
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-[#33945E] to-[#03A64A] bg-clip-text text-transparent">
-                        Eletro System
-                    </h3>
+                    <Image
+                        src="/images/logo.png"
+                        width={400}
+                        height={400}
+                        alt="Logo Eletrosystem"
+                        className="shrink-0 max-w-64 w-full h-18 lg:h-14 object-cover"
+                    />
 
                     <p className="text-gray-400 mt-4 text-sm leading-relaxed">
                         Especialistas em tecnologia, assistência técnica e produtos

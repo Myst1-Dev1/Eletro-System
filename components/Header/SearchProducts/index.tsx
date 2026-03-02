@@ -2,7 +2,9 @@
 
 import { useProductsStore } from "@/stores/useProductsStore";
 import { useUserStore } from "@/stores/useUserStore";
+import { useGSAP } from "@gsap/react";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
@@ -20,6 +22,12 @@ export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
 
     const searchRef = useRef<HTMLDivElement>(null);
 
+    const filteredProducts = products?.data
+        ?.filter((product: any) =>
+            product.name.toLowerCase().includes(search.toLowerCase())
+        )
+        .slice(0, 5);
+
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -33,11 +41,14 @@ export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
         };
     }, []);
 
-    const filteredProducts = products?.data
-        ?.filter((product: any) =>
-            product.name.toLowerCase().includes(search.toLowerCase())
+    useGSAP(() => {
+        gsap.fromTo('.search-container',
+            { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power1.inOut' });
+
+        gsap.fromTo('.search-item', { opacity: 0, x: -10 },
+            { opacity: 1, x: 0, duration: 0.4, stagger: 0.3, ease: 'power1.inOut' }
         )
-        .slice(0, 5);
+    }, [search]);
 
     return (
         <div className="nav-item relative" ref={searchRef}>
@@ -65,7 +76,7 @@ export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
                         </div>
                     )}
 
-                    <div className="max-h-72 overflow-y-auto">
+                    <div className="search-container max-h-72 overflow-y-auto scrollBar">
                         {filteredProducts?.map((product: any) => (
                             <Link
                                 href={`/produto/${product.id}`}
@@ -75,7 +86,7 @@ export function SearchProducts({ setMenuOpen }: SearchProductsProps) {
                                     setSearch("");
                                     setMenuOpen(false);
                                 }}
-                                className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition"
+                                className="search-item flex items-center gap-3 px-4 py-3 hover:bg-white/5 transition"
                             >
                                 <Image
                                     src={`https://admin.eletrosystemti.com.br/uploads/${product.image}`}

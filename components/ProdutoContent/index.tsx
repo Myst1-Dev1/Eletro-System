@@ -11,6 +11,7 @@ import {
     ArrowsCounterClockwiseIcon
 } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
+import Image from 'next/image';
 
 interface ProdutoContentProps {
     product: any;
@@ -43,16 +44,18 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
                             {/* Glow de fundo dinâmico */}
                             <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#03A64A]/10 blur-[120px] rounded-full group-hover:bg-[#03A64A]/20 transition-colors duration-700' />
 
-                            <img
+                            <Image
                                 src={`https://admin.eletrosystemti.com.br/uploads/${productData?.image}`}
+                                width={400}
+                                height={400}
                                 alt={productData?.name}
                                 className="max-h-[500px] w-auto z-10 object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-105"
                             />
 
                             {/* Tag de Zoom/Preview */}
-                            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                            {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">
                                 Visualização em Alta Resolução
-                            </div>
+                            </div> */}
                         </motion.div>
                     </div>
 
@@ -118,7 +121,7 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
                             <button
                                 onClick={() => addToCart(productData, quantity)}
                                 disabled={productData?.quantity === 0}
-                                className="w-full bg-[#03A64A] hover:bg-[#028a3d] disabled:bg-zinc-800 disabled:text-zinc-500 text-black h-16 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform active:scale-95"
+                                className="cursor-pointer w-full bg-[#03A64A] hover:bg-[#028a3d] disabled:bg-zinc-800 disabled:text-zinc-500 text-black h-16 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform active:scale-95"
                             >
                                 <ShoppingCartIcon size={24} weight="bold" />
                                 Adicionar ao Carrinho

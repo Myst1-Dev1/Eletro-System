@@ -13,6 +13,14 @@ interface FiltersProps {
 
 export function Filters({ categories, search, setSearch, category, setCategory }: FiltersProps) {
 
+    const uniqueCategories = Array.from(
+        new Map(
+            categories?.map((item: any) => [item.category.name, item])
+        ).values()
+    );
+
+    console.log('aqui', categories);
+
     return (
         <div className="flex flex-col gap-4 mb-12">
 
@@ -54,7 +62,7 @@ export function Filters({ categories, search, setSearch, category, setCategory }
                         Todos
                     </button>
 
-                    {categories?.map((item: any) => {
+                    {uniqueCategories?.map((item: any) => {
                         const name = item.category.name;
                         const isSelected = category === name;
 
