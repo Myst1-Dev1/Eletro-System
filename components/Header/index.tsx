@@ -84,7 +84,7 @@ export function Header() {
                     </Link>
 
                     <nav className="hidden lg:flex items-center gap-8">
-                        <CategoriesDropdown />
+                        <CategoriesDropdown setMenuOpen={setMenuOpen} />
 
                         <Link className="nav-item font-semibold hover:text-[#03A64A] transition whitespace-nowrap" href="/quem-somos">
                             Quem Somos
@@ -168,24 +168,24 @@ export function Header() {
                             : ''
                         }
 
-                        <CategoriesDropdown />
+                        <CategoriesDropdown setMenuOpen={setMenuOpen} />
 
-                        <Link href="/quem-somos" className="nav-item block font-semibold">
+                        <Link onClick={() => setMenuOpen(false)} href="/quem-somos" className="nav-item block font-semibold">
                             Quem Somos
                         </Link>
 
-                        <Link href="/servicos" className="nav-item block font-semibold">
+                        <Link onClick={() => setMenuOpen(false)} href="/servicos" className="nav-item block font-semibold">
                             Serviços
                         </Link>
 
-                        <Link href="/contato" className="nav-item block font-semibold">
+                        <Link onClick={() => setMenuOpen(false)} href="/contato" className="nav-item block font-semibold">
                             Contato
                         </Link>
 
                         <hr className="border-white/10" />
 
                         {isLogged ?
-                            <Link href="/pedidos" className="nav-item flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
+                            <Link onClick={() => setMenuOpen(false)} href="/pedidos" className="nav-item flex items-center gap-3 font-semibold hover:text-[#03A64A] transition-all duration-500">
                                 <ClipboardTextIcon className="shrink-0" size={22} />
                                 Meus Pedidos
                             </Link>
@@ -209,7 +209,7 @@ export function Header() {
                         }
                         {isLogged && (
                             <div onClick={logout} className="nav-item cursor-pointer transition-all duration-500 hover:text-green-500 flex items-center gap-3">
-                                <SignOutIcon size={22} />
+                                <SignOutIcon onClick={() => setMenuOpen(false)} size={22} />
                                 <span className="text-sm">Sair</span>
                             </div>
                         )}

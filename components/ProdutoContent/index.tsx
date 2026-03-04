@@ -12,6 +12,7 @@ import {
 } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import Image from 'next/image';
+import { ProdutoPageSkeleton } from '../Skeleton/ProductPageSkeleton';
 
 interface ProdutoContentProps {
     product: any;
@@ -22,6 +23,10 @@ export function ProdutoContent({ product }: ProdutoContentProps) {
     const { addToCart } = useCartStore();
 
     const productData = product?.data;
+
+    if (!productData) {
+        return <ProdutoPageSkeleton />;
+    }
 
     const formattedPrice = Intl.NumberFormat('pt-BR', {
         style: 'currency',

@@ -8,7 +8,11 @@ import { useUserStore } from "@/stores/useUserStore";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-export function CategoriesDropdown() {
+interface CategoriesDropDownProps {
+    setMenuOpen: any;
+}
+
+export function CategoriesDropdown({ setMenuOpen }: CategoriesDropDownProps) {
     const { categories } = useProductsStore();
     const { isLogged } = useUserStore();
 
@@ -74,7 +78,7 @@ export function CategoriesDropdown() {
                                     <Link
                                         href={`/produtos?categoria=${category.name}`}
                                         key={category.id}
-                                        onClick={() => setOpen(false)}
+                                        onClick={() => { setOpen(false); setMenuOpen(false); }}
                                         className="category-box group flex items-center justify-between px-3 py-2.5 rounded-lg text-zinc-300 hover:bg-white/5 hover:text-[#03A64A] transition-all duration-200"
                                     >
                                         <span className="text-sm font-medium capitalize">
