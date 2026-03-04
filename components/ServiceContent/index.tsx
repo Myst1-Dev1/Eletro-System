@@ -7,7 +7,13 @@ import {
     StarIcon,
     ShieldCheckIcon,
     WrenchIcon,
-    LightningIcon
+    LightningIcon,
+    DesktopTowerIcon,
+    LaptopIcon,
+    PrinterIcon,
+    CameraIcon,
+    SecurityCameraIcon,
+    WifiHighIcon
 } from "@phosphor-icons/react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,7 +23,7 @@ const servicosDados = [
     {
         id: 1,
         titulo: "Montagem de PC Gamer",
-        icon: <DesktopIcon size={24} />,
+        icon: <DesktopTowerIcon size={24} />,
         descricao: "Engenharia de hardware focada em extrair cada frame. Montagem profissional com cable management avançado e otimização de fluxo de ar.",
         detalhes: ["Otimização de Airflow", "Instalação de Water Cooler", "Configuração de RGB", "Teste de Stress"],
         imagem: "/images/montagem.webp",
@@ -31,6 +37,76 @@ const servicosDados = [
         detalhes: ["Pasta Térmica Grizzly", "Limpeza Química", "Banho Ultrassônico", "Redução de Ruído"],
         imagem: "/images/limpeza.webp",
         tag: "Longevidade"
+    },
+    {
+        id: 3,
+        titulo: "Manutenção de Notebook",
+        icon: <LaptopIcon size={24} />,
+        descricao: "Manutenção especializada para notebooks, garantindo melhor desempenho, menor aquecimento e maior vida útil do seu equipamento.",
+        detalhes: [
+            "Troca de pasta térmica premium",
+            "Limpeza interna completa",
+            "Higienização de cooler e dissipador",
+            "Otimização de desempenho"
+        ],
+        imagem: "/images/manutencao-notebook.webp",
+        tag: "Performance"
+    },
+    {
+        id: 4,
+        titulo: "Manutenção de Computadores",
+        icon: <DesktopIcon size={24} />,
+        descricao: "Serviço técnico completo para computadores desktop, focado em estabilidade, refrigeração eficiente e máximo desempenho.",
+        detalhes: [
+            "Limpeza técnica interna",
+            "Organização de cabos",
+            "Troca de pasta térmica",
+            "Upgrade e otimização de hardware"
+        ],
+        imagem: "/images/manutencao-pc.webp",
+        tag: "Estabilidade"
+    },
+    {
+        id: 5,
+        titulo: "Manutenção de Impressoras",
+        icon: <PrinterIcon size={24} />,
+        descricao: "Manutenção especializada em impressoras para garantir qualidade de impressão, evitar falhas e prolongar a vida útil do equipamento.",
+        detalhes: [
+            "Limpeza e desobstrução de cabeçote",
+            "Revisão de roletes e tracionadores",
+            "Reset e configuração de firmware",
+            "Diagnóstico e correção de falhas"
+        ],
+        imagem: "/images/manutencao-impressoras.webp",
+        tag: "Precisão"
+    },
+    {
+        id: 6,
+        titulo: "Manutenção de Câmeras CFTV",
+        icon: <SecurityCameraIcon size={24} />,
+        descricao: "Serviço especializado em manutenção de sistemas de CFTV, garantindo imagens nítidas, estabilidade na gravação e máxima segurança para seu ambiente.",
+        detalhes: [
+            "Limpeza e ajuste de lentes",
+            "Verificação de cabeamento e conectores",
+            "Configuração de DVR/NVR",
+            "Teste e otimização de gravação"
+        ],
+        imagem: "/images/manutencao-cameras.webp",
+        tag: "Segurança"
+    },
+    {
+        id: 7,
+        titulo: "Wi-Fi e Internet",
+        icon: <WifiHighIcon size={24} />,
+        descricao: "Soluções completas em redes Wi-Fi e Internet para garantir alta performance, estabilidade e segurança em ambientes residenciais e corporativos.",
+        detalhes: [
+            "Projeto e implantação de rede Wi-Fi",
+            "Instalação de roteadores e access points",
+            "Eliminação de áreas sem sinal",
+            "Configuração avançada de segurança"
+        ],
+        imagem: "/images/wifi-internet.webp",
+        tag: "Alta Performance"
     },
 ];
 
@@ -58,12 +134,21 @@ export default function ServiceContent() {
 
                         <div className="lg:col-span-5 space-y-8">
 
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col scrollBar overflow-y-auto h-48 lg:h-96 pr-2 gap-3">
                                 <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] ml-2">Selecione o Serviço</p>
                                 {servicosDados.map((servico) => (
                                     <button
                                         key={servico.id}
-                                        onClick={() => setServicoAtivo(servico)}
+                                        onClick={() => {
+                                            setServicoAtivo(servico);
+                                            if (window.innerWidth <= 768) {
+                                                setTimeout(() => {
+                                                    document
+                                                        .getElementById("service-desc")
+                                                        ?.scrollIntoView({ behavior: "smooth" });
+                                                }, 300);
+                                            }
+                                        }}
                                         className={`
                                             cursor-pointer group relative flex items-center justify-between p-6 rounded-[2rem] border transition-all duration-500
                                             ${servicoAtivo.id === servico.id
@@ -100,14 +185,14 @@ export default function ServiceContent() {
                             </div>
                         </div>
 
-                        <div className="lg:col-span-7 sticky top-24">
+                        <div id="service-desc" className="scroll-mt-24 lg:col-span-7 sticky top-24">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={servicoAtivo.id}
                                     initial={{ opacity: 0, x: 20, filter: "blur(10px)" }}
                                     animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                                     exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-                                    transition={{ duration: 0.4, ease: "circOut" }}
+                                    transition={{ duration: 0.4, ease: "linear" }}
                                     className="relative bg-[#0d0d0d] border border-white/10 rounded-[3rem] overflow-hidden p-8 md:p-12 shadow-2xl"
                                 >
                                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#03A64A]/5 blur-[100px] pointer-events-none" />
@@ -118,7 +203,7 @@ export default function ServiceContent() {
                                                 <span className="px-3 py-1 rounded-md bg-[#03A64A]/10 text-[#03A64A] text-[10px] font-black uppercase tracking-widest">
                                                     {servicoAtivo.tag}
                                                 </span>
-                                                <h3 className="text-3xl md:text-4xl font-black text-white mt-4 tracking-tighter leading-none">
+                                                <h3 className="text-3xl md:text-3xl font-black text-white mt-4 tracking-tighter leading-none">
                                                     {servicoAtivo.titulo}
                                                 </h3>
                                             </div>
@@ -130,7 +215,7 @@ export default function ServiceContent() {
                                             <div className="grid gap-3">
                                                 {servicoAtivo.detalhes.map((detalhe, idx) => (
                                                     <div key={idx} className="flex items-center gap-3 text-[11px] font-bold text-gray-300 uppercase tracking-widest bg-white/5 p-3 rounded-xl border border-white/5">
-                                                        <StarIcon size={14} weight="fill" className="text-[#03A64A]" />
+                                                        <StarIcon size={14} weight="fill" className="shrink-0 text-[#03A64A]" />
                                                         {detalhe}
                                                     </div>
                                                 ))}
@@ -141,7 +226,7 @@ export default function ServiceContent() {
                                             </button>
                                         </div>
 
-                                        <div className="relative h-[300px] md:h-auto rounded-[2rem] overflow-hidden border border-white/10 group">
+                                        <div className="relative h-[300px] w-full md:h-auto rounded-[2rem] overflow-hidden border border-white/10 group">
                                             <Image
                                                 src={servicoAtivo.imagem}
                                                 alt={servicoAtivo.titulo}

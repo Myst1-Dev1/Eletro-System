@@ -70,17 +70,17 @@ export function Footer() {
                     <ul className="space-y-4 text-gray-400 text-sm">
                         <li className="flex items-center gap-3">
                             <MapPinIcon size={18} className="text-[#03A64A]" />
-                            São Paulo - SP
+                            Rio de Janeiro - RJ
                         </li>
 
                         <li className="flex items-center gap-3">
                             <PhoneIcon size={18} className="text-[#03A64A]" />
-                            (11) 99999-9999
+                            (21) 9 8981-0973
                         </li>
 
                         <li className="flex items-center gap-3">
                             <EnvelopeIcon size={18} className="text-[#03A64A]" />
-                            contato@eletrosystem.com
+                            gabrielmiranda2203@gmail.com
                         </li>
                     </ul>
                 </div>
