@@ -104,7 +104,7 @@ export function TechAssistService() {
                                 className="cursor-pointer transition-all duration-500 group/btn flex items-center justify-center gap-4 w-full sm:w-fit px-12 py-5 bg-[#03A64A] text-black font-black rounded-2xl hover:bg-[#05c458] shadow-[0_20px_40px_rgba(3,166,74,0.2)]"
                             >
                                 AGENDAR MANUTENÇÃO AGORA
-                                <ArrowRightIcon size={20} weight="bold" className="group-hover/btn:translate-x-2 transition-transform" />
+                                <ArrowRightIcon size={20} weight="bold" className="shrink-0 group-hover/btn:translate-x-2 transition-transform" />
                             </Link>
                         </div>
                     </div>

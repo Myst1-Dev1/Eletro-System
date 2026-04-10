@@ -38,7 +38,7 @@ export function Features() {
                             <SparkleIcon size={20} weight="fill" />
                             <span>Diferenciais</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">
+                        <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
                             Por que escolher a <br />
                             <span className="text-[#03A64A]">EletroSystem?</span>
                         </h2>
@@ -52,13 +52,13 @@ export function Features() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="group relative p-8 rounded-[2rem] bg-[#0a0a0a] border border-white/5 hover:border-[#03A64A]/30 transition-all duration-500 overflow-hidden"
+                            className="group relative p-8 rounded-4xl bg-[#0a0a0a] border border-white/5 hover:border-[#03A64A]/30 transition-all duration-500 overflow-hidden"
                         >
                             {/* Efeito de Spotlight no Hover */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#03A64A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute inset-0 bg-linear-to-br from-[#03A64A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                             <div className="relative z-10">
-                                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 text-[#03A64A] group-hover:bg-[#03A64A] group-hover:text-black transition-all duration-500 shadow-xl">
+                                <div className="m-auto w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-8 text-[#03A64A] group-hover:bg-[#03A64A] group-hover:text-black transition-all duration-500 shadow-xl">
                                     {feature.icon}
                                 </div>
 

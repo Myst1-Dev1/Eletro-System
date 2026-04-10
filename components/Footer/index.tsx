@@ -70,7 +70,7 @@ export function Footer() {
                     <ul className="space-y-4 text-gray-400 text-sm">
                         <li className="flex items-center gap-3">
                             <MapPinIcon size={18} className="text-[#03A64A]" />
-                            Rio de Janeiro - RJ
+                            Barra da Tijuca - RJ
                         </li>
 
                         <li className="flex items-center gap-3">
@@ -88,18 +88,32 @@ export function Footer() {
             </div>
 
             <div className="border-t border-white/10 py-6">
-                <div className="container flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                <div className="container flex flex-col md:flex-row justify-evenly items-center gap-4 text-sm text-gray-500">
 
                     <p>© 2026 Eletro System. Todos os direitos reservados.</p>
 
-                    <div className="flex gap-6">
+                    <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-gray-400">Desenvolvido por</span>
+                        <a href="https://www.mystdev.com.br/" target="_blank" rel="noopener noreferrer">
+                            <Image
+                                src="/images/myst-logo.webp"
+                                width={400}
+                                height={400}
+                                alt="Logo do Myst1Dev"
+                                className="shrink-0 max-w-28 w-full object-cover"
+                            />
+                        </a>
+
+                    </div>
+
+                    {/* <div className="flex gap-6">
                         <Link href="#" className="hover:text-[#03A64A] transition">
                             Privacidade
                         </Link>
                         <Link href="#" className="hover:text-[#03A64A] transition">
                             Termos
                         </Link>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "EletroSystem",
-  description: "A Eletrosystem Soluções em TI é uma empresa especializada em manutenção de computadores, notebooks e redes de informática. Trabalhamos com venda de equipamentos novos, seminovos e recondicionados, além de oferecer assistência técnica completa para residências e empresas.",
+  description: "A Eletrosystem Soluções em TI é uma empresa especializada em manutenção de computadores, notebooks e redes de informática na Barra da Tijuca - RJ. Trabalhamos com venda de equipamentos novos, seminovos e recondicionados, além de oferecer assistência técnica completa para residências e empresas.",
   keywords: [
     "EletroSystem",
     "soluções em TI",
@@ -32,7 +32,19 @@ export const metadata: Metadata = {
     "controle de acesso",
     "montagem de PC Gamer",
     "formatação de computador",
-    "empresa de TI"
+    "empresa de TI",
+    "Barra da Tijuca - RJ",
+    "Assistência técnica Barra da Tijuca",
+    "Manutenção de computadores Barra da Tijuca",
+    "Notebooks Barra da Tijuca",
+    "Computadores Barra da Tijuca",
+    "Redes Barra da Tijuca",
+    "Segurança eletrônica Barra da Tijuca",
+    "Câmeras de segurança Barra da Tijuca",
+    "Controle de acesso Barra da Tijuca",
+    "Montagem de PC Gamer Barra da Tijuca",
+    "Formatação de computador Barra da Tijuca",
+    "Empresa de TI Barra da Tijuca"
   ],
   icons: {
     icon: "/favicon.ico",
