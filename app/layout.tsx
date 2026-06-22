@@ -17,9 +17,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ComputerStore", "ElectronicsStore"],
+  name: "EletroSystem",
+  description:
+    "Assistência técnica, manutenção de computadores, notebooks, redes e soluções em TI na Barra da Tijuca - RJ.",
+  areaServed: "Barra da Tijuca - RJ",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Rua da Tecnologia, 1000",
+    addressLocality: "Barra da Tijuca",
+    addressRegion: "RJ",
+    addressCountry: "BR",
+  },
+  telephone: "+55 21 9 8981-0973",
+  email: "gabrielmiranda2203@gmail.com",
+  openingHours: ["Mo-Fr 09:00-18:00", "Sa 09:00-12:00"],
+};
+
 export const metadata: Metadata = {
-  title: "EletroSystem",
-  description: "A Eletrosystem Soluções em TI é uma empresa especializada em manutenção de computadores, notebooks e redes de informática na Barra da Tijuca - RJ. Trabalhamos com venda de equipamentos novos, seminovos e recondicionados, além de oferecer assistência técnica completa para residências e empresas.",
+  title: "EletroSystem | Assistência técnica em Barra da Tijuca - RJ",
+  description:
+    "Assistência técnica em Barra da Tijuca - RJ para computadores, notebooks, redes e infraestrutura de TI. Manutenção, suporte, montagem e soluções completas para residências e empresas.",
   keywords: [
     "EletroSystem",
     "soluções em TI",
@@ -44,8 +64,19 @@ export const metadata: Metadata = {
     "Controle de acesso Barra da Tijuca",
     "Montagem de PC Gamer Barra da Tijuca",
     "Formatação de computador Barra da Tijuca",
-    "Empresa de TI Barra da Tijuca"
+    "Empresa de TI Barra da Tijuca",
   ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: "/favicon.ico",
   },
@@ -57,12 +88,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
           <ProductProvider>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(localBusinessSchema),
+              }}
+            />
             <Header />
             {children}
             <Footer />
