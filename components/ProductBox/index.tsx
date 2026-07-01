@@ -10,8 +10,8 @@ interface ProductBoxProps {
     id: number;
     name: string;
     price: number;
-    priceOld: number;
-    discount: number;
+    priceOld?: number;
+    discount?: number;
     image: string;
     length: number;
 }

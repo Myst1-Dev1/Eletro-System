@@ -4,6 +4,7 @@ body {
   background: #242424;
   color: #ffffff;
   font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
 }
 
 @layer components {
@@ -42,5 +43,19 @@ body {
 
 .scrollBar::-webkit-scrollbar-thumb {
   background: #0BD061;
+  border-radius: 5px;
+}
+
+.scrollBarX::-webkit-scrollbar {
+  width: 1px;
+  height: 2px;
+}
+
+.scrollBarX::-webkit-scrollbar-track {
+  background: #242424;
+}
+
+.scrollBarX::-webkit-scrollbar-thumb {
+  background: #1fbb63;
   border-radius: 5px;
 }

@@ -86,7 +86,7 @@ export function Header() {
                     <nav className="hidden lg:flex items-center gap-8">
                         <CategoriesDropdown setMenuOpen={setMenuOpen} />
 
-                        <Link className="nav-item font-semibold hover:text-[#03A64A] transition whitespace-nowrap" href="/quem-somos">
+                        {/* <Link className="nav-item font-semibold hover:text-[#03A64A] transition whitespace-nowrap" href="/quem-somos">
                             Quem Somos
                         </Link>
 
@@ -96,7 +96,7 @@ export function Header() {
 
                         <Link className="nav-item font-semibold hover:text-[#03A64A] transition" href="/contato">
                             Contato
-                        </Link>
+                        </Link> */}
                     </nav>
 
                     <div className={`hidden lg:flex items-center gap-6`}>
@@ -170,7 +170,7 @@ export function Header() {
 
                         <CategoriesDropdown setMenuOpen={setMenuOpen} />
 
-                        <Link onClick={() => setMenuOpen(false)} href="/quem-somos" className="nav-item block font-semibold">
+                        {/* <Link onClick={() => setMenuOpen(false)} href="/quem-somos" className="nav-item block font-semibold">
                             Quem Somos
                         </Link>
 
@@ -180,7 +180,7 @@ export function Header() {
 
                         <Link onClick={() => setMenuOpen(false)} href="/contato" className="nav-item block font-semibold">
                             Contato
-                        </Link>
+                        </Link> */}
 
                         <hr className="border-white/10" />
 

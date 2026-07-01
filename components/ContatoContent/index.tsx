@@ -60,13 +60,13 @@ export function ContatoContent() {
     return (
         <div className="text-white min-h-screen bg-black">
             {/* Hero Section com Overlay de Vidro */}
-            <section className="relative w-full py-24 px-6 overflow-hidden bg-[url('/images/contato-bg.webp')] bg-cover bg-center">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black"></div>
+            {/* <section className="relative w-full py-24 px-6 overflow-hidden bg-[url('/images/contato-bg.webp')] bg-cover bg-center"> */}
+                {/* <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black"></div> */}
 
                 {/* Luz Decorativa */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#03A64A]/20 blur-[120px] rounded-full" />
+                {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#03A64A]/20 blur-[120px] rounded-full" /> */}
 
-                <div className="container mx-auto relative z-10 text-center space-y-6">
+                {/* <div className="container mx-auto relative z-10 text-center space-y-6">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#03A64A] text-sm font-bold uppercase tracking-widest backdrop-blur-md">
                         <HeadsetIcon size={20} weight="duotone" />
                         <span>Suporte Especializado</span>
@@ -81,7 +81,24 @@ export function ContatoContent() {
                         nossa equipe está pronta para te atender. Escolha o melhor canal abaixo.
                     </p>
                 </div>
-            </section>
+            </section> */}
+
+            <div className="container text-center mx-auto px-6 py-12">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#03A64A]/20 bg-[#03A64A]/5 text-[#03A64A] text-[10px] uppercase tracking-[0.3em] font-black mb-6">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#03A64A] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#03A64A]"></span>
+                    </span>
+                    <span>Canal de Atendimento</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-none mb-2">
+                    Fale com um <br />
+                    <span className="text-[#03A64A] italic">especialista.</span>
+                </h2>
+                <p className="mt-3 text-sm text-gray-500 font-bold uppercase tracking-wider mb-8">
+                    ⏱️ Resposta rápida • Laboratório ativo em tempo real
+                </p>
+            </div>
 
             <div className="container mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 -mt-16 relative z-20">
 

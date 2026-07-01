@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     CaretRightIcon,
     WrenchIcon,
@@ -79,6 +80,7 @@ export function ServiceForm({ isOpen, setIsOpen, servicoAtivo }: ServiceFormProp
                                         type="text"
                                         id="nome"
                                         name="nome"
+                                        required
                                         placeholder="Ex: John Doe"
                                         className="w-full bg-black/50 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm outline-none focus:border-[#03A64A]/50 focus:ring-1 focus:ring-[#03A64A]/50 transition-all placeholder:text-zinc-700"
                                     />
@@ -93,6 +95,7 @@ export function ServiceForm({ isOpen, setIsOpen, servicoAtivo }: ServiceFormProp
                                         type="email"
                                         id="email"
                                         name="email"
+                                        required
                                         placeholder="john@example.com"
                                         className="w-full bg-black/50 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm outline-none focus:border-[#03A64A]/50 focus:ring-1 focus:ring-[#03A64A]/50 transition-all placeholder:text-zinc-700"
                                     />
@@ -107,6 +110,7 @@ export function ServiceForm({ isOpen, setIsOpen, servicoAtivo }: ServiceFormProp
                                         type="tel"
                                         id="telefone"
                                         name="telefone"
+                                        required
                                         onInput={handlePhoneChange}
                                         maxLength={15}
                                         placeholder="(xx) xxxxx-xxxx"
@@ -123,6 +127,7 @@ export function ServiceForm({ isOpen, setIsOpen, servicoAtivo }: ServiceFormProp
                                         type="text"
                                         id="servico"
                                         name="servico"
+                                        required
                                         value={servicoAtivo.titulo}
                                         readOnly
                                         className="w-full bg-white/5 border border-[#03A64A]/30 text-[#03A64A] rounded-2xl py-4 pl-12 pr-4 text-sm outline-none cursor-default font-bold"
@@ -137,6 +142,7 @@ export function ServiceForm({ isOpen, setIsOpen, servicoAtivo }: ServiceFormProp
                                     <textarea
                                         id="mensagem"
                                         rows={4}
+                                        required
                                         name="mensagem"
                                         placeholder="Descreva o problema ou o setup que deseja montar com o máximo de detalhes..."
                                         className="w-full bg-black/50 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm outline-none focus:border-[#03A64A]/50 focus:ring-1 focus:ring-[#03A64A]/50 transition-all placeholder:text-zinc-700 resize-none"

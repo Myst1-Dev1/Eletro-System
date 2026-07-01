@@ -19,7 +19,9 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-player": "^3.4.0",
     "react-toastify": "^11.0.5",
+    "swiper": "^14.0.1",
     "zustand": "^5.0.11"
   },
   "devDependencies": {

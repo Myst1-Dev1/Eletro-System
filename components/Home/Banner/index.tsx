@@ -36,7 +36,7 @@ export function Banner() {
                     <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
 
                         <Link
-                            href="/servicos"
+                            href="#services"
                             className="group btn-secondary flex items-center justify-center py-5 gap-3 lg:w-fit"
                         >
                             Solicitar Orçamento

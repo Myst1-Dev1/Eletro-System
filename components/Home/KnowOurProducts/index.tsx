@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { AuthGuard } from "@/components/AuthGuard";
 import { ProductBox } from "@/components/ProductBox";
 import { useUserStore } from "@/stores/useUserStore";
 
@@ -34,7 +34,7 @@ export function KnowOurProducts({ products }: KnowOurProductsProps) {
                 <div className="text-center mb-14">
                     <h2 className="text-3xl md:text-4xl font-bold">
                         Conheça nossos{" "}
-                        <span className="bg-gradient-to-r from-[#33945E] to-[#03A64A] bg-clip-text text-transparent">
+                        <span className="bg-linear-to-r from-[#33945E] to-[#03A64A] bg-clip-text text-transparent">
                             Produtos
                         </span>
                     </h2>
@@ -62,10 +62,6 @@ export function KnowOurProducts({ products }: KnowOurProductsProps) {
                         />
                     ))}
                 </div>
-
-                {!isLogged && (
-                    <AuthGuard />
-                )}
             </div>
         </section>
     );

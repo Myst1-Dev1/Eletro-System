@@ -31,6 +31,13 @@ const avatar = [
 export function TechAssistService() {
     const { isLogged } = useUserStore();
 
+    const phoneNumber = "5521989810973";
+    const message = encodeURIComponent("Olá! Gostaria de agendar uma manutenção para meu setup.");
+    const messageConfig = encodeURIComponent("Olá! Gostaria de configurar meu PC com vocês.");
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    const configUrl = `https://wa.me/${phoneNumber}?text=${messageConfig}`;
+
+
     return (
         <section className="py-24 bg-black text-white overflow-hidden">
             <div className="container mx-auto px-6">
@@ -65,7 +72,7 @@ export function TechAssistService() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <div className="md:col-span-8 group relative overflow-hidden bg-gradient-to-br from-[#0d0d0d] to-[#050505] rounded-[2.5rem] p-10 border border-white/5 hover:border-[#03A64A]/50 transition-all duration-700 shadow-2xl">
+                    <div className="md:col-span-8 group relative overflow-hidden bg-linear-to-br from-[#0d0d0d] to-[#050505] rounded-[2.5rem] p-10 border border-white/5 hover:border-[#03A64A]/50 transition-all duration-700 shadow-2xl">
 
                         <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity">
                             <WrenchIcon size={180} weight="thin" className="text-[#03A64A] -rotate-12 transition-transform duration-700 group-hover:rotate-0" />
@@ -87,7 +94,7 @@ export function TechAssistService() {
 
                             <h3 className="text-3xl md:text-5xl font-black mb-6 leading-tight">
                                 Assistência Técnica <br />
-                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500">Nível Laboratorial</span>
+                                <span className="bg-clip-text text-transparent bg-linear-to-r from-white to-gray-500">Nível Laboratorial</span>
                             </h3>
 
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
@@ -99,13 +106,15 @@ export function TechAssistService() {
                                 ))}
                             </ul>
 
-                            <Link
-                                href="/servicos"
+                            <a
+                                href={whatsappUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="cursor-pointer transition-all duration-500 group/btn flex items-center justify-center gap-4 w-full sm:w-fit px-12 py-5 bg-[#03A64A] text-black font-black rounded-2xl hover:bg-[#05c458] shadow-[0_20px_40px_rgba(3,166,74,0.2)]"
                             >
                                 AGENDAR MANUTENÇÃO AGORA
                                 <ArrowRightIcon size={20} weight="bold" className="shrink-0 group-hover/btn:translate-x-2 transition-transform" />
-                            </Link>
+                            </a>
                         </div>
                     </div>
 
@@ -147,7 +156,7 @@ export function TechAssistService() {
                             <div className="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
                                 <div className="relative">
                                     <div className="absolute inset-0 bg-[#03A64A]/40 blur-2xl rounded-full group-hover:bg-[#03A64A]/60 transition-all" />
-                                    <div className="relative w-20 h-20 bg-gradient-to-br from-[#03A64A] to-[#015e2a] rounded-[2rem] flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]">
+                                    <div className="relative w-20 h-20 bg-linear-to-br from-[#03A64A] to-[#015e2a] rounded-[2rem] flex items-center justify-center transition-transform duration-700 group-hover:rotate-[360deg]">
                                         <GameControllerIcon size={48} weight="fill" className="text-black" />
                                     </div>
                                 </div>
@@ -157,12 +166,14 @@ export function TechAssistService() {
                                 </div>
                             </div>
 
-                            <Link
-                                href="/servicos"
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={configUrl}
                                 className="whitespace-nowrap px-12 py-5 border-2 border-[#03A64A] text-[#03A64A] hover:bg-[#03A64A] hover:text-black font-black rounded-2xl transition-all duration-500 cursor-pointer shadow-lg hover:shadow-[0_0_30px_rgba(3,166,74,0.3)]"
                             >
                                 CONFIGURAR MEU PC
-                            </Link>
+                            </a>
                         </div>
                     </div>
 

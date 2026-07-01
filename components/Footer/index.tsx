@@ -12,6 +12,10 @@ import {
 import Image from "next/image";
 
 export function Footer() {
+    const phoneNumber = "5521989810973";
+    const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento para meu setup.");
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
     return (
         <footer className="border-t bg-black/20 border-green-500/10">
 
@@ -32,13 +36,13 @@ export function Footer() {
                     </p>
 
                     <div className="flex gap-4 mt-6">
-                        <a href="#" className="p-2 bg-white/5 rounded-lg hover:bg-[#03A64A] transition">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/eletrosystemti/" className="p-2 bg-white/5 rounded-lg hover:bg-[#03A64A] transition">
                             <InstagramLogoIcon size={20} />
                         </a>
-                        <a href="#" className="p-2 bg-white/5 rounded-lg hover:bg-[#03A64A] transition">
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/people/EletroSystem-Assist%C3%AAncia-T%C3%A9cnica/61563166595278/?ref=PROFILE_EDIT_xav_ig_profile_page_web#" className="p-2 bg-white/5 rounded-lg hover:bg-[#03A64A] transition">
                             <FacebookLogoIcon size={20} />
                         </a>
-                        <a href="#" className="p-2 bg-white/5 rounded-lg hover:bg-[#03A64A] transition">
+                        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-lg hover:bg-[#03A64A] transition">
                             <WhatsappLogoIcon size={20} />
                         </a>
                     </div>

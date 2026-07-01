@@ -19,8 +19,6 @@ export function Filters({ categories, search, setSearch, category, setCategory }
         ).values()
     );
 
-    console.log('aqui', categories);
-
     return (
         <div className="flex flex-col gap-4 mb-12">
 

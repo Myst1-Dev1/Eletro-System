@@ -7,7 +7,7 @@ export function AuthGuard() {
     const { openLoginModal } = useUIStore();
 
     return (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-md rounded-2xl transition-all duration-300">
+        <div className="flex items-center justify-center bg-black/10 backdrop-blur-md rounded-2xl transition-all duration-300">
             <div className="bg-[#111]/80 mx-auto h-auto my-20 border border-white/10 shadow-2xl rounded-2xl p-10 max-w-md text-center animate-fadeIn">
 
                 <LockKeyIcon size={48} className="text-amber-500 mb-4 mx-auto" weight="duotone" />

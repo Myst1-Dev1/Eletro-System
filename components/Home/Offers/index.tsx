@@ -1,26 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { ProductResponse } from "@/@types/Product";
-import { AuthGuard } from "@/components/AuthGuard";
 import { ProductBox } from "@/components/ProductBox";
-import { useUserStore } from "@/stores/useUserStore";
 
 interface OffersProps {
     products: ProductResponse[] | any
 }
 
 export function Offers({ products }: OffersProps) {
-    const { isLogged } = useUserStore();
 
     const productsWithDiscount = products?.data?.filter((product: any) => product.discount > 0);
 
     return (
         <>
-            {!isLogged ?
-                <div className="relative min-h-[400px] bg-[#303030] py-10">
-                    <AuthGuard />
-                </div>
-                :
+            {
                 productsWithDiscount?.length > 0 && (
                     <section className="relative py-20">
                         <div className="container">
