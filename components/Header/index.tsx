@@ -21,11 +21,16 @@ import { SearchProducts } from "./SearchProducts";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { WhatsAppButton } from "../WhatsAppButton";
+import { usePathname } from "next/navigation";
 
 export function Header() {
     const { openLoginModal } = useUIStore();
     const { isLogged, logout, isLoading } = useUserStore();
     const { cart } = useCartStore();
+
+    const pathname = usePathname();
+
+    const isLanding = pathname.startsWith("/conserto-notebook");
 
     const [menuOpen, setMenuOpen] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -70,6 +75,8 @@ export function Header() {
     }, [menuOpen]);
 
     return (
+        <>
+        {!isLanding &&
         <>
             <header className="sticky bg-[#242424] top-0 z-50 shadow-xs shadow-green-500">
                 <div className={`container flex justify-between itens-center py-4`}>
@@ -220,6 +227,7 @@ export function Header() {
             <LoginFormModal />
             {isCartOpen && <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />}
             <WhatsAppButton />
+        </>}
         </>
     );
 }

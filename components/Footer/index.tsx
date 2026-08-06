@@ -10,13 +10,20 @@ import {
     EnvelopeIcon
 } from "@phosphor-icons/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export function Footer() {
     const phoneNumber = "5521989810973";
     const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento para meu setup.");
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
+     const pathname = usePathname();
+    
+    const isLanding = pathname.startsWith("/conserto-notebook");
+
     return (
+        <>
+        {!isLanding &&
         <footer className="border-t bg-black/20 border-green-500/10">
 
             <div className="container py-10 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -123,5 +130,7 @@ export function Footer() {
             </div>
 
         </footer>
+        }
+        </>
     );
 }
