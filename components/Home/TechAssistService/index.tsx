@@ -120,34 +120,29 @@ export function TechAssistService() {
 
                     <div className="md:col-span-4 group relative bg-[#0d0d0d] rounded-[2.5rem] p-10 border border-white/5 hover:border-amber-500/30 transition-all duration-500 flex flex-col overflow-hidden text-center md:text-left">
 
-                        {isLogged === true ? '' : <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity z-20 flex flex-col items-center justify-center p-6 text-center">
+                        {/* {isLogged === true ? '' : <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity z-20 flex flex-col items-center justify-center p-6 text-center">
                             <LockKeyIcon size={48} className="text-amber-500 mb-4" weight="duotone" />
                             <p className="text-sm font-bold text-white uppercase tracking-widest">Acesso Restrito</p>
                             <p className="text-[10px] text-gray-400 mt-2">Disponível apenas para clientes cadastrados na oficina</p>
-                        </div>}
+                        </div>} */}
 
                         <div className="relative z-10 h-full flex flex-col">
                             <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-amber-500/10 transition-colors">
                                 <CpuIcon size={32} weight="duotone" className="text-gray-400 group-hover:text-amber-500" />
                             </div>
 
-                            <h3 className="text-2xl font-black mb-4">Loja de Peças <br /> {isLogged === true ? '' : <span className="text-amber-500 text-sm tracking-[.2em] uppercase font-black">Private Store</span>}</h3>
+                            <h3 className="text-2xl font-black mb-4">Loja de Peças</h3>
 
                             <p className="text-gray-500 mb-8 leading-relaxed font-medium">
                                 Hardware selecionado e componentes OEM com garantia Eletro System.
                             </p>
 
-                            {isLogged === true ? '' : <div className="mt-auto pt-6 border-t border-white/5">
-                                <span className="flex items-center justify-center md:justify-start gap-2 text-xs font-black text-gray-500">
-                                    <LockKeyIcon size={14} /> EXCLUSIVO PARA CLIENTES
-                                </span>
-                            </div>}
-                            {isLogged === true ? <Link
+                           <Link
                                 href="/produtos"
                                 className="whitespace-nowrap mt-auto px-12 py-5 border-2 border-[#03A64A] text-[#03A64A] hover:bg-[#03A64A] hover:text-black font-black rounded-2xl transition-all duration-500 cursor-pointer shadow-lg hover:shadow-[0_0_30px_rgba(3,166,74,0.3)]"
                             >
                                 VER PRODUTOS
-                            </Link> : ''}
+                            </Link>
                         </div>
                     </div>
 

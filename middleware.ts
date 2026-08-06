@@ -5,7 +5,7 @@ export async function middleware(request: NextRequest) {
     const userCookie = request.cookies.get("user");
     const { pathname } = request.nextUrl;
 
-    const protectedRoutes = ["/produtos", "/pedidos", "/sucesso"];
+    const protectedRoutes = ["/pedidos", "/sucesso"];
     const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route));
 
     if (isProtectedRoute) {
@@ -45,5 +45,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/produtos/:path*", "/pedidos/:path*", "/sucesso/:path*"],
+    matcher: ["/pedidos/:path*", "/sucesso/:path*"],
 };

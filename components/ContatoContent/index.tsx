@@ -3,13 +3,11 @@
 import {
     UserIcon,
     EnvelopeIcon,
-    PhoneIcon,
     ChatCircleTextIcon,
     WhatsappLogoIcon,
     PaperclipIcon,
     PaperPlaneTiltIcon,
     ClockIcon,
-    HeadsetIcon,
     MapPinIcon
 } from "@phosphor-icons/react";
 import { useRef } from "react";

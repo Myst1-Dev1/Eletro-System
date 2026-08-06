@@ -30,7 +30,7 @@ export function KnowOurProducts({ products }: KnowOurProductsProps) {
 
     return (
         <section className="container py-20">
-            {isLogged === false ? '' :
+            {/* {isLogged === false ? '' : */}
                 <div className="text-center mb-14">
                     <h2 className="text-3xl md:text-4xl font-bold">
                         Conheça nossos{" "}
@@ -42,12 +42,11 @@ export function KnowOurProducts({ products }: KnowOurProductsProps) {
                         Equipamentos de alta performance para quem exige qualidade e tecnologia de ponta.
                     </p>
                 </div>
-            }
+            {/* } */}
 
             <div className="relative py-7 lg:py-10 ">
                 <div
-                    className={`grid grid-cols-1 -mt-10 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-8 transition-all duration-300 ${!isLogged ? "blur-sm pointer-events-none select-none" : ""
-                        }`}
+                    className={`grid grid-cols-1 -mt-10 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-8 transition-all duration-300`}
                 >
                     {productsList?.length === 0 ? <p className="text-center text-gray-400 mt-4 max-w-xl mx-auto">Sem produtos cadastrados</p> : productsList?.map((product: any) => (
                         <ProductBox

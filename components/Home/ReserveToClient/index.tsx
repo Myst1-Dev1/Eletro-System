@@ -17,13 +17,13 @@ export function ReserveToClient({ products }: ReserveToClientProps) {
 
     return (
         <>
-            {isLogged === false ? <AuthGuard />
-            :
+            {/* {isLogged === false ? <AuthGuard />
+            : */}
             <>
                 <Offers products={products} />
                 <KnowOurProducts products={products} />
             </>
-            }
+            {/* } */}
         </>
     )
 }
