@@ -1,227 +1,162 @@
-Analise este design https://www.figma.com/design/X8L8C6789vbomySh0S2eyX/eletroSystem?node-id=0-1&p=f&t=mDjA1bpxli7EjGDT-0 de landing page e NÃO gere um novo layout do zero.
+Analise este design e NÃO recrie a landing do zero.
 
-Quero evoluir este design mantendo a identidade visual, as cores (preto + verde), a tipografia e a estrutura geral.
+O layout atual está aprovado.
 
-A landing será utilizada para campanhas de Google Ads e seu principal objetivo é converter visitantes em contatos pelo WhatsApp.
+Quero apenas um refinamento de UX, UI e CRO (Conversion Rate Optimization).
 
-Analise o layout atual e faça melhorias de UX, UI e CRO (Conversion Rate Optimization).
+A landing será utilizada em campanhas de Google Ads para captar clientes interessados em:
 
-------------------------------------------------------
+• Reparo de Placas
+• Manutenção de Notebooks
+• Montagem de PC Gamer
 
-OBJETIVO DA LANDING
+O objetivo é aumentar a confiança, autoridade e conversão.
 
-A página deve transmitir:
+====================================================
 
-• confiança
-• profissionalismo
-• autoridade técnica
-• sensação de empresa especializada
+MANTER
 
-A prioridade é aumentar a conversão.
+• Paleta preto + verde
+• Identidade visual
+• Tipografia
+• Estrutura geral
+• Cards dos serviços
+• Seção do laboratório
+• CTA final
 
-Não quero apenas um layout bonito.
+Não alterar drasticamente o layout.
 
-Quero um layout que venda.
+Quero apenas melhorias.
 
-------------------------------------------------------
+====================================================
 
-HERO
+1) HERO
 
-O Hero precisa causar muito mais impacto.
+O Hero precisa causar mais impacto.
 
-Atualmente parece institucional.
+Aumentar sua altura para aproximadamente 85~90% da altura da tela.
 
-Quero que ele passe imediatamente a sensação de que a empresa resolve problemas.
+Quero que o visitante seja impactado antes mesmo de começar a rolar.
 
-Alterar o texto principal para algo mais orientado à dor do cliente.
+Dar mais espaço entre os elementos.
 
-Exemplos de conceito:
+O vídeo deve ganhar mais destaque.
 
-"Notebook não liga?"
+====================================================
 
-"Seu computador está lento?"
+2) VÍDEO DO HERO
 
-"Especialistas em Reparo de Placas e Manutenção de Notebooks."
+Hoje ele parece um player vazio.
 
-O botão do WhatsApp deve ser muito mais destacado.
+Transformar em um verdadeiro destaque da página.
 
-Adicionar um pequeno texto abaixo do CTA transmitindo confiança.
+Adicionar:
 
-Exemplos:
+• Glow verde discreto
+• Pequena borda premium
+• Sombras suaves
+• Overlay elegante
 
-• Diagnóstico mediante avaliação
-• Atendimento mediante agendamento
-• Orçamento rápido pelo WhatsApp
+Criar espaço para um vídeo em loop mostrando:
 
-------------------------------------------------------
+- Notebook aberto
+- Diagnóstico
+- Microscópio
+- Soldagem
+- Testes
+- Equipamento funcionando
 
-MÍDIA DO HERO
+O vídeo deve transmitir profissionalismo.
 
-Não utilizar imagens genéricas ou geradas por IA.
+====================================================
 
-No lugar da imagem principal, criar um espaço para um vídeo curto do técnico trabalhando.
+3) PROVA SOCIAL
 
-Esse vídeo deve ficar em autoplay, loop e sem áudio.
-
-Caso existam vários vídeos, transformar essa área em um pequeno carrossel.
-
-Os vídeos devem mostrar:
-
-• soldagem
-• microscópio
-• reparo de placas
-• notebook aberto
-• montagem de computadores
-
-Essa deve ser uma das áreas mais importantes da landing.
-
-------------------------------------------------------
-
-PROVA SOCIAL
-
-Adicionar uma nova seção logo abaixo do Hero.
-
-Exemplos:
-
-★★★★★
-
-Mais de XXX equipamentos reparados
-
-Clientes satisfeitos
-
-Anos de experiência
-
-Adicionar espaço para avaliações reais do Google.
-
-------------------------------------------------------
-
-CARDS DOS SERVIÇOS
-
-Os cards atuais ficaram bons.
-
-Porém quero que eles sejam mais informativos.
-
-Cada card deve possuir:
-
-Imagem real
-
-Título
-
-Descrição
-
-Benefícios
-
-Lista rápida
-
-Ícones
-
-CTA
+Logo abaixo do botão principal adicionar pequenos indicadores.
 
 Exemplo:
 
-Reparo de Placas
+★★★★★ Avaliação excelente
 
-✓ Diagnóstico eletrônico
++500 Equipamentos reparados
 
-✓ Soldagem SMD
++350 Clientes atendidos
 
-✓ Recuperação de placas
++8 anos de experiência
 
-✓ Equipamentos profissionais
+Esses números devem possuir pequenos ícones.
 
-Botão:
+====================================================
 
-Solicitar orçamento
+4) CARDS DOS SERVIÇOS
 
-------------------------------------------------------
+Melhorar apenas detalhes.
 
-SEÇÃO "POR QUE CONFIAR"
+Adicionar hover premium.
 
-Essa seção pode ficar mais premium.
+Ao passar o mouse:
 
-Transformar em cards maiores.
+• Card sobe levemente
 
-Cada benefício deve possuir:
+• Glow verde discreto
 
-ícone
+• Imagem aumenta levemente
 
-título
+• Botão ganha destaque
 
-descrição curta
+Animações suaves.
 
-Hover elegante
+====================================================
 
-Leve animação
+5) LABORATÓRIO
 
-------------------------------------------------------
+A estrutura atual está boa.
 
-COMO FUNCIONA
+Apenas deixar mais premium.
 
-Transformar em uma timeline visual.
+Melhorar:
 
-Recebemos equipamento
+• Miniaturas
 
-↓
+• Espaçamento
 
-Diagnóstico
+• Hierarquia
 
-↓
+• Overlay
 
-Enviamos orçamento
+• Hover
 
-↓
+• Transições
 
-Aprovação
+Adicionar uma pequena legenda abaixo do vídeo principal.
 
-↓
+Exemplo:
 
-Reparo
+"Reparo realizado em laboratório próprio utilizando equipamentos profissionais."
 
-↓
+====================================================
 
-Testes
+6) NOVA SEÇÃO
 
-↓
+Adicionar uma nova seção logo após o Laboratório.
 
-Entrega
+Título:
 
-Fazer essa seção parecer mais dinâmica.
+Casos Reais
 
-------------------------------------------------------
+Subtítulo:
 
-LABORATÓRIO
+Conheça alguns equipamentos recuperados pela nossa equipe.
 
-Hoje existem apenas caixas vazias.
-
-Transformar essa área em uma galeria premium.
-
-Utilizar vídeos reais.
-
-Cada vídeo deve possuir:
-
-overlay escuro
-
-ícone de play
-
-título
-
-efeito hover
-
-Não utilizar imagens de banco.
-
-------------------------------------------------------
-
-ANTES E DEPOIS
-
-Adicionar uma nova seção.
-
-Mostrar casos reais.
-
-Exemplos:
+Criar cards modernos mostrando:
 
 Notebook Dell
 
-Não ligava
+❌ Não ligava
+
+↓
+
+Diagnóstico eletrônico
 
 ↓
 
@@ -229,7 +164,7 @@ Reparo da placa
 
 ↓
 
-Funcionando
+✅ Equipamento funcionando
 
 Outro exemplo:
 
@@ -241,7 +176,11 @@ Limpeza
 
 ↓
 
-Temperatura normal
+Troca de pasta térmica
+
+↓
+
+Temperatura reduzida
 
 Outro:
 
@@ -249,140 +188,144 @@ Montagem PC Gamer
 
 ↓
 
-Resultado final
+Montagem personalizada
 
-Esses cards devem aumentar a confiança.
+↓
 
-------------------------------------------------------
+Testes
 
-CTA INTERMEDIÁRIO
+↓
 
-Após algumas seções criar um bloco verde.
+Entrega
 
-Título forte.
+Essa seção deve aumentar muito a confiança.
 
-Botão grande do WhatsApp.
+====================================================
 
-Texto curto incentivando contato.
+7) DEPOIMENTOS
 
-------------------------------------------------------
-
-FAQ
-
-Criar um FAQ moderno.
-
-Perguntas comuns.
-
-Garantia
-
-Prazo
-
-Diagnóstico
-
-Orçamento
-
-Pagamento
-
-------------------------------------------------------
-
-RODAPÉ
-
-Hoje está muito vazio.
+Melhorar o design.
 
 Adicionar:
 
-Telefone
+Foto do cliente
 
-WhatsApp
+Cargo (quando existir)
 
-Instagram
+Cidade
 
-Endereço
+★★★★★
 
-Horário
+Hover elegante
 
-Mapa
+Cards um pouco maiores.
 
-Botão:
+====================================================
 
-Conheça todos os nossos serviços
+8) CTA FINAL
 
-------------------------------------------------------
+O CTA atual está bom.
 
-MICROINTERAÇÕES
+Quero apenas deixá-lo mais chamativo.
 
-Adicionar pequenas animações.
-
-Hover suave
-
-Glow verde
-
-Cards levantando levemente
-
-Scroll Reveal
-
-Botões com microinterações
-
-Nada exagerado.
-
-------------------------------------------------------
-
-ESPAÇAMENTO
-
-Algumas seções estão muito vazias.
-
-Melhorar ritmo visual.
-
-Aumentar a sensação premium.
-
-------------------------------------------------------
-
-TIPOGRAFIA
-
-Dar maior destaque para as palavras importantes.
+Adicionar um pequeno texto acima.
 
 Exemplo:
 
-Reparo de Placas
+"Não descarte seu equipamento antes de falar conosco."
 
-Notebook
+O botão deve parecer impossível de ignorar.
 
-PC Gamer
+====================================================
 
-Computadores
+9) BOTÃO FLUTUANTE
 
-Utilizar verde apenas para palavras estratégicas.
+Adicionar um botão flutuante de WhatsApp.
 
-------------------------------------------------------
+Sempre visível.
+
+Com pequena animação de pulse.
+
+No desktop:
+
+Canto inferior direito.
+
+No mobile:
+
+Respeitando área segura do sistema.
+
+====================================================
+
+10) MICROINTERAÇÕES
+
+Adicionar pequenas animações premium.
+
+Hover em botões.
+
+Hover em cards.
+
+Fade-in ao scroll.
+
+Contadores animados.
+
+Transições suaves.
+
+Nada exagerado.
+
+====================================================
+
+11) ESPAÇAMENTO
+
+Refinar o ritmo visual.
+
+Melhorar alinhamentos.
+
+Dar mais "respiro" entre blocos.
+
+A página deve parecer ainda mais premium.
+
+====================================================
+
+12) RODAPÉ
+
+Adicionar um pequeno mapa ilustrativo ou espaço para integração com Google Maps.
+
+Adicionar selo:
+
+📍 Atendimento na Barra da Tijuca - RJ
+
+Adicionar botão:
+
+Ver todos os serviços
+
+====================================================
+
+13) EXPERIÊNCIA MOBILE
+
+Revisar cuidadosamente a versão mobile.
+
+Garantir:
+
+• Hero impactante
+
+• Botões grandes
+
+• Fácil clique no WhatsApp
+
+• Vídeos proporcionais
+
+• Excelente leitura
+
+====================================================
 
 IMPORTANTE
 
-O visual deve lembrar empresas modernas como:
+A landing NÃO deve parecer um site institucional.
 
-Stripe
+Ela deve parecer uma Landing Page criada por uma agência especializada em Google Ads.
 
-Vercel
+O visitante deve confiar na empresa nos primeiros 5 segundos.
 
-Linear
+O objetivo não é apenas ser bonita.
 
-Raycast
-
-Framer
-
-Mas mantendo identidade própria.
-
-Quero uma landing extremamente premium.
-
-------------------------------------------------------
-
-NÃO ALTERAR
-
-• Paleta preta e verde.
-• Estilo tecnológico.
-• Layout moderno.
-• Botões arredondados.
-• Visual minimalista.
-
-Apenas evoluir o design existente.
-
-O objetivo é criar uma landing que transmita muita confiança e aumente significativamente a taxa de conversão para Google Ads.
+O objetivo é gerar contatos pelo WhatsApp.

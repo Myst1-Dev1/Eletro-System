@@ -2,34 +2,15 @@
 'use client';
 
 import { ProductBox } from "@/components/ProductBox";
-import { useUserStore } from "@/stores/useUserStore";
 
 interface KnowOurProductsProps {
     products: any;
 }
 
-const mockProduct = [
-    {
-        id: 1,
-        name: "Produto 1",
-        price: 100,
-        image: "/images/produto.webp"
-    },
-    {
-        id: 2,
-        name: "Produto 2",
-        price: 200,
-        image: "/images/produto.webp"
-    }
-]
-
 export function KnowOurProducts({ products }: KnowOurProductsProps) {
-    const { isLogged } = useUserStore();
-
-    const productsList = isLogged ? products.data : mockProduct;
 
     return (
-        <section className="container py-20">
+        <section className="bg-black py-20">
             {/* {isLogged === false ? '' : */}
                 <div className="text-center mb-14">
                     <h2 className="text-3xl md:text-4xl font-bold">
@@ -44,11 +25,11 @@ export function KnowOurProducts({ products }: KnowOurProductsProps) {
                 </div>
             {/* } */}
 
-            <div className="relative py-7 lg:py-10 ">
+            <div className="container relative py-7 lg:py-10 ">
                 <div
                     className={`grid grid-cols-1 -mt-10 sm:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-8 transition-all duration-300`}
                 >
-                    {productsList?.length === 0 ? <p className="text-center text-gray-400 mt-4 max-w-xl mx-auto">Sem produtos cadastrados</p> : productsList?.map((product: any) => (
+                    {products?.length === 0 ? <p className="text-center text-gray-400 mt-4 max-w-xl mx-auto">Sem produtos cadastrados</p> : products?.map((product: any) => (
                         <ProductBox
                             key={product.id}
                             id={product.id}
@@ -57,7 +38,7 @@ export function KnowOurProducts({ products }: KnowOurProductsProps) {
                             priceOld={product.oldPrice}
                             discount={product.discount}
                             image={product.image}
-                            length={productsList.length}
+                            length={products.length}
                         />
                     ))}
                 </div>

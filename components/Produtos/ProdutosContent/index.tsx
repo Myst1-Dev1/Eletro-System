@@ -15,52 +15,24 @@ interface ProdutosContentProps {
 }
 
 export function ProdutosContent({ products, productsToDisplay, categoria }: ProdutosContentProps) {
-    // const [search, setSearch] = useState('');
-    // const [category, setCategory] = useState(categoria || 'todos');
-    // const [currentPage, setCurrentPage] = useState(1);
+    const [search, setSearch] = useState('');
+    const [category, setCategory] = useState(categoria || 'todos');
+    const [currentPage, setCurrentPage] = useState(1);
 
-    // const itemsPerPage = 8;
+    const itemsPerPage = 8;
 
-    // const filteredProducts = productsToDisplay?.data?.filter((product: any) => {
-    //     const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
+    const filteredProducts = productsToDisplay?.data?.filter((product: any) => {
+        const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
 
-    //     const matchesCategory = category === 'todos' || product.category.name === category;
+        const matchesCategory = category === 'todos' || product.category.name === category;
 
-    //     return matchesSearch && matchesCategory;
-    // });
+        return matchesSearch && matchesCategory;
+    });
 
-    // const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-    // const startIndex = (currentPage - 1) * itemsPerPage;
-    // const endIndex = startIndex + itemsPerPage;
-    // const currentItems = filteredProducts.slice(startIndex, endIndex);
-
-    const produtosDestaque = [
-        {
-            id: 1,
-            name: 'teste',
-            price: 100,
-            image: '/images/produto.webp',
-        },
-        {
-            id: 2,
-            name: 'teste',
-            price: 100,
-            image: '/images/produto.webp',
-
-        },
-        {
-            id: 3,
-            name: 'teste',
-            price: 100,
-            image: '/images/produto.webp',
-        },
-        {
-            id: 4,
-            name: 'teste',
-            price: 100,
-            image: '/images/produto.webp',
-        }
-    ]
+    const totalPages = Math.ceil(filteredProducts?.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentItems = filteredProducts?.slice(startIndex, endIndex);
 
     return (
         <>
@@ -85,11 +57,14 @@ export function ProdutosContent({ products, productsToDisplay, categoria }: Prod
 
                 </div>
 
-                {/* <div className="container py-12">
+                {products?.length === 0 ? 'Sem produtos cadastrados' :
+
+                <div className="container py-12">
                     <Filters categories={products} search={search} setSearch={setSearch} category={category} setCategory={setCategory} />
                     <Products products={currentItems} />
                     <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-                </div> */}
+                </div>
+                }
             </div>
         </>
     )
