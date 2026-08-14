@@ -37,7 +37,7 @@ export function StickyHeader() {
           target="_blank"
           rel="noopener noreferrer"
           id="header-whatsapp-cta"
-          className="flex items-center gap-2 bg-[#0BD061] hover:bg-[#03A64A] text-black font-bold px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 text-sm shadow-lg shadow-[#0BD061]/30"
+          className="flex justify-center text-center items-center gap-2 bg-[#0BD061] hover:bg-[#03A64A] text-black font-bold px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 text-sm shadow-lg shadow-[#0BD061]/30"
         >
           <WhatsappLogoIcon size={20} weight="fill" />
           <span>Falar no WhatsApp</span>
