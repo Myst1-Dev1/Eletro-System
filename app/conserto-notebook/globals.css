@@ -1,0 +1,15 @@
+.video-pagination .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  margin: 0 !important;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 1;
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.video-pagination .swiper-pagination-bullet-active {
+  width: 32px;
+  background: #0BD061;
+}

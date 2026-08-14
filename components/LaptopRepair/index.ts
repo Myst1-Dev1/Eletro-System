@@ -57,13 +57,6 @@ export function useLaptopRepair() {
         return () => observer.disconnect();
     }, []);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-        setActiveVideo((prev) => (prev + 1) % videos.length);
-        }, 6000);
-        return () => clearInterval(timer);
-    }, [videos.length, setActiveVideo]);
-
     return {
         WHATSAPP_URL,
         useCounter,

@@ -12,9 +12,14 @@ import {
   WrenchIcon,
 } from "@phosphor-icons/react";
 import { useLaptopRepair } from "..";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export function HeroSection() {
-  const { WHATSAPP_URL, videos, activeVideo, setActiveVideo } = useLaptopRepair();
+  const { WHATSAPP_URL, videos } = useLaptopRepair();
 
   return (
     <section className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden bg-black pt-20 pb-16 lg:py-24">
@@ -121,54 +126,68 @@ export function HeroSection() {
 
         {/* Right Column - Hero Video Destaque */}
         <div className="relative">
-          {/* Main Video Container with Premium Styling */}
+          {/* Main Video Container */}
           <div className="relative rounded-2xl overflow-hidden aspect-video border border-[#0BD061]/30 shadow-[0_0_50px_-10px_rgba(11,208,97,0.3)] bg-black group">
-            
+
             {/* Top Tag Badge */}
-            <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-[#0BD061] border border-[#0BD061]/30">
+            <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-semibold text-[#0BD061] border border-[#0BD061]/30">
               <span className="w-2 h-2 rounded-full bg-[#0BD061] animate-ping shrink-0" />
               Laboratório EletroSystem
             </div>
 
-            {videos.map((v, i) => (
-              <video
-                key={v.src}
-                src={v.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                  i === activeVideo ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
-            ))}
-            
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              slidesPerView={1}
+              loop
+              speed={700}
+              autoplay={{
+                delay: 6000,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+                el: '.video-pagination',
+              }}
+              className="w-full h-full"
+            >
+              {videos.map((video) => (
+                <SwiperSlide key={video.src} className="relative">
+                  <video
+                    src={video.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
 
-            {/* Bottom Caption */}
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-medium text-white border border-white/10">
-              <div className="flex items-center gap-2">
-                <VideoIcon size={16} className="text-[#0BD061]" weight="fill" />
-                <span>{videos[activeVideo].label}</span>
-              </div>
-              <span className="text-[10px] text-gray-400">Ao vivo no laboratório</span>
-            </div>
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Bottom Caption */}
+                  <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-medium text-white border border-white/10">
+                    <div className="flex items-center gap-2">
+                      <VideoIcon
+                        size={16}
+                        className="text-[#0BD061]"
+                        weight="fill"
+                      />
+
+                      <span>{video.label}</span>
+                    </div>
+
+                    <span className="text-[10px] text-gray-400">
+                      Ao vivo no laboratório
+                    </span>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="flex gap-2 justify-center mt-4">
-            {videos.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveVideo(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === activeVideo ? 'w-8 bg-[#0BD061]' : 'w-2 bg-white/30 hover:bg-white/50'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Dots */}
+          <div className="video-pagination flex gap-2 justify-center mt-4" />
 
           {/* Glow backdrop */}
           <div className="absolute -inset-4 bg-[#0BD061]/15 rounded-3xl blur-2xl -z-10" />
