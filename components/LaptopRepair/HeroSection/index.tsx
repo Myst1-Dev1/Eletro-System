@@ -7,6 +7,7 @@ import {
   CheckCircleIcon,
   MedalIcon,
   SealCheckIcon,
+  ShoppingBagIcon,
   StarIcon,
   ThumbsUpIcon,
   VideoIcon,
@@ -21,6 +22,7 @@ import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 
 import { useLaptopRepair } from '..';
+import Link from 'next/link';
 
 export function HeroSection() {
   const { WHATSAPP_URL, videos } = useLaptopRepair();
@@ -72,13 +74,14 @@ export function HeroSection() {
           </p>
 
           {/* CTA */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <a
+         <div className="flex flex-col gap-4 justify-center lg:justify-start">
+            {/* Botão Principal - WhatsApp */}
+            <Link
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               id="hero-whatsapp-cta"
-              className="group relative flex items-center justify-center gap-3 bg-[#0BD061] hover:bg-[#09b856] text-black font-bold px-8 py-5 rounded-2xl text-lg transition-all duration-300 hover:scale-105 shadow-[0_0_30px_-5px_rgba(11,208,97,0.5)] overflow-hidden"
+              className="w-fit group relative flex items-center justify-center gap-3 bg-[#0BD061] hover:bg-[#09b856] text-black font-bold px-8 py-5 rounded-2xl text-lg transition-all duration-300 hover:scale-105 shadow-[0_0_30px_-5px_rgba(11,208,97,0.5)] overflow-hidden"
             >
               <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -91,7 +94,22 @@ export function HeroSection() {
                 weight="bold"
                 className="group-hover:translate-x-1 transition-transform"
               />
-            </a>
+            </Link>
+
+            <Link
+              href="/loja"
+              className="w-fit group flex items-center justify-center gap-3 bg-zinc-900/80 hover:bg-zinc-800 text-white font-bold px-8 py-5 rounded-2xl text-lg transition-all duration-300 hover:scale-105 border border-zinc-800 hover:border-[#0BD061]/50 hover:shadow-[0_0_25px_-5px_rgba(11,208,97,0.3)]"
+            >
+              <ShoppingBagIcon size={24} weight="bold" className="text-[#0BD061]" />
+
+              <span>Acesse nossa Loja</span>
+
+              <ArrowRightIcon
+                size={20}
+                weight="bold"
+                className="group-hover:translate-x-1 transition-transform text-zinc-400 group-hover:text-white"
+              />
+            </Link>
           </div>
 
           {/* =========================================================
@@ -236,30 +254,8 @@ export function HeroSection() {
               Laboratório EletroSystem
             </div>
 
-            {/* =====================================================
-                SWIPER
-            ====================================================== */}
-            <Swiper
-              modules={[Autoplay]}
-              slidesPerView={1}
-              loop={videos.length > 1}
-              speed={700}
-              autoplay={
-                videos.length > 1
-                  ? {
-                      delay: 6000,
-                      disableOnInteraction: false,
-                    }
-                  : false
-              }
-              onSwiper={setSwiper}
-              onSlideChange={(swiper) => {
-                setActiveVideo(swiper.realIndex);
-              }}
-              className="w-full! h-full!"
-            >
               {videos.map((video) => (
-                <SwiperSlide
+                <div
                   key={video.src}
                   className="relative! h-full!"
                 >
@@ -274,10 +270,8 @@ export function HeroSection() {
                     className="absolute inset-0 w-full h-full object-cover"
                   />
 
-                  {/* Overlay Gradient */}
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
 
-                  {/* Bottom Caption */}
                   <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-medium text-white border border-white/10">
 
                     <div className="flex items-center gap-2 min-w-0">
@@ -297,43 +291,10 @@ export function HeroSection() {
                     </span>
 
                   </div>
-                </SwiperSlide>
+                </div>
               ))}
-            </Swiper>
           </div>
 
-          {/* =====================================================
-              CUSTOM DOTS
-          ====================================================== */}
-          {videos.length > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-4">
-              {videos.map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  aria-label={`Ir para vídeo ${index + 1}`}
-                  onClick={() => {
-                    swiper?.slideToLoop(index);
-                  }}
-                  className={`
-                    cursor-pointer
-                    h-1.5 rounded-full
-                    transition-all duration-300
-                    focus:outline-none
-                    focus-visible:ring-2
-                    focus-visible:ring-[#0BD061]/60
-                    ${
-                      index === activeVideo
-                        ? 'w-8 bg-[#0BD061]'
-                        : 'w-1.5 bg-white/30 hover:bg-white/50'
-                    }
-                  `}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Glow backdrop */}
           <div className="absolute -inset-4 bg-[#0BD061]/15 rounded-3xl blur-2xl -z-10" />
         </div>
 

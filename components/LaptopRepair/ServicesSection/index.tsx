@@ -14,6 +14,7 @@ export function ServicesSection() {
       title: 'Reparo de Notebooks',
       description: 'Conserto especializado em qualquer marca e modelo. Não liga, tela quebrada, superaquecimento ou teclado falhando.',
       benefits: ['Diagnóstico eletrônico completo', 'Troca de tela e teclado', 'Reparo de placa-mãe', 'Limpeza e pasta térmica', 'Garantia de 90 dias'],
+      price: 160
     },
     {
       image: '/images/manutencao-pc.webp',
@@ -21,6 +22,7 @@ export function ServicesSection() {
       title: 'Manutenção de Computadores',
       description: 'PC lento, travando, com vírus ou sem ligar? Diagnóstico preciso e reparo rápido com garantia total.',
       benefits: ['Formatação e reinstalação', 'Upgrade de hardware', 'Limpeza interna preventiva', 'Instalação de SSD NVMe', 'Otimização de performance'],
+      price: 130
     },
     {
       image: '/images/montagem.webp',
@@ -28,6 +30,7 @@ export function ServicesSection() {
       title: 'Montagem de PC Gamer',
       description: 'Montagem personalizada com as melhores peças do mercado. Setup completo e otimizado para máxima performance.',
       benefits: ['Consultoria de peças', 'Montagem profissional', 'Gerenciamento de cabos', 'Instalação do sistema', 'Testes de estresse e temperatura'],
+      price: 200
     },
     {
       image: '/images/limpeza.webp',
@@ -35,6 +38,7 @@ export function ServicesSection() {
       title: 'Reparo de Placas (Nível III)',
       description: 'Soldagem SMD avançada com microscópio profissional. Recuperamos placas que outras assistências condenam.',
       benefits: ['Soldagem SMD avançada', 'Microscópio profissional', 'Diagnóstico por esquemático', 'Troca de componentes BGA', 'Equipamentos calibrados'],
+      price: 0
     },
   ];
 
@@ -99,7 +103,10 @@ export function ServicesSection() {
                   className="mt-2 flex items-center justify-center gap-2 py-3.5 px-4 bg-white/5 border border-white/10 text-white font-semibold rounded-xl transition-all duration-300 text-sm group-hover:bg-[#0BD061] group-hover:text-black group-hover:border-[#0BD061] group-hover:shadow-lg group-hover:shadow-[#0BD061]/25"
                 >
                   <WhatsappLogoIcon size={19} weight="fill" />
-                  <span>Solicitar orçamento</span>
+                  <span>{s.price === 0 ? 'sob consulta' : `a partir de ${Intl.NumberFormat('pt-br', {
+                    style: 'currency',
+                    currency: 'BRL'
+                  }).format(s.price)}`}</span>
                   <ArrowRightIcon size={16} className="group-hover:translate-x-1.5 transition-transform" />
                 </a>
               </div>

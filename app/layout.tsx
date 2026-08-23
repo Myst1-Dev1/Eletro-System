@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/providers/AuthProvider";
 import ProductProvider from "@/providers/ProductProvider";
 import { ToastContainer } from "react-toastify";
+import { StickyHeader } from "@/components/LaptopRepair/StickyHeader";
+import { LandingFooter } from "@/components/LaptopRepair/LandingFooter";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -279,9 +280,10 @@ export default function RootLayout({
                 __html: JSON.stringify(localBusinessSchema),
               }}
             />
-            <Header />
+            <StickyHeader />
             {children}
-            <Footer />
+            <LandingFooter />
+            <WhatsAppButton/>
             <ToastContainer position="top-right" />
           </ProductProvider>
         </AuthProvider>

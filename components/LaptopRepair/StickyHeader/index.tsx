@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { WhatsappLogoIcon } from '@phosphor-icons/react';
 import { useEffect, useState } from 'react';
 import { useLaptopRepair } from '..';
+import Link from 'next/link';
 
 export function StickyHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,15 +25,23 @@ export function StickyHeader() {
         }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <Image
-          src="/images/logo.png"
-          width={160}
-          height={48}
-          alt="EletroSystem"
-          className="w-40 h-18 lg:h-14 object-cover"
-          priority
-        />
-        <a
+        <Link href='/'>
+          <Image
+            src="/images/logo.png"
+            width={160}
+            height={48}
+            alt="EletroSystem"
+            className="w-40 h-18 lg:h-14 object-cover"
+            priority
+          />
+        </Link>
+        {/* <Link 
+          href='/loja' 
+          className="text-gray-300 hover:text-[#00e676] font-medium transition-colors duration-200 tracking-wide text-sm md:text-base"
+        >
+          Loja
+        </Link> */}
+        <Link
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
@@ -41,7 +50,7 @@ export function StickyHeader() {
         >
           <WhatsappLogoIcon size={20} weight="fill" />
           <span>Falar no WhatsApp</span>
-        </a>
+        </Link>
       </div>
     </header>
   );

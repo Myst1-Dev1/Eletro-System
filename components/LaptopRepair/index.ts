@@ -16,9 +16,7 @@ export function useLaptopRepair() {
     const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`;
 
     const videos = [
-        { src: '/videos/reparo-video.mp4', label: 'Reparo de Placas' },
-        { src: '/videos/limpeza-video.mp4', label: 'Limpeza Profissional' },
-        { src: '/videos/montagem-video.mp4', label: 'Montagem de PC' },
+        { src: '/videos/reparo-notebook.mp4', label: 'Manutenção de notebook' },
     ];
 
     function useCounter(target: number, active: boolean, duration = 1800) {
