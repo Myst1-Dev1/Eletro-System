@@ -1,4 +1,3 @@
-import { KnowOurProducts } from "@/components/Home/KnowOurProducts";
 import { CtaBanner } from "@/components/LaptopRepair/CtaBanner";
 import { HeroSection } from "@/components/LaptopRepair/HeroSection";
 import { LabGallerySection } from "@/components/LaptopRepair/LabGallerySection";
@@ -19,7 +18,6 @@ export default function Home() {
               <LabGallerySection />
               <RealCasesSection />
               <TestimonialsSection />
-              {/* <KnowOurProducts /> */}
               <CtaBanner />
             </main>
           </>
