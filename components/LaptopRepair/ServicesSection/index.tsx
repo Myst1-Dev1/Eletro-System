@@ -37,7 +37,7 @@ export function ServicesSection() {
       icon: <WrenchIcon size={22} weight="fill" />,
       title: 'Reparo de Placas (Nível III)',
       description: 'Soldagem SMD avançada com microscópio profissional. Recuperamos placas que outras assistências condenam.',
-      benefits: ['Soldagem SMD avançada', 'Microscópio profissional', 'Diagnóstico por esquemático', 'Troca de componentes BGA', 'Equipamentos calibrados'],
+      benefits: ['Soldagem SMD avançada', 'Reparo em placa-Mãe', 'Diagnóstico por esquemático', 'Troca de componentes BGA', 'Equipamentos calibrados'],
       price: 0
     },
   ];
