@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckCircleIcon, ShoppingBagIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import { CheckCircleIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
@@ -34,15 +34,7 @@ export default function SucessoPage() {
 
                     <div className="space-y-4">
                         <Link
-                            href="/pedidos"
-                            className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-[#33945E] to-[#03A64A] text-white font-bold rounded-xl hover:brightness-110 transition-all shadow-[0_0_20px_rgba(3,166,74,0.2)]"
-                        >
-                            <ShoppingBagIcon size={18} />
-                            Meus Pedidos
-                        </Link>
-
-                        <Link
-                            href="/produtos"
+                            href="/loja"
                             className="flex items-center justify-center gap-2 w-full py-4 bg-white/5 text-gray-300 font-semibold rounded-xl hover:bg-white/10 transition-all border border-white/10"
                         >
                             Continuar Comprando

@@ -225,7 +225,6 @@ export function Header() {
             </header>
 
             <LoginFormModal />
-            {isCartOpen && <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />}
             <WhatsAppButton />
         </>}
         </>

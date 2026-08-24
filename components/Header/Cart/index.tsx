@@ -1,75 +1,64 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { createNewOrder } from "@/actions/ordersAction";
-import { Loading } from "@/components/Loading";
 import { useCartStore } from "@/stores/useCartStore";
 import { useGSAP } from "@gsap/react";
 import { TrashIcon, X } from "@phosphor-icons/react";
 import gsap from "gsap";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "react-toastify";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
-interface CartProps {
-    isCartOpen: boolean;
-    setIsCartOpen: (isCartOpen: boolean) => void;
-}
-
-export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
-    const { cart, removeFromCart, clearCart, getTotalPrice, increaseQuantity, decreaseQuantity } = useCartStore();
-    const [loading, setLoading] = useState(false);
+export function Cart() {
+    const { 
+        cart, 
+        isOpen,
+        closeCart, 
+        removeFromCart, 
+        clearCart, 
+        getTotalPrice, 
+        increaseQuantity, 
+        decreaseQuantity 
+    } = useCartStore();
 
     const total = getTotalPrice();
+    
+    const path = usePathname();
 
-    const router = useRouter();
-
-    const handleFinalizeOrder = async () => {
-        setLoading(true);
-        try {
-            await Promise.all(
-                cart.map((item: any) =>
-                    createNewOrder(item.product.id, item.quantity)
-                )
-            );
-
-            clearCart();
-            setIsCartOpen(false);
-            toast.success("Pedido finalizado com sucesso!");
-            router.push('/sucesso?success=true');
-        } catch (error) {
-            console.error("Erro ao finalizar pedido:", error);
-            toast.error("Houve um erro ao processar seu pedido.");
-        } finally {
-            setLoading(false);
-        }
-    }
+    // useEffect(() => {
+    //     if (path.startsWith('/finalizarPedido')) {
+    //         closeCart();
+    //     }
+    // }, [path, closeCart]);
 
     useGSAP(() => {
-        gsap.fromTo('.cart', {
-            opacity: 0,
-        }, {
-            opacity: 1,
-            duration: 0.5,
-            ease: 'power2.out'
-        })
-    }, [isCartOpen]);
+        if (isOpen) {
+            gsap.fromTo('.cart', {
+                opacity: 0,
+            }, {
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        }
+    }, [isOpen]);
+
+    if (!isOpen) return null;
 
     return (
         <>
             <div
-                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300 ${isCartOpen ? "opacity-100 visible" : "opacity-0 invisible"
-                    }`}
-                onClick={() => setIsCartOpen(false)}
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300 opacity-100 visible"
+                onClick={closeCart}
             />
             <div
-                className={`cart fixed top-0 ${isCartOpen ? "right-0" : "right-full"} h-full w-full sm:w-[420px] bg-[#0f0f0f] z-50 shadow-2xl transform transition-transform duration-300 flex flex-col ${isCartOpen ? "translate-x-0" : "translate-x-full"
-                    }`}
+                className="cart fixed top-0 right-0 h-full w-full sm:w-[420px] bg-[#0f0f0f] z-50 shadow-2xl transform transition-transform duration-300 flex flex-col translate-x-0"
             >
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                     <h2 className="text-xl font-semibold">Seu Carrinho</h2>
                     <button
-                        onClick={() => setIsCartOpen(false)}
+                        onClick={closeCart}
                         className="cursor-pointer p-2 rounded-lg hover:bg-white/10 transition"
                     >
                         <X size={20} />
@@ -77,11 +66,10 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-6 space-y-6">
-
                     {cart?.map((item) => (
                         <div key={item.product.id} className="flex gap-4">
                             <Image
-                                src={`https://admin.eletrosystemti.com.br/uploads/${item.product.image}`}
+                                src={item.product.image}
                                 alt={item.product.name}
                                 width={200}
                                 height={200}
@@ -128,19 +116,23 @@ export function Cart({ isCartOpen, setIsCartOpen }: CartProps) {
                             </div>
                         </div>
                     ))}
-
                 </div>
-                <span onClick={() => clearCart()} className="px-6 text-gray-500 font-thin mb-3 cursor-pointer transition-all duration-500 hover:text-green-400">Limpar Carrinho</span>
-                <div className="border-t border-white/10 p-6 space-y-4">
 
+                <span onClick={() => clearCart()} className="px-6 text-gray-500 font-thin mb-3 cursor-pointer transition-all duration-500 hover:text-green-400">
+                    Limpar Carrinho
+                </span>
+
+                <div className="border-t border-white/10 p-6 space-y-4">
                     <div className="flex justify-between text-lg font-semibold">
                         <span>Total</span>
-                        <span className="text-[#03A64A]">{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}</span>
+                        <span className="text-[#03A64A]">
+                            {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(total)}
+                        </span>
                     </div>
 
-                    <button onClick={handleFinalizeOrder} className="cursor-pointer w-full py-4 rounded-xl bg-gradient-to-r from-[#33945E] to-[#03A64A] font-semibold hover:brightness-110 transition">
-                        {loading ? <Loading /> : "Finalizar Pedido"}
-                    </button>
+                    <Link onClick={closeCart} href="/finalizarPedido" className="px-6 py-4 rounded-xl bg-linear-to-r from-[#33945E] to-[#03A64A] font-semibold hover:brightness-110 transition">
+                        Prosseguir
+                    </Link>
                 </div>
             </div>
         </>

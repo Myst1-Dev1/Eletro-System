@@ -1,167 +1,340 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { useCartStore } from '@/stores/useCartStore';
-import { useState } from 'react';
-import {
-    ShoppingCartIcon,
-    MinusIcon,
-    PlusIcon,
-    ShieldCheckIcon,
-    TruckIcon,
-    ArrowsCounterClockwiseIcon
-} from "@phosphor-icons/react";
-import { motion } from "framer-motion";
-import Image from 'next/image';
-// import { ProdutoPageSkeleton } from '../Skeleton/ProductPageSkeleton';
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeftIcon, CheckCircleIcon, FlaskIcon, PlayIcon, ShoppingCart } from "@phosphor-icons/react";
+import { useCartStore } from "@/stores/useCartStore";
 
-interface ProdutoContentProps {
-    product: any;
-}
-
-export function ProdutoContent({ product }: ProdutoContentProps) {
-    const [quantity, setQuantity] = useState(1);
+export function ProdutoContent() {
     const { addToCart } = useCartStore();
 
-    const productData = product?.data;
+    const product = {
+        id: "pc-ultra-performance",
+        name: "PC Gamer",
+        subtitle: "Ultra Performance",
+        description: "Engenharia de precisão para máxima taxa de quadros e renderização intensiva. Montado artesanalmente por especialistas, calibrado para o limite.",
+        price: 24999.00,
+        installments: "12x de R$ 2.395,73 sem juros",
+        image: "/images/produto.webp",
+        gallery: [
+            "/images/limpeza.webp",
+            "/images/wifi-internet.webp",
+            "/images/manutencao-cameras.webp",
+        ],
+        specs: [
+            { label: "CPU:", value: "i9-14900K 6.0GHz" },
+            { label: "GPU:", value: "RTX 4090 24GB" },
+            { label: "RAM:", value: "64GB DDR5 6400MHz" },
+            { label: "NVMe:", value: "4TB Gen5 SSD 12GB/s" }
+        ]
+    };
 
-    // if (!productData) {
-    //     return <ProdutoPageSkeleton />;
-    // }
-
-    const formattedPrice = Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    }).format(Number(productData?.price));
+    const [selectedMedia, setSelectedMedia] = useState(product.image);
 
     return (
-        <section className="min-h-screen bg-black text-white py-12">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="py-12 md:py-20 max-w-6xl mx-auto px-4 text-white">
+            <div className="flex items-center justify-between text-xs font-mono tracking-wider mb-8 text-zinc-400">
+                <div className="flex items-center gap-2">
+                    <Link href="/" className="hover:text-[#0BD061] transition-colors">HOME</Link>
+                    <span>&gt;</span>
+                    <span className="hover:text-[#0BD061] transition-colors">PCS GAMERS</span>
+                    <span>&gt;</span>
+                    <span className="text-[#0BD061] font-bold uppercase">{product.subtitle}</span>
+                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <Link href="/loja" className="flex items-center gap-2 hover:text-[#0BD061] transition-colors font-sans font-semibold">
+                    <ArrowLeftIcon size={16} />
+                    <span>Voltar à Loja</span>
+                </Link>
+            </div>
 
-                    {/* COLUNA DA IMAGEM (6 COLUNAS) */}
-                    <div className="lg:col-span-7 relative group">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="sticky top-24 bg-[#0d0d0d] border border-white/5 rounded-[3rem] p-12 flex justify-center items-center overflow-hidden"
-                        >
-                            {/* Glow de fundo dinâmico */}
-                            <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#03A64A]/10 blur-[120px] rounded-full group-hover:bg-[#03A64A]/20 transition-colors duration-700' />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <div className="lg:col-span-7 flex flex-col gap-4">
+                    <div className="relative w-full h-112.5 bg-zinc-950 border border-zinc-800/80 rounded-2xl overflow-hidden flex items-center justify-center p-6">
+                        <div className="absolute top-6 left-6 flex flex-col gap-2 z-10 font-mono text-[11px] font-bold">
+                            <span className="px-3 py-1 bg-[#0BD061]/10 border border-[#0BD061]/30 text-[#0BD061] rounded-md backdrop-blur-md flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-[#0BD061] animate-pulse" />
+                                EM ESTOQUE
+                            </span>
+                            <span className="px-3 py-1 bg-[#0BD061] text-black rounded-md w-fit font-sans font-extrabold uppercase tracking-wider">
+                                LANÇAMENTO
+                            </span>
+                        </div>
 
-                            <Image
-                                src={`https://admin.eletrosystemti.com.br/uploads/${productData?.image}`}
-                                width={400}
-                                height={400}
-                                alt={productData?.name}
-                                className="max-h-[500px] w-auto z-10 object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-105"
-                            />
-
-                            {/* Tag de Zoom/Preview */}
-                            {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2 rounded-full text-[10px] uppercase tracking-widest font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                                Visualização em Alta Resolução
-                            </div> */}
-                        </motion.div>
+                        <Image 
+                            src={selectedMedia} 
+                            alt={product.name} 
+                            fill
+                            className="object-cover"
+                            priority
+                        />
                     </div>
 
-                    {/* COLUNA DE COMPRA (5 COLUNAS) */}
-                    <div className="lg:col-span-5 flex flex-col justify-center space-y-8">
-
-                        <div className="space-y-4">
-                            <div className="flex items-center gap-3">
-                                <span className="text-[10px] font-black uppercase tracking-[0.2em] bg-[#03A64A] text-black px-3 py-1 rounded-md">
-                                    {productData?.category?.name}
-                                </span>
-                                {productData?.quantity > 0 && (
-                                    <span className="flex items-center gap-1.5 text-[10px] font-bold text-[#03A64A] uppercase tracking-widest">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#03A64A] animate-pulse" />
-                                        Pronta Entrega
-                                    </span>
-                                )}
-                            </div>
-
-                            <h1 className="text-4xl md:text-5xl font-black tracking-tighter leading-[1.1]">
-                                {productData?.name}
-                            </h1>
-
-                            <p className="text-zinc-500 text-lg leading-relaxed font-medium">
-                                {productData?.short_description}
-                            </p>
-                        </div>
-
-                        {/* PREÇO E ESTOQUE */}
-                        <div className="p-8 bg-[#0d0d0d] border border-white/5 rounded-[2rem] space-y-6">
-                            <div className="flex flex-col">
-                                <span className="text-zinc-500 text-xs uppercase font-bold tracking-widest mb-1">Preço Especial</span>
-                                <div className="flex items-baseline gap-2">
-                                    <span className="text-5xl font-black text-[#03A64A] tracking-tighter">
-                                        {formattedPrice}
-                                    </span>
-                                    <span className="text-zinc-600 line-through text-sm font-bold">
-                                        {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Number(productData?.price) * 1.15)}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* SELETOR DE QUANTIDADE */}
-                            <div className="flex items-center justify-between py-4 border-y border-white/5">
-                                <span className="font-bold text-sm uppercase tracking-widest text-zinc-400">Quantidade</span>
-                                <div className="flex items-center bg-black border border-white/10 rounded-xl p-1">
-                                    <button
-                                        onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
-                                        className="w-10 h-10 flex items-center justify-center hover:bg-white/5 transition-colors rounded-lg text-zinc-400"
-                                    >
-                                        <MinusIcon weight="bold" />
-                                    </button>
-                                    <span className="w-12 text-center font-black text-lg">{quantity}</span>
-                                    <button
-                                        onClick={() => setQuantity(prev => Math.min(productData?.quantity, prev + 1))}
-                                        className="w-10 h-10 flex items-center justify-center hover:bg-white/5 transition-colors rounded-lg text-[#03A64A]"
-                                    >
-                                        <PlusIcon weight="bold" />
-                                    </button>
-                                </div>
-                            </div>
-
+                    <div className="grid grid-cols-4 gap-4">
+                        {product.gallery.map((img, idx) => (
                             <button
-                                onClick={() => addToCart(productData, quantity)}
-                                disabled={productData?.quantity === 0}
-                                className="cursor-pointer w-full bg-[#03A64A] hover:bg-[#028a3d] disabled:bg-zinc-800 disabled:text-zinc-500 text-black h-16 rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all transform active:scale-95"
+                                key={idx}
+                                onClick={() => setSelectedMedia(img)}
+                                className={`relative h-24 bg-zinc-900 border rounded-xl overflow-hidden cursor-pointer transition-all ${
+                                    selectedMedia === img ? 'border-[#0BD061]' : 'border-zinc-800 hover:border-zinc-600'
+                                }`}
                             >
-                                <ShoppingCartIcon size={24} weight="bold" />
-                                Adicionar ao Carrinho
+                                <Image src={img} alt="Thumbnail" fill className="object-cover" />
                             </button>
-                        </div>
+                        ))}
 
-                        {/* BENEFÍCIOS RÁPIDOS */}
-                        <div className="grid grid-cols-3 gap-4">
-                            {[
-                                { icon: <ShieldCheckIcon size={20} />, label: "Garantia Eletro" },
-                                { icon: <TruckIcon size={20} />, label: "Envio Seguro" },
-                                { icon: <ArrowsCounterClockwiseIcon size={20} />, label: "Troca Fácil" }
-                            ].map((item, i) => (
-                                <div key={i} className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-center">
-                                    <div className="text-[#03A64A]">{item.icon}</div>
-                                    <span className="text-[10px] font-bold uppercase text-zinc-500 tracking-tighter">{item.label}</span>
+                        <button className="h-24 bg-zinc-900 border border-zinc-800 hover:border-[#0BD061]/50 rounded-xl flex items-center justify-center text-zinc-400 hover:text-[#0BD061] transition-all cursor-pointer">
+                            <div className="w-10 h-10 rounded-full border border-current flex items-center justify-center">
+                                <PlayIcon size={18} weight="fill" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div className="lg:col-span-5 flex flex-col gap-6">
+                    <div>
+                        <h1 className="text-3xl font-extrabold tracking-tight leading-none text-white">
+                            {product.name}
+                        </h1>
+                        <h2 className="text-3xl font-extrabold tracking-tight leading-tight text-[#0BD061] mt-1">
+                            {product.subtitle}
+                        </h2>
+                        <p className="text-xs text-zinc-400 mt-4 leading-relaxed font-normal">
+                            {product.description}
+                        </p>
+                    </div>
+
+                    <div className="pt-2">
+                        <span className="text-[10px] uppercase font-mono tracking-widest text-zinc-500 block mb-1">
+                            VALOR DO INVESTIMENTO
+                        </span>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-3xl md:text-4xl font-extrabold text-[#0BD061]">
+                                {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
+                            </span>
+                            <span className="text-xs text-zinc-400 font-medium">à vista no PIX</span>
+                        </div>
+                        <p className="text-xs text-zinc-400 mt-1">
+                            ou <span className="text-zinc-200 font-semibold">{product.installments}</span>
+                        </p>
+                    </div>
+
+                    <button
+                        onClick={() => addToCart(product as any)}
+                        className="w-full py-4 bg-[#0BD061] hover:bg-[#09b353] text-black font-black uppercase tracking-wider rounded-xl transition-all duration-200 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(11,208,97,0.25)] active:scale-98 cursor-pointer mt-2"
+                    >
+                        <span>ADICIONAR AO CARRINHO</span>
+                        <ShoppingCart size={20} weight="bold" />
+                    </button>
+
+                    <div className="bg-zinc-950/80 border border-zinc-800/80 rounded-2xl p-5 mt-4">
+                        <h3 className="text-xs font-mono font-bold tracking-widest uppercase text-zinc-400 mb-4 pb-2 border-b border-zinc-800/60">
+                            CONFIGURAÇÃO BASE
+                        </h3>
+
+                        <div className="space-y-3 font-mono text-xs">
+                            {product.specs.map((spec, idx) => (
+                                <div key={idx} className="flex justify-between items-center">
+                                    <span className="text-zinc-500">{spec.label}</span>
+                                    <span className="text-zinc-200 font-semibold">{spec.value}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {/* ABA DE DESCRIÇÃO */}
-                <div className="mt-32">
-                    <div className="inline-block border-b-2 border-[#03A64A] pb-2 mb-12">
-                        <h2 className="text-2xl font-black uppercase tracking-widest">
+            <div className="mt-20 pt-10 border-t border-zinc-800/60">
+                <div className="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
                             Especificações Técnicas
                         </h2>
+                        <p className="text-xs text-zinc-400 mt-1">
+                            Arquitetura de hardware detalhada do sistema.
+                        </p>
                     </div>
 
-                    <div
-                        className="prose prose-invert max-w-none text-zinc-400 leading-relaxed 
-                        prose-h3:text-white prose-h3:font-black prose-strong:text-white prose-p:mb-6"
-                        dangerouslySetInnerHTML={{ __html: productData?.description }}
-                    />
+                    <div className="flex items-center gap-2">
+                        <span className="w-8 h-[2px] bg-[#0BD061]" />
+                        <span className="font-mono text-[10px] tracking-widest text-[#0BD061] uppercase font-bold">
+                            TERMINAL DATA VIEW
+                        </span>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <div className="relative bg-zinc-950/90 border border-zinc-800/80 rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <span className="text-[10px] font-mono font-bold tracking-widest text-[#0BD061] uppercase block mb-3">
+                                PROCESSAMENTO
+                            </span>
+                            <h3 className="text-xl font-extrabold text-white">
+                                Intel Core i9
+                            </h3>
+                            <span className="text-xs font-mono font-semibold text-zinc-400 block mb-6">
+                                14900K
+                            </span>
+                        </div>
+
+                        <div className="space-y-2 font-mono text-xs border-t border-zinc-900 pt-4">
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">Núcleos:</span>
+                                <span className="text-zinc-200 font-semibold">24 (8P+16E)</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">Threads:</span>
+                                <span className="text-zinc-200 font-semibold">32</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">Boost Max:</span>
+                                <span className="text-[#0BD061] font-bold">6.0 GHz</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* CARD 2: Gráficos */}
+                    <div className="relative bg-zinc-950/90 border border-zinc-800/80 rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <span className="text-[10px] font-mono font-bold tracking-widest text-[#0BD061] uppercase block mb-3">
+                                GRÁFICOS
+                            </span>
+                            <h3 className="text-xl font-extrabold text-white">
+                                NVIDIA RTX 4090
+                            </h3>
+                            <span className="text-xs font-mono font-semibold text-zinc-400 block mb-6">
+                                Founders Edition / Premium Partner
+                            </span>
+                        </div>
+
+                        <div className="space-y-2 font-mono text-xs border-t border-zinc-900 pt-4">
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">VRAM:</span>
+                                <span className="text-zinc-200 font-semibold">24GB GDDR6X</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">CUDA Cores:</span>
+                                <span className="text-zinc-200 font-semibold">16384</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">Ray Tracing:</span>
+                                <span className="text-[#0BD061] font-bold">3rd Gen Cores</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* CARD 3: Plataforma */}
+                    <div className="relative bg-zinc-950/90 border border-zinc-800/80 rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
+                        <div>
+                            <span className="text-[10px] font-mono font-bold tracking-widest text-[#0BD061] uppercase block mb-3">
+                                PLATAFORMA
+                            </span>
+                            <h3 className="text-xl font-extrabold text-white">
+                                Z790 E-ATX
+                            </h3>
+                            <span className="text-xs font-mono font-semibold text-zinc-400 block mb-6">
+                                64GB DDR5 Dual Channel
+                            </span>
+                        </div>
+
+                        <div className="space-y-2 font-mono text-xs border-t border-zinc-900 pt-4">
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">Freq. RAM:</span>
+                                <span className="text-zinc-200 font-semibold">6400 MT/s</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">Latência:</span>
+                                <span className="text-zinc-200 font-semibold">CL32</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-zinc-500">Conectividade:</span>
+                                <span className="text-[#0BD061] font-bold">WiFi 7 + 10GbE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div className="mt-20 pt-10 border-t border-zinc-800/60">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    {/* COLUNA ESQUERDA: Texto e Destaques */}
+                    <div className="lg:col-span-6 flex flex-col justify-center">
+                        
+                        {/* Título com Ícone */}
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="w-12 h-12 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center shrink-0">
+                                <CheckCircleIcon size={24} className="text-[#0BD061]" weight="fill" />
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                                Montagem <br />
+                                Artesanal.
+                            </h2>
+                        </div>
+
+                        {/* Parágrafos de Descrição */}
+                        <div className="space-y-4 text-xs text-zinc-400 leading-relaxed font-normal">
+                            <p>
+                                Cada sistema é meticulosamente construído por nossos especialistas no 
+                                Laboratório EletroSystem. A gestão de cabos é executada com precisão 
+                                milimétrica, garantindo fluxo de ar perfeito e estética impecável.
+                            </p>
+                            <p>
+                                Antes do envio, a máquina passa por 48 horas ininterruptas de stress test 
+                                térmico e benchmarks sintéticos. Nós não enviamos até que o sistema prove 
+                                ser absolutamente estável sob carga extrema.
+                            </p>
+                        </div>
+
+                        {/* Checkmarks de Garantia */}
+                        <div className="mt-8 space-y-3 font-mono text-xs font-bold text-white tracking-wider uppercase">
+                            <div className="flex items-center gap-3">
+                                <CheckCircleIcon size={18} className="text-[#0BD061] shrink-0" weight="bold" />
+                                <span>3 ANOS DE GARANTIA INTEGRAL</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <CheckCircleIcon size={18} className="text-[#0BD061] shrink-0" weight="bold" />
+                                <span>SUPORTE REMOTO DEDICADO</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <CheckCircleIcon size={18} className="text-[#0BD061] shrink-0" weight="bold" />
+                                <span>CERTIFICADO DE BENCHMARK INDIVIDUAL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* COLUNA DIREITA: Imagem do Técnico + Badge Flutuante */}
+                    <div className="lg:col-span-6">
+                        <div className="relative w-full h-100 md:h-112.5 bg-zinc-950 border border-zinc-800/80 rounded-2xl overflow-hidden">
+                            <Image
+                                src="/images/tech-building.webp" // Substitua pela sua imagem
+                                alt="Técnico realizando montagem artesanal"
+                                fill
+                                className="object-cover object-center"
+                            />
+
+                            {/* Badge Flutuante Inferior (Fase de Teste) */}
+                            <div className="absolute bottom-6 left-6 bg-zinc-950/90 border border-zinc-800 backdrop-blur-md p-3.5 rounded-xl flex items-center gap-3 shadow-2xl">
+                                <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center shrink-0">
+                                    <FlaskIcon size={20} className="text-[#0BD061]" />
+                                </div>
+                                <div>
+                                    <span className="text-[9px] font-mono font-bold tracking-widest text-[#0BD061] uppercase block">
+                                        FASE DE TESTE
+                                    </span>
+                                    <span className="text-sm font-bold text-white font-sans">
+                                        Stress Test Ativo
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
